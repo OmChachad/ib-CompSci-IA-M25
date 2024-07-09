@@ -1,0 +1,624 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C24C318D2C3D038600C3187D /* Krupa_s_FoodsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318C2C3D038600C3187D /* Krupa_s_FoodsApp.swift */; };
+		C24C318F2C3D038600C3187D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318E2C3D038600C3187D /* ContentView.swift */; };
+		C24C31912C3D038800C3187D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24C31902C3D038800C3187D /* Assets.xcassets */; };
+		C24C31952C3D038800C3187D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24C31942C3D038800C3187D /* Preview Assets.xcassets */; };
+		C24C319F2C3D038800C3187D /* Krupa_s_FoodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */; };
+		C24C31A92C3D038800C3187D /* Krupa_s_FoodsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */; };
+		C24C31AB2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C24C319B2C3D038800C3187D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C24C31812C3D038600C3187D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C24C31882C3D038600C3187D;
+			remoteInfo = "Krupa's Foods";
+		};
+		C24C31A52C3D038800C3187D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C24C31812C3D038600C3187D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C24C31882C3D038600C3187D;
+			remoteInfo = "Krupa's Foods";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C24C31892C3D038600C3187D /* Krupa's Foods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Krupa's Foods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C24C318C2C3D038600C3187D /* Krupa_s_FoodsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsApp.swift; sourceTree = "<group>"; };
+		C24C318E2C3D038600C3187D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C24C31902C3D038800C3187D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C24C31922C3D038800C3187D /* Krupa_s_Foods.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Krupa_s_Foods.entitlements; sourceTree = "<group>"; };
+		C24C31942C3D038800C3187D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C24C319A2C3D038800C3187D /* Krupa's FoodsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Krupa's FoodsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsTests.swift; sourceTree = "<group>"; };
+		C24C31A42C3D038800C3187D /* Krupa's FoodsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Krupa's FoodsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITests.swift; sourceTree = "<group>"; };
+		C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C24C31862C3D038600C3187D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C24C31972C3D038800C3187D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C24C31A12C3D038800C3187D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C24C31802C3D038600C3187D = {
+			isa = PBXGroup;
+			children = (
+				C24C318B2C3D038600C3187D /* Krupa's Foods */,
+				C24C319D2C3D038800C3187D /* Krupa's FoodsTests */,
+				C24C31A72C3D038800C3187D /* Krupa's FoodsUITests */,
+				C24C318A2C3D038600C3187D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C24C318A2C3D038600C3187D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C24C31892C3D038600C3187D /* Krupa's Foods.app */,
+				C24C319A2C3D038800C3187D /* Krupa's FoodsTests.xctest */,
+				C24C31A42C3D038800C3187D /* Krupa's FoodsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C24C318B2C3D038600C3187D /* Krupa's Foods */ = {
+			isa = PBXGroup;
+			children = (
+				C24C318C2C3D038600C3187D /* Krupa_s_FoodsApp.swift */,
+				C24C318E2C3D038600C3187D /* ContentView.swift */,
+				C24C31902C3D038800C3187D /* Assets.xcassets */,
+				C24C31922C3D038800C3187D /* Krupa_s_Foods.entitlements */,
+				C24C31932C3D038800C3187D /* Preview Content */,
+			);
+			path = "Krupa's Foods";
+			sourceTree = "<group>";
+		};
+		C24C31932C3D038800C3187D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C24C31942C3D038800C3187D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C24C319D2C3D038800C3187D /* Krupa's FoodsTests */ = {
+			isa = PBXGroup;
+			children = (
+				C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */,
+			);
+			path = "Krupa's FoodsTests";
+			sourceTree = "<group>";
+		};
+		C24C31A72C3D038800C3187D /* Krupa's FoodsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */,
+				C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */,
+			);
+			path = "Krupa's FoodsUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C24C31882C3D038600C3187D /* Krupa's Foods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C24C31AE2C3D038800C3187D /* Build configuration list for PBXNativeTarget "Krupa's Foods" */;
+			buildPhases = (
+				C24C31852C3D038600C3187D /* Sources */,
+				C24C31862C3D038600C3187D /* Frameworks */,
+				C24C31872C3D038600C3187D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Krupa's Foods";
+			productName = "Krupa's Foods";
+			productReference = C24C31892C3D038600C3187D /* Krupa's Foods.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C24C31992C3D038800C3187D /* Krupa's FoodsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C24C31B12C3D038800C3187D /* Build configuration list for PBXNativeTarget "Krupa's FoodsTests" */;
+			buildPhases = (
+				C24C31962C3D038800C3187D /* Sources */,
+				C24C31972C3D038800C3187D /* Frameworks */,
+				C24C31982C3D038800C3187D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C24C319C2C3D038800C3187D /* PBXTargetDependency */,
+			);
+			name = "Krupa's FoodsTests";
+			productName = "Krupa's FoodsTests";
+			productReference = C24C319A2C3D038800C3187D /* Krupa's FoodsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C24C31A32C3D038800C3187D /* Krupa's FoodsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C24C31B42C3D038800C3187D /* Build configuration list for PBXNativeTarget "Krupa's FoodsUITests" */;
+			buildPhases = (
+				C24C31A02C3D038800C3187D /* Sources */,
+				C24C31A12C3D038800C3187D /* Frameworks */,
+				C24C31A22C3D038800C3187D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C24C31A62C3D038800C3187D /* PBXTargetDependency */,
+			);
+			name = "Krupa's FoodsUITests";
+			productName = "Krupa's FoodsUITests";
+			productReference = C24C31A42C3D038800C3187D /* Krupa's FoodsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C24C31812C3D038600C3187D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					C24C31882C3D038600C3187D = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					C24C31992C3D038800C3187D = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = C24C31882C3D038600C3187D;
+					};
+					C24C31A32C3D038800C3187D = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = C24C31882C3D038600C3187D;
+					};
+				};
+			};
+			buildConfigurationList = C24C31842C3D038600C3187D /* Build configuration list for PBXProject "Krupa's Foods" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C24C31802C3D038600C3187D;
+			productRefGroup = C24C318A2C3D038600C3187D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C24C31882C3D038600C3187D /* Krupa's Foods */,
+				C24C31992C3D038800C3187D /* Krupa's FoodsTests */,
+				C24C31A32C3D038800C3187D /* Krupa's FoodsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C24C31872C3D038600C3187D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C24C31952C3D038800C3187D /* Preview Assets.xcassets in Resources */,
+				C24C31912C3D038800C3187D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C24C31982C3D038800C3187D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C24C31A22C3D038800C3187D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C24C31852C3D038600C3187D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C24C318F2C3D038600C3187D /* ContentView.swift in Sources */,
+				C24C318D2C3D038600C3187D /* Krupa_s_FoodsApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C24C31962C3D038800C3187D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C24C319F2C3D038800C3187D /* Krupa_s_FoodsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C24C31A02C3D038800C3187D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C24C31AB2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift in Sources */,
+				C24C31A92C3D038800C3187D /* Krupa_s_FoodsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C24C319C2C3D038800C3187D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C24C31882C3D038600C3187D /* Krupa's Foods */;
+			targetProxy = C24C319B2C3D038800C3187D /* PBXContainerItemProxy */;
+		};
+		C24C31A62C3D038800C3187D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C24C31882C3D038600C3187D /* Krupa's Foods */;
+			targetProxy = C24C31A52C3D038800C3187D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C24C31AC2C3D038800C3187D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C24C31AD2C3D038800C3187D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		C24C31AF2C3D038800C3187D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Krupa's Foods/Krupa_s_Foods.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Krupa's Foods/Preview Content\"";
+				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Krupa's Foods";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-Foods";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C24C31B02C3D038800C3187D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Krupa's Foods/Krupa_s_Foods.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Krupa's Foods/Preview Content\"";
+				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Krupa's Foods";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-Foods";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C24C31B22C3D038800C3187D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-FoodsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Krupa's Foods.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Krupa's Foods";
+			};
+			name = Debug;
+		};
+		C24C31B32C3D038800C3187D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-FoodsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Krupa's Foods.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Krupa's Foods";
+			};
+			name = Release;
+		};
+		C24C31B52C3D038800C3187D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-FoodsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Krupa's Foods";
+			};
+			name = Debug;
+		};
+		C24C31B62C3D038800C3187D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-FoodsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Krupa's Foods";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C24C31842C3D038600C3187D /* Build configuration list for PBXProject "Krupa's Foods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C24C31AC2C3D038800C3187D /* Debug */,
+				C24C31AD2C3D038800C3187D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C24C31AE2C3D038800C3187D /* Build configuration list for PBXNativeTarget "Krupa's Foods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C24C31AF2C3D038800C3187D /* Debug */,
+				C24C31B02C3D038800C3187D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C24C31B12C3D038800C3187D /* Build configuration list for PBXNativeTarget "Krupa's FoodsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C24C31B22C3D038800C3187D /* Debug */,
+				C24C31B32C3D038800C3187D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C24C31B42C3D038800C3187D /* Build configuration list for PBXNativeTarget "Krupa's FoodsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C24C31B52C3D038800C3187D /* Debug */,
+				C24C31B62C3D038800C3187D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C24C31812C3D038600C3187D /* Project object */;
+}
