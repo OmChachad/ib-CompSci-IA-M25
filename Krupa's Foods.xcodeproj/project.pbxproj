@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C24C318D2C3D038600C3187D /* Krupa_s_FoodsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318C2C3D038600C3187D /* Krupa_s_FoodsApp.swift */; };
+		C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */; };
 		C24C318F2C3D038600C3187D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318E2C3D038600C3187D /* ContentView.swift */; };
 		C24C31912C3D038800C3187D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24C31902C3D038800C3187D /* Assets.xcassets */; };
 		C24C31952C3D038800C3187D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24C31942C3D038800C3187D /* Preview Assets.xcassets */; };
 		C24C319F2C3D038800C3187D /* Krupa_s_FoodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */; };
 		C24C31A92C3D038800C3187D /* Krupa_s_FoodsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */; };
 		C24C31AB2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */; };
+		C28C7F102C4682DB00B9DF32 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28C7F0F2C4682DB00B9DF32 /* Product.swift */; };
+		C2942FC42C4E0F5900E11C21 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC32C4E0F5900E11C21 /* Order.swift */; };
+		C2942FC62C4E0F7100E11C21 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC52C4E0F7100E11C21 /* Stock.swift */; };
+		C2942FC82C4E0F8500E11C21 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC72C4E0F8500E11C21 /* Customer.swift */; };
+		C2942FCA2C4E0F9B00E11C21 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC92C4E0F9B00E11C21 /* Address.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		C24C31892C3D038600C3187D /* Krupa's Foods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Krupa's Foods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C24C318C2C3D038600C3187D /* Krupa_s_FoodsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsApp.swift; sourceTree = "<group>"; };
+		C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupas_FoodsApp.swift; sourceTree = "<group>"; };
 		C24C318E2C3D038600C3187D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C24C31902C3D038800C3187D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C24C31922C3D038800C3187D /* Krupa_s_Foods.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Krupa_s_Foods.entitlements; sourceTree = "<group>"; };
@@ -45,6 +50,11 @@
 		C24C31A42C3D038800C3187D /* Krupa's FoodsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Krupa's FoodsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITests.swift; sourceTree = "<group>"; };
 		C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C28C7F0F2C4682DB00B9DF32 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		C2942FC32C4E0F5900E11C21 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		C2942FC52C4E0F7100E11C21 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		C2942FC72C4E0F8500E11C21 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		C2942FC92C4E0F9B00E11C21 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +105,13 @@
 		C24C318B2C3D038600C3187D /* Krupa's Foods */ = {
 			isa = PBXGroup;
 			children = (
-				C24C318C2C3D038600C3187D /* Krupa_s_FoodsApp.swift */,
+				C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */,
 				C24C318E2C3D038600C3187D /* ContentView.swift */,
+				C28C7F0F2C4682DB00B9DF32 /* Product.swift */,
+				C2942FC32C4E0F5900E11C21 /* Order.swift */,
+				C2942FC52C4E0F7100E11C21 /* Stock.swift */,
+				C2942FC72C4E0F8500E11C21 /* Customer.swift */,
+				C2942FC92C4E0F9B00E11C21 /* Address.swift */,
 				C24C31902C3D038800C3187D /* Assets.xcassets */,
 				C24C31922C3D038800C3187D /* Krupa_s_Foods.entitlements */,
 				C24C31932C3D038800C3187D /* Preview Content */,
@@ -260,7 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C24C318F2C3D038600C3187D /* ContentView.swift in Sources */,
-				C24C318D2C3D038600C3187D /* Krupa_s_FoodsApp.swift in Sources */,
+				C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */,
+				C2942FC42C4E0F5900E11C21 /* Order.swift in Sources */,
+				C2942FC82C4E0F8500E11C21 /* Customer.swift in Sources */,
+				C2942FC62C4E0F7100E11C21 /* Stock.swift in Sources */,
+				C28C7F102C4682DB00B9DF32 /* Product.swift in Sources */,
+				C2942FCA2C4E0F9B00E11C21 /* Address.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
