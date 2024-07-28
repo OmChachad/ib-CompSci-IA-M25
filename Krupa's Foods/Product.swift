@@ -13,8 +13,8 @@ class Product {
     var name: String
     var icon: String
     var measurementUnit: Unit
-    var orders: [Order]
-    var stock: [Stock]
+    @Relationship(inverse: \Order.product) var orders: [Order]
+    @Relationship(inverse: \Stock.product) var stock: [Stock]
     var isMadeToDelivery: Bool
     
     enum Unit: String, CaseIterable, Codable {

@@ -14,11 +14,13 @@ class Stock {
     var quantityPurchased: Int
     var quantityLeft: Int
     var date: Date
+    var product: Product
     
-    init(amountPaid: Double, quantityPurchased: Int, date: Date = Date.now) {
+    init(amountPaid: Double, quantityPurchased: Int, date: Date = Date.now, for product: Product) {
         self.amountPaid = amountPaid
         self.quantityPurchased = quantityPurchased
         self.quantityLeft = quantityPurchased
         self.date = date
+        self.product = product
     }
 }
