@@ -20,6 +20,15 @@ class Product {
     
     enum Unit: String, CaseIterable, Codable {
         case kg, g, dozen, box, piece
+        
+        var title: String {
+            switch(self) {
+            case .kg, .g:
+                return self.rawValue
+            default:
+                return self.rawValue.capitalized
+            }
+        }
     }
 
     init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit, orders: [Order] = [], stock: [Stock] = [], isMadeToDelivery: Bool) {
