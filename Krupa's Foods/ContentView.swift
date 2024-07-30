@@ -13,10 +13,12 @@ struct ContentView: View {
     
     @State private var product: Product?
     
+    @State private var addingNewProduct = false
     
     var body: some View {
         NavigationStack {
             TabView {
+                if let product {
                     Group {
                         OrdersView(product: product)
                             .tabItem {
@@ -42,6 +44,15 @@ struct ContentView: View {
                             .padding([.horizontal, .bottom], -30)
                     }
                     .ignoresSafeArea(.all, edges: .bottom)
+                } else {
+                    VStack {
+                        ContentUnavailableView("No Product Available", systemImage: "tag.slash.fill", description: Text("You haven't set up any products yet.\nClick **Add Product** to get started."))
+                        Button("Add Product") {
+                            addingNewProduct = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.hidden, for: .tabBar)
@@ -65,7 +76,6 @@ struct ContentView: View {
                         //.padding(5)
                         .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        }
                     }
                 }
             }
@@ -78,10 +88,18 @@ struct ContentView: View {
                     self.product = product
                 }
             }
-            .onChange(of: product) {
-                let encodedID = try? JSONEncoder().encode(product?.id)
-                UserDefaults.standard.setValue(encodedID, forKey: "currentProduct")
+            .onChange(of: product) { oldProduct, newProduct in
+                if let newProduct {
+                    // Stored to UserDefaults to persist across app launches.
+                    let encodedID = try? JSONEncoder().encode(newProduct.id)
+                    UserDefaults.standard.setValue(encodedID, forKey: "currentProduct")
+                } else {
+                    // A value of 'nil' indicates that "Add New Product" has been selected, so the addingNewProduct value is set to true to show the adding product sheet.
+                    addingNewProduct = true
+                    self.product = oldProduct
+                }
             }
+            .sheet(isPresented: $addingNewProduct, content: AddProductView.init)
         }
     }
 }

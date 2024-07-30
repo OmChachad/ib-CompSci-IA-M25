@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C210E3E42C56B31E00D04227 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C210E3E32C56B31E00D04227 /* AddProductView.swift */; };
+		C210E3E72C572F6500D04227 /* EmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = C210E3E62C572F6500D04227 /* EmojiPicker */; };
+		C210E3EA2C57568F00D04227 /* MCEmojiPicker in Frameworks */ = {isa = PBXBuildFile; productRef = C210E3E92C57568F00D04227 /* MCEmojiPicker */; };
 		C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */; };
 		C24C318F2C3D038600C3187D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318E2C3D038600C3187D /* ContentView.swift */; };
 		C24C31912C3D038800C3187D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24C31902C3D038800C3187D /* Assets.xcassets */; };
@@ -42,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C210E3E32C56B31E00D04227 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		C24C31892C3D038600C3187D /* Krupa's Foods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Krupa's Foods.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupas_FoodsApp.swift; sourceTree = "<group>"; };
 		C24C318E2C3D038600C3187D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C210E3E72C572F6500D04227 /* EmojiPicker in Frameworks */,
+				C210E3EA2C57568F00D04227 /* MCEmojiPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +119,7 @@
 			children = (
 				C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */,
 				C24C318E2C3D038600C3187D /* ContentView.swift */,
+				C210E3E32C56B31E00D04227 /* AddProductView.swift */,
 				C2CC3B472C4E180000E5DEF5 /* OrdersView.swift */,
 				C2CC3B492C4E182600E5DEF5 /* StockView.swift */,
 				C2CC3B4B2C4E183E00E5DEF5 /* SettingsView.swift */,
@@ -169,6 +176,10 @@
 			dependencies = (
 			);
 			name = "Krupa's Foods";
+			packageProductDependencies = (
+				C210E3E62C572F6500D04227 /* EmojiPicker */,
+				C210E3E92C57568F00D04227 /* MCEmojiPicker */,
+			);
 			productName = "Krupa's Foods";
 			productReference = C24C31892C3D038600C3187D /* Krupa's Foods.app */;
 			productType = "com.apple.product-type.application";
@@ -241,6 +252,10 @@
 				Base,
 			);
 			mainGroup = C24C31802C3D038600C3187D;
+			packageReferences = (
+				C210E3E52C572F6500D04227 /* XCRemoteSwiftPackageReference "EmojiPicker" */,
+				C210E3E82C57568F00D04227 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
+			);
 			productRefGroup = C24C318A2C3D038600C3187D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -288,6 +303,7 @@
 				C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */,
 				C2942FC42C4E0F5900E11C21 /* Order.swift in Sources */,
 				C2942FC82C4E0F8500E11C21 /* Customer.swift in Sources */,
+				C210E3E42C56B31E00D04227 /* AddProductView.swift in Sources */,
 				C2CC3B4C2C4E183E00E5DEF5 /* SettingsView.swift in Sources */,
 				C2942FC62C4E0F7100E11C21 /* Stock.swift in Sources */,
 				C2CC3B482C4E180000E5DEF5 /* OrdersView.swift in Sources */,
@@ -475,7 +491,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-Foods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -514,7 +531,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.omchachad.Krupa-s-Foods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -651,6 +669,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C210E3E52C572F6500D04227 /* XCRemoteSwiftPackageReference "EmojiPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kelvas09/EmojiPicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+		C210E3E82C57568F00D04227 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/izyumkin/MCEmojiPicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C210E3E62C572F6500D04227 /* EmojiPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C210E3E52C572F6500D04227 /* XCRemoteSwiftPackageReference "EmojiPicker" */;
+			productName = EmojiPicker;
+		};
+		C210E3E92C57568F00D04227 /* MCEmojiPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C210E3E82C57568F00D04227 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */;
+			productName = MCEmojiPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C24C31812C3D038600C3187D /* Project object */;
 }
