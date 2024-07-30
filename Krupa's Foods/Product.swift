@@ -22,7 +22,7 @@ class Product {
         case kg, g, dozen, box, piece
     }
 
-    init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit, orders: [Order], stock: [Stock], isMadeToDelivery: Bool) {
+    init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit, orders: [Order] = [], stock: [Stock] = [], isMadeToDelivery: Bool) {
         self.id = id
         self.name = name
         self.icon = icon
