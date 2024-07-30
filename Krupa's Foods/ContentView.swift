@@ -6,16 +6,83 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query var products: [Product]
+    
+    @State private var product: Product?
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            TabView {
+                    Group {
+                        OrdersView(product: product)
+                            .tabItem {
+                                Label("Orders", systemImage: "shippingbox.fill")
+                            }
+                        
+                        StockView()
+                            .tabItem {
+                                Label("Stock", systemImage: "tray.2.fill")
+                            }
+                        
+                        SettingsView()
+                            .tabItem {
+                                Label("Settings", systemImage: "gear")
+                            }
+                    }
+                    .overlay(alignment: .bottom) {
+                        Rectangle()
+                            .fill(.clear)
+                            .frame(maxHeight: 125)
+                            .background(.bar)
+                            .blur(radius: 10)
+                            .padding([.horizontal, .bottom], -30)
+                    }
+                    .ignoresSafeArea(.all, edges: .bottom)
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.hidden, for: .tabBar)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    if !products.isEmpty {
+                        Picker("Product", selection: $product) {
+                            ForEach(products) { product in
+                                Group {
+                                    Text("\(product.icon) \(product.name)").foregroundStyle(.primary) + Text(Image(systemName: "chevron.up.chevron.down")).font(.caption)
+                                }
+                                .tag(product as Product?)
+                            }
+                            
+                            Divider()
+                            
+                            Label("Add New Product", systemImage: "plus")
+                                .tag(nil as Product?)
+                        }
+                        .labelsHidden()
+                        //.padding(5)
+                        .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        }
+                    }
+                }
+            }
+            .onAppear {
+                if let data = UserDefaults.standard.data(forKey: "currentProduct"), let decodedID  = try? JSONDecoder().decode(UUID.self, from: data)  {
+                    product = products.first { $0.id == decodedID }
+                } else if let product = products.first {
+                    let encodedID = try? JSONEncoder().encode(product.id)
+                    UserDefaults.standard.setValue(encodedID, forKey: "currentProduct")
+                    self.product = product
+                }
+            }
+            .onChange(of: product) {
+                let encodedID = try? JSONEncoder().encode(product?.id)
+                UserDefaults.standard.setValue(encodedID, forKey: "currentProduct")
+            }
         }
-        .padding()
     }
 }
 
