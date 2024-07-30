@@ -10,12 +10,14 @@ import SwiftData
 
 @Model
 class Customer {
+    var id: UUID
     var name: String
     var phoneNumber: String
     var address: Address
     var orderHistory: [Order]
     
-    init(name: String, phoneNumber: String, address: Address, orderHistory: [Order]) {
+    init(id: UUID = UUID(), name: String, phoneNumber: String, address: Address, orderHistory: [Order]) {
+        self.id = id
         self.name = name
         self.phoneNumber = phoneNumber
         self.address = address

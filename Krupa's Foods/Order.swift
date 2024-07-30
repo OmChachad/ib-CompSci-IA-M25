@@ -10,6 +10,7 @@ import Foundation
 
 @Model
 class Order {
+    var id: UUID
     var product: Product
     var customer: Customer
     var paymentMethod: PaymentMethod
@@ -35,7 +36,8 @@ class Order {
         case cash, UPI, other
     }
     
-    init(for product: Product, customer: Customer, paymentMethod: PaymentMethod, quantity: Double, amountPaid: Double, date: Date = .now, paymentStatus: Status, deliveryStatus: Status) {
+    init(id: UUID = UUID(), for product: Product, customer: Customer, paymentMethod: PaymentMethod, quantity: Double, amountPaid: Double, date: Date = .now, paymentStatus: Status, deliveryStatus: Status) {
+        self.id = id
         self.product = product
         self.customer = customer
         self.paymentMethod = paymentMethod

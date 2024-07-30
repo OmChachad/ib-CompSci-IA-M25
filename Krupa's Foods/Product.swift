@@ -10,6 +10,7 @@ import SwiftData
 
 @Model
 class Product {
+    var id: UUID
     var name: String
     var icon: String
     var measurementUnit: Unit
@@ -20,8 +21,9 @@ class Product {
     enum Unit: String, CaseIterable, Codable {
         case kg, g, dozen, box, piece
     }
-    
-    init(name: String, icon: String, measurementUnit: Unit, orders: [Order], stock: [Stock], isMadeToDelivery: Bool) {
+
+    init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit, orders: [Order], stock: [Stock], isMadeToDelivery: Bool) {
+        self.id = id
         self.name = name
         self.icon = icon
         self.measurementUnit = measurementUnit

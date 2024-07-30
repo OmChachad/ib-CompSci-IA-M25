@@ -10,13 +10,15 @@ import SwiftData
 
 @Model
 class Stock {
+    var id: UUID
     var amountPaid: Double
     var quantityPurchased: Int
     var quantityLeft: Int
     var date: Date
     var product: Product
     
-    init(amountPaid: Double, quantityPurchased: Int, date: Date = Date.now, for product: Product) {
+    init(id: UUID = UUID(), amountPaid: Double, quantityPurchased: Int, date: Date = Date.now, for product: Product) {
+        self.id = id
         self.amountPaid = amountPaid
         self.quantityPurchased = quantityPurchased
         self.quantityLeft = quantityPurchased
