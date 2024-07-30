@@ -13,6 +13,7 @@ struct Krupas_FoodsApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [Order.self, Product.self, Customer.self])
     }
     
 }
