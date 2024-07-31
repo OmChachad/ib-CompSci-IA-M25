@@ -17,6 +17,15 @@ class Product {
     @Relationship(inverse: \Order.product) var orders: [Order]
     @Relationship(inverse: \Stock.product) var stock: [Stock]
     var isMadeToDelivery: Bool
+    var stepAmount: Double = 1.0
+    
+   // var productionHours: Double
+    
+    var availableStock: Double {
+        stock.reduce(0.0) { totalStock, item in
+            totalStock + item.quantityLeft
+        }
+    }
     
     enum Unit: String, CaseIterable, Codable {
         case kg, g, dozen, box, piece
@@ -31,11 +40,12 @@ class Product {
         }
     }
 
-    init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit, orders: [Order] = [], stock: [Stock] = [], isMadeToDelivery: Bool) {
+    init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit, stepAmount: Double = 1.0, orders: [Order] = [], stock: [Stock] = [], isMadeToDelivery: Bool) {
         self.id = id
         self.name = name
         self.icon = icon
         self.measurementUnit = measurementUnit
+        self.stepAmount = stepAmount
         self.orders = orders
         self.stock = stock
         self.isMadeToDelivery = isMadeToDelivery
