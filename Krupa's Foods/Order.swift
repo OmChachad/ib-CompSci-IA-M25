@@ -34,6 +34,15 @@ class Order {
     
     enum PaymentMethod: String, CaseIterable, Codable {
         case cash, UPI, other
+        
+        var title: String {
+            switch(self) {
+            case .UPI:
+                return "UPI"
+            default:
+                return self.rawValue.capitalized
+            }
+        }
     }
     
     init(id: UUID = UUID(), for product: Product, customer: Customer, paymentMethod: PaymentMethod, quantity: Double, amountPaid: Double, date: Date = .now, paymentStatus: Status, deliveryStatus: Status) {
