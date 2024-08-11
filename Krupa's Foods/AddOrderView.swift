@@ -1,0 +1,146 @@
+//
+//  AddOrderView.swift
+//  Krupa's Foods
+//
+//  Created by Om Chachad on 30/07/24.
+//
+
+import SwiftUI
+import SwiftData
+
+struct AddOrderView: View {
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) var modelContext
+    
+    @Query var customers: [Customer]
+    
+    @State private var customer: Customer?
+    @State private var paymentMethod: Order.PaymentMethod = .UPI
+    @State private var quantity: Double = 0.0
+    @State private var amountPaid: Double = 0.0
+    @State private var paymentStatus = Order.Status.pending
+    @State private var deliveryStatus = Order.Status.pending
+    
+    @State private var showCustomerPicker = false
+    @State private var showAddCustomerView = false
+    
+    var product: Product
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Customer Information") {
+                    if let customer {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(customer.name)
+                                    .bold()
+                                Text(customer.phoneNumber)
+                                    .foregroundStyle(.secondary)
+                            }
+                            
+                            Spacer()
+                            
+                            Text("^[\(customer.orderHistory.count) Orders](inflect: true)")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    
+                    Menu("\(customer == nil ? "Choose" : "Change") Customer") {
+                        if !customers.isEmpty {
+                            Button("Choose from existing", systemImage: "person.fill.badge.plus") {
+                                showCustomerPicker = true
+                            }
+                        }
+                        
+                        Button("Add new", systemImage: "plus") {
+                            showAddCustomerView = true
+                        }
+                    }
+                    
+                }
+                
+                Section {
+                    TextField("Amount to be paid", value: $amountPaid, formatter: inrFormatter)
+                        .keyboardType(.numberPad)
+                    
+                    Stepper(value: $quantity, in: 0.0...product.availableStock, step: product.stepAmount, format: .number) {
+                        Text("\(quantity.formatted()) \(product.measurementUnit.title)")
+                    }
+                } footer: {
+                    if product.availableStock == 0.0 {
+                        Text("\(Image(systemName: "exclamationmark.triangle")) You do not have any stock left.")
+                            .foregroundStyle(.red)
+                    }
+                }
+                
+                Section("Payment Details") {
+                    EnumPicker(title: "Payment Method", selection: $paymentMethod)
+                    
+                    EnumPicker(title: "Payment Status", selection: $paymentStatus)
+                }
+                
+                Section("Status") {
+                    EnumPicker(title: "Delivery Status", selection: $deliveryStatus)
+                }
+            }
+            .navigationTitle("New Order")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel", action: dismiss.callAsFunction)
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Add") {
+                        let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
+                        modelContext.insert(order)
+                        
+                        dismiss()
+                    }
+                    .bold()
+                    .disabled(customer == nil || quantity == 0.0)
+                }
+            }
+            .sheet(isPresented: $showCustomerPicker) {
+                ExistingCustomerPicker(completion: setCustomer)
+            }
+            .sheet(isPresented: $showAddCustomerView) {
+                AddCustomerView(completion: setCustomer)
+            }
+        }
+    }
+    
+    func setCustomer(customer: Customer?) {
+        self.customer = customer
+    }
+    
+    var inrFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "INR"
+        formatter.maximumFractionDigits = 2
+        formatter.locale = Locale(identifier: "en_IN")
+        return formatter
+    }
+    
+    struct EnumPicker<T: RawRepresentable & CaseIterable & Codable & Hashable>: View where T.AllCases: RandomAccessCollection, T.RawValue == String {
+        let title: String
+        @Binding var selection: T
+
+        var body: some View {
+            Picker(title, selection: $selection) {
+                ForEach(T.allCases, id: \.self) { option in
+                    Text(option.rawValue)
+                        .tag(option)
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    let product = Product(name: "Mangoes", icon: "🥭", measurementUnit: .dozen, orders: [], stock: [], isMadeToDelivery: false)
+    let customer = Customer(name: "Om", phoneNumber: "9082257216", address: Address(line1: "A402, Savoy", line2: "Raheja Gardens", city: "Thane West", pincode: "400604"), orderHistory: [])
+    let order = Order(for: product, customer: customer, paymentMethod: .cash, quantity: 1, amountPaid: 1099, paymentStatus: .pending, deliveryStatus: .pending)
+    return AddOrderView(product: product)
+}
