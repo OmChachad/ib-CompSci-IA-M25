@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Customer {
+class Customer: Hashable {
     var id: UUID
     var name: String
     var phoneNumber: String
