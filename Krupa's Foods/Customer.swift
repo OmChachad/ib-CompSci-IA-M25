@@ -16,7 +16,7 @@ class Customer: Hashable {
     var address: Address
     var orderHistory: [Order]
     
-    init(id: UUID = UUID(), name: String, phoneNumber: String, address: Address, orderHistory: [Order]) {
+    init(id: UUID = UUID(), name: String, phoneNumber: String, address: Address, orderHistory: [Order] = []) {
         self.id = id
         self.name = name
         self.phoneNumber = phoneNumber
