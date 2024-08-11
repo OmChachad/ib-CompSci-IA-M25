@@ -79,7 +79,7 @@ struct OrdersView: View {
                                 Spacer()
                                 
                                 VStack(alignment: .leading) {
-                                    Text("\(order.quantity.formatted()) \(order.product.measurementUnit.rawValue.capitalized)")
+                                    Text("^[\(order.quantity.formatted()) \(order.product.measurementUnit.rawValue.capitalized)](inflect: true)")
                                     Text(order.amountPaid, format: .currency(code: "INR"))
                                         .foregroundStyle(.secondary)
                                 }
