@@ -127,19 +127,10 @@
 			children = (
 				C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */,
 				C24C318E2C3D038600C3187D /* ContentView.swift */,
-				C210E3E32C56B31E00D04227 /* AddProductView.swift */,
-				C2363C212C58BA1900EE004A /* AddOrderView.swift */,
-				C2056D962C61EAE300F94062 /* AddCustomerView.swift */,
-				C2A240AC2C68FAF600EB38D6 /* ExistingCustomerPicker.swift */,
-				C2CC3B472C4E180000E5DEF5 /* OrdersView.swift */,
-				C2CC3B492C4E182600E5DEF5 /* StockView.swift */,
-				C2CC3B4B2C4E183E00E5DEF5 /* SettingsView.swift */,
-				C28C7F0F2C4682DB00B9DF32 /* Product.swift */,
-				C2942FC32C4E0F5900E11C21 /* Order.swift */,
-				C2942FC52C4E0F7100E11C21 /* Stock.swift */,
-				C2942FC72C4E0F8500E11C21 /* Customer.swift */,
-				C2942FC92C4E0F9B00E11C21 /* Address.swift */,
-				C2A240AA2C68F2C100EB38D6 /* ContactPickerButton.swift */,
+				C2A240B22C691CD200EB38D6 /* Primary Views */,
+				C2A240AE2C691C7A00EB38D6 /* Creation Views */,
+				C2A240B02C691CA900EB38D6 /* Models */,
+				C2A240B12C691CB600EB38D6 /* Utilities */,
 				C24C31902C3D038800C3187D /* Assets.xcassets */,
 				C24C31922C3D038800C3187D /* Krupa_s_Foods.entitlements */,
 				C24C31932C3D038800C3187D /* Preview Content */,
@@ -170,6 +161,55 @@
 				C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */,
 			);
 			path = "Krupa's FoodsUITests";
+			sourceTree = "<group>";
+		};
+		C2A240AE2C691C7A00EB38D6 /* Creation Views */ = {
+			isa = PBXGroup;
+			children = (
+				C210E3E32C56B31E00D04227 /* AddProductView.swift */,
+				C2363C212C58BA1900EE004A /* AddOrderView.swift */,
+				C2A240AF2C691C9200EB38D6 /* Customer */,
+			);
+			path = "Creation Views";
+			sourceTree = "<group>";
+		};
+		C2A240AF2C691C9200EB38D6 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				C2056D962C61EAE300F94062 /* AddCustomerView.swift */,
+				C2A240AC2C68FAF600EB38D6 /* ExistingCustomerPicker.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		C2A240B02C691CA900EB38D6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C28C7F0F2C4682DB00B9DF32 /* Product.swift */,
+				C2942FC32C4E0F5900E11C21 /* Order.swift */,
+				C2942FC52C4E0F7100E11C21 /* Stock.swift */,
+				C2942FC72C4E0F8500E11C21 /* Customer.swift */,
+				C2942FC92C4E0F9B00E11C21 /* Address.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C2A240B12C691CB600EB38D6 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C2A240AA2C68F2C100EB38D6 /* ContactPickerButton.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C2A240B22C691CD200EB38D6 /* Primary Views */ = {
+			isa = PBXGroup;
+			children = (
+				C2CC3B472C4E180000E5DEF5 /* OrdersView.swift */,
+				C2CC3B492C4E182600E5DEF5 /* StockView.swift */,
+				C2CC3B4B2C4E183E00E5DEF5 /* SettingsView.swift */,
+			);
+			path = "Primary Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
