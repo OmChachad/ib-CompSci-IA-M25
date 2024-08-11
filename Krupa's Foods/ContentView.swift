@@ -99,7 +99,10 @@ struct ContentView: View {
                     self.product = oldProduct
                 }
             }
-            .sheet(isPresented: $addingNewProduct, content: AddProductView.init)
+            .sheet(isPresented: $addingNewProduct, onDismiss: {
+                self.product = products.last
+            }, content: AddProductView.init)
+            .animation(.default, value: product)
         }
     }
 }
