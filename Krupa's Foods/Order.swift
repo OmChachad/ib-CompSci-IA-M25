@@ -29,7 +29,8 @@ class Order {
     }
     
     enum Status: String, CaseIterable, Codable {
-        case pending, completed
+        case pending = "Pending"
+        case completed = "Completed"
     }
     
     enum PaymentMethod: String, CaseIterable, Codable {
