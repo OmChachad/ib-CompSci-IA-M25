@@ -15,7 +15,6 @@
 		C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */; };
 		C24C318F2C3D038600C3187D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C318E2C3D038600C3187D /* ContentView.swift */; };
 		C24C31912C3D038800C3187D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24C31902C3D038800C3187D /* Assets.xcassets */; };
-		C24C31952C3D038800C3187D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C24C31942C3D038800C3187D /* Preview Assets.xcassets */; };
 		C24C319F2C3D038800C3187D /* Krupa_s_FoodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */; };
 		C24C31A92C3D038800C3187D /* Krupa_s_FoodsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */; };
 		C24C31AB2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */; };
@@ -57,7 +56,6 @@
 		C24C318E2C3D038600C3187D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C24C31902C3D038800C3187D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C24C31922C3D038800C3187D /* Krupa_s_Foods.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Krupa_s_Foods.entitlements; sourceTree = "<group>"; };
-		C24C31942C3D038800C3187D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C24C319A2C3D038800C3187D /* Krupa's FoodsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Krupa's FoodsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsTests.swift; sourceTree = "<group>"; };
 		C24C31A42C3D038800C3187D /* Krupa's FoodsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Krupa's FoodsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,17 +131,8 @@
 				C2A240B12C691CB600EB38D6 /* Utilities */,
 				C24C31902C3D038800C3187D /* Assets.xcassets */,
 				C24C31922C3D038800C3187D /* Krupa_s_Foods.entitlements */,
-				C24C31932C3D038800C3187D /* Preview Content */,
 			);
 			path = "Krupa's Foods";
-			sourceTree = "<group>";
-		};
-		C24C31932C3D038800C3187D /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				C24C31942C3D038800C3187D /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		C24C319D2C3D038800C3187D /* Krupa's FoodsTests */ = {
@@ -324,7 +313,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C24C31952C3D038800C3187D /* Preview Assets.xcassets in Resources */,
 				C24C31912C3D038800C3187D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,7 +511,6 @@
 				CODE_SIGN_ENTITLEMENTS = "Krupa's Foods/Krupa_s_Foods.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Krupa's Foods/Preview Content\"";
 				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -563,7 +550,6 @@
 				CODE_SIGN_ENTITLEMENTS = "Krupa's Foods/Krupa_s_Foods.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Krupa's Foods/Preview Content\"";
 				DEVELOPMENT_TEAM = 3S6NT5MUQZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
