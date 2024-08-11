@@ -10,6 +10,7 @@ import SwiftData
 
 struct OrdersView: View {
     @Environment(\.modelContext) var modelContext
+    @State private var showingNewOrderView: Bool = false
     
     @Query var orders: [Order]
     
@@ -97,11 +98,7 @@ struct OrdersView: View {
                         Spacer()
                         
                         Button("Add Order", systemImage: "plus.circle.fill") {
-                            let product = Product(name: "Mangoes", icon: "🥭", measurementUnit: .dozen, orders: [], stock: [], isMadeToDelivery: false)
-                            let customer = Customer(name: "Om", phoneNumber: "9082257216", address: Address(line1: "A402, Savoy", line2: "Raheja Gardens", city: "Thane West", pincode: 400604), orderHistory: [])
-                            let order = Order(for: product, customer: customer, paymentMethod: .cash, quantity: 1, amountPaid: 1099, paymentStatus: .pending, deliveryStatus: .pending)
-                            
-                            modelContext.insert(order)
+                            showingNewOrderView = true
                         }
                         .labelStyle(.iconOnly)
                         .imageScale(.large)
@@ -118,6 +115,9 @@ struct OrdersView: View {
             }
             
             .padding(.bottom, 125)
+        }
+        .sheet(isPresented: $showingNewOrderView) {
+            AddOrderView(product: product)
         }
     }
 }
