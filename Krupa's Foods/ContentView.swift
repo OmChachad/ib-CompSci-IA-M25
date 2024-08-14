@@ -76,6 +76,7 @@ struct ContentView: View {
                         //.padding(5)
                         .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                         .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .clipShape(.capsule)
                     }
                 }
             }
