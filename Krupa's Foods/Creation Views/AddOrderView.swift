@@ -61,7 +61,7 @@ struct AddOrderView: View {
                 }
                 
                 Section {
-                    TextField("Amount to be paid", value: $amountPaid, formatter: inrFormatter)
+                    TextField("Amount to be paid", value: $amountPaid, formatter: INRFormatter)
                         .keyboardType(.numberPad)
                     
                     Stepper(value: $quantity, in: 0.0...product.availableStock, step: product.stepAmount, format: .number) {
@@ -112,15 +112,6 @@ struct AddOrderView: View {
     
     func setCustomer(customer: Customer?) {
         self.customer = customer
-    }
-    
-    var inrFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "INR"
-        formatter.maximumFractionDigits = 2
-        formatter.locale = Locale(identifier: "en_IN")
-        return formatter
     }
     
     struct EnumPicker<T: RawRepresentable & CaseIterable & Codable & Hashable>: View where T.AllCases: RandomAccessCollection, T.RawValue == String {
