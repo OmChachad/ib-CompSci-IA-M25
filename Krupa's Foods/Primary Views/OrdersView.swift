@@ -36,7 +36,7 @@ struct OrdersView: View {
     var body: some View {
         VStack {
             if orders.isEmpty {
-                ContentUnavailableView("No Orders Placed", systemImage: "shippingbox.fill", description: Text("Click \(Image(systemName: "plus.circle.fill")) to add your first order."))
+                ContentUnavailableView("No Orders Placed", systemImage: "shippingbox.fill", description: Text("Click \(Image(systemName: "plus.circle.fill")) to add your first order"))
                     .frame(maxHeight: .infinity, alignment: .center)
             } else {
                 ScrollView {
