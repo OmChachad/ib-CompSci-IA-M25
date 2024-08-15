@@ -10,7 +10,7 @@ var INRFormatter: NumberFormatter {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
     formatter.currencyCode = "INR"
-    formatter.maximumFractionDigits = 2
+    formatter.maximumFractionDigits = 0
     formatter.locale = Locale(identifier: "en_IN")
     return formatter
 }
