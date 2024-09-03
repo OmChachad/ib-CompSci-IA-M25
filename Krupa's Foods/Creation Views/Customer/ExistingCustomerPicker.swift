@@ -13,9 +13,7 @@ struct ExistingCustomerPicker: View {
     
     @Query var customers: [Customer]
     
-    @State private var selectedCustomer: Customer? = nil
-    
-    var completion: (Customer?) -> Void
+    @Binding var customer: Customer?
     
     var body: some View {
         
@@ -34,7 +32,7 @@ struct ExistingCustomerPicker: View {
                     }
                 } else {
                     Form {
-                        Picker("Choose Customer", selection: $selectedCustomer) {
+                        Picker("Choose Customer", selection: $customer) {
                             ForEach(customers, id: \.self) { customer in
                                 VStack(alignment: .leading) {
                                     Text(customer.name)
@@ -55,11 +53,8 @@ struct ExistingCustomerPicker: View {
                     }
                     
                     ToolbarItem(placement: .topBarTrailing) {
-                        Button("Done") {
-                            completion(selectedCustomer)
-                            dismiss()
-                        }
-                        .bold()
+                        Button("Done", action: dismiss.callAsFunction)
+                            .bold()
                     }
                 }
             }
@@ -68,7 +63,14 @@ struct ExistingCustomerPicker: View {
 }
 
 #Preview {
-    ExistingCustomerPicker() { _ in
-        
+    ExistingCustomerPicker(customer: .constant(nil))
+}
+
+extension View {
+    func customerPicker(isPresented: Binding<Bool>, selection: Binding<Customer?>) -> some View {
+        self
+            .sheet(isPresented: isPresented) {
+                ExistingCustomerPicker(customer: selection)
+            }
     }
 }

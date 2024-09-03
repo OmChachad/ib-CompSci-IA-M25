@@ -131,17 +131,13 @@ struct AddOrderView: View {
                     .disabled(customer == nil || quantity == 0.0)
                 }
             }
-            .sheet(isPresented: $showCustomerPicker) {
-                ExistingCustomerPicker(completion: setCustomer)
-            }
+            .customerPicker(isPresented: $showCustomerPicker, selection: $customer)
             .sheet(isPresented: $showAddCustomerView) {
-                AddCustomerView(completion: setCustomer)
+                AddCustomerView {
+                    self.customer = $0
+                }
             }
         }
-    }
-    
-    func setCustomer(customer: Customer?) {
-        self.customer = customer
     }
     
     struct EnumPicker<T: RawRepresentable & CaseIterable & Codable & Hashable>: View where T.AllCases: RandomAccessCollection, T.RawValue == String {
