@@ -12,7 +12,7 @@ import Foundation
 class Order {
     var id: UUID
     var product: Product
-    var customer: Customer
+    @Relationship(inverse: \Customer.orderHistory) var customer: Customer?
     var paymentMethod: PaymentMethod
     var quantity: Double
     var amountPaid: Double

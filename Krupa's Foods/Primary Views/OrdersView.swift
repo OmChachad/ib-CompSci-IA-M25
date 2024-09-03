@@ -73,9 +73,9 @@ struct OrdersView: View {
                                     .font(.largeTitle)
                                 
                                 VStack(alignment: .leading) {
-                                    Text(order.customer.name)
+                                    Text(order.customer!.name)
                                         .bold()
-                                    Text(order.customer.address.line1)
+                                    Text(order.customer!.address.line1)
                                         .foregroundStyle(.secondary)
                                 }
                                 
