@@ -25,10 +25,12 @@ struct ContentView: View {
                                 Label("Orders", systemImage: "shippingbox.fill")
                             }
                         
-                        StockView()
-                            .tabItem {
-                                Label("Stock", systemImage: "tray.2.fill")
-                            }
+                        if !product.isMadeToDelivery {
+                            StockView(product: product)
+                                .tabItem {
+                                    Label("Stock", systemImage: "tray.2.fill")
+                                }
+                        }
                         
                         SettingsView()
                             .tabItem {
