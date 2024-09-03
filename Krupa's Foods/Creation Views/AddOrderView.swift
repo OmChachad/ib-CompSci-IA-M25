@@ -13,6 +13,7 @@ struct AddOrderView: View {
     @Environment(\.modelContext) var modelContext
     
     @Query var customers: [Customer]
+    @Query var stock: [Stock]
     
     @State private var customer: Customer?
     @State private var paymentMethod: Order.PaymentMethod = .UPI
@@ -25,6 +26,15 @@ struct AddOrderView: View {
     @State private var showAddCustomerView = false
     
     var product: Product
+    
+    init(product: Product) {
+        let id = product.id
+        self._stock = Query(filter: #Predicate<Stock> { stock in
+            return stock.product.id == id
+        }, sort: \.date, order: .forward, animation: .default)
+        
+        self.product = product
+    }
     
     var body: some View {
         NavigationStack {
@@ -92,8 +102,28 @@ struct AddOrderView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add") {
-                        let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
+                        let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
                         modelContext.insert(order)
+                        
+                        var usedStock: [Stock] = []
+                        var quantity = order.quantity
+                        while quantity != 0 {
+                            if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
+                                usedStock.append(stockToUse)
+                                
+                                if stockToUse.quantityLeft >= quantity {
+                                    stockToUse.quantityLeft -= quantity
+                                    break
+                                } else {
+                                    stockToUse.quantityLeft = 0
+                                    quantity -= stockToUse.quantityLeft
+                                }
+                            } else {
+                                break
+                            }
+                        }
+                        
+                        order.stock = usedStock
                         
                         dismiss()
                     }
@@ -129,9 +159,9 @@ struct AddOrderView: View {
     }
 }
 
-#Preview {
-    let product = Product(name: "Mangoes", icon: "🥭", measurementUnit: .dozen, orders: [], stock: [], isMadeToDelivery: false)
-    let customer = Customer(name: "Om", phoneNumber: "9082257216", address: Address(line1: "A402, Savoy", line2: "Raheja Gardens", city: "Thane West", pincode: "400604"), orderHistory: [])
-    let order = Order(for: product, customer: customer, paymentMethod: .cash, quantity: 1, amountPaid: 1099, paymentStatus: .pending, deliveryStatus: .pending)
-    return AddOrderView(product: product)
-}
+//#Preview {
+////    let product = Product(name: "Mangoes", icon: "🥭", measurementUnit: .dozen, orders: [], stock: [], isMadeToDelivery: false)
+////    let customer = Customer(name: "Om", phoneNumber: "9082257216", address: Address(line1: "A402, Savoy", line2: "Raheja Gardens", city: "Thane West", pincode: "400604"), orderHistory: [])
+////    let order = Order(for: product, customer: customer, paymentMethod: .cash, quantity: 1, amountPaid: 1099, paymentStatus: .pending, deliveryStatus: .pending)
+////    return AddOrderView(product: product)
+//}
