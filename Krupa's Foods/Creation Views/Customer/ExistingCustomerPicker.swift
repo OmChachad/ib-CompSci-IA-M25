@@ -47,17 +47,11 @@ struct ExistingCustomerPicker: View {
                 }
             }
             .toolbar {
-                if !customers.isEmpty {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button("Cancel", action: dismiss.callAsFunction)
-                    }
-                    
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Done", action: dismiss.callAsFunction)
-                            .bold()
-                    }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel", action: dismiss.callAsFunction)
                 }
             }
+            .onChange(of: customer, dismiss.callAsFunction)
         }
     }
 }
