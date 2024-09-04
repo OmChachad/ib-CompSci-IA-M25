@@ -25,10 +25,13 @@ struct StockView: View {
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                Section {
-                    VStack {
+        Group {
+            if stock.isEmpty {
+                ContentUnavailableView("No Available Stock", systemImage: "tray.2.fill", description: Text("Click \(Image(systemName: "plus.circle.fill")) to add update your inventory"))
+                    .frame(maxHeight: .infinity, alignment: .center)
+            } else {
+                ScrollView {
+                    LazyVStack {
                         ForEach(stock) { stockOrder in
                             StockItemView(stockOrder)
                                 .padding(.horizontal)
@@ -37,32 +40,32 @@ struct StockView: View {
                     }
                 }
             }
-            .padding(.bottom, 125)
-            .safeAreaInset(edge: .top, content: {
-                HStack {
-                    Text("Stock")
-                        .font(.largeTitle.bold())
-                    
-                    Spacer()
-                    
-                    Button("Add Stock", systemImage: "plus.circle.fill") {
-                        showingAddStockView = true
-                    }
-                    .labelStyle(.iconOnly)
-                    .imageScale(.large)
+        }
+        .padding(.bottom, 125)
+        .safeAreaInset(edge: .top, content: {
+            HStack {
+                Text("Stock")
+                    .font(.largeTitle.bold())
+                
+                Spacer()
+                
+                Button("Add Stock", systemImage: "plus.circle.fill") {
+                    showingAddStockView = true
                 }
-                .padding(.horizontal)
-                .background {
-                    Rectangle()
-                        .fill(.clear)
-                        .background(.bar)
-                        .blur(radius: 10)
-                        .padding([.top, .horizontal], -100)
-                }
-            })
-            .sheet(isPresented: $showingAddStockView) {
-                AddStockView(product: product)
+                .labelStyle(.iconOnly)
+                .imageScale(.large)
             }
+            .padding(.horizontal)
+            .background {
+                Rectangle()
+                    .fill(.clear)
+                    .background(.bar)
+                    .blur(radius: 10)
+                    .padding([.top, .horizontal], -100)
+            }
+        })
+        .sheet(isPresented: $showingAddStockView) {
+            AddStockView(product: product)
         }
     }
 }
