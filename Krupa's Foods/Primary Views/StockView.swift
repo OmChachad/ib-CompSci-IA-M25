@@ -26,7 +26,7 @@ struct StockView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack(pinnedViews: .sectionHeaders) {
+            LazyVStack {
                 Section {
                     VStack {
                         ForEach(stock) { stockOrder in
@@ -35,30 +35,31 @@ struct StockView: View {
                                 .padding(.vertical, 2.5)
                         }
                     }
-                } header: {
-                    HStack {
-                        Text("Stock")
-                            .font(.largeTitle.bold())
-                        
-                        Spacer()
-                        
-                        Button("Add Stock", systemImage: "plus.circle.fill") {
-                            showingAddStockView = true
-                        }
-                        .labelStyle(.iconOnly)
-                        .imageScale(.large)
-                    }
-                    .padding(.horizontal)
-                    .background {
-                        Rectangle()
-                            .fill(.clear)
-                            .background(.bar)
-                            .blur(radius: 10)
-                            .padding([.top, .horizontal], -100)
-                    }
                 }
             }
             .padding(.bottom, 125)
+            .safeAreaInset(edge: .top, content: {
+                HStack {
+                    Text("Stock")
+                        .font(.largeTitle.bold())
+                    
+                    Spacer()
+                    
+                    Button("Add Stock", systemImage: "plus.circle.fill") {
+                        showingAddStockView = true
+                    }
+                    .labelStyle(.iconOnly)
+                    .imageScale(.large)
+                }
+                .padding(.horizontal)
+                .background {
+                    Rectangle()
+                        .fill(.clear)
+                        .background(.bar)
+                        .blur(radius: 10)
+                        .padding([.top, .horizontal], -100)
+                }
+            })
             .sheet(isPresented: $showingAddStockView) {
                 AddStockView(product: product)
             }
