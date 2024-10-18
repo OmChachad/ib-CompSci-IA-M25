@@ -28,7 +28,7 @@ class Order {
     
     /// A computed property that returns `true` if both the delivery and payment statuses are completed.
     var isCompleted: Bool {
-        self.deliveryStatus == .completed && self.deliveryStatus == .completed
+        self.deliveryStatus == .completed && self.paymentStatus == .completed
     }
     
     /// Represents the status of an order or payment, either pending or completed.
