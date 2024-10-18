@@ -15,6 +15,8 @@ struct ExistingCustomerPicker: View {
     
     @Binding var customer: Customer?
     
+    @State private var searchTerm: String = ""
+    
     var body: some View {
         
         NavigationStack {
@@ -33,25 +35,54 @@ struct ExistingCustomerPicker: View {
                 } else {
                     Form {
                         Picker("Choose Customer", selection: $customer) {
-                            ForEach(customers, id: \.self) { customer in
-                                VStack(alignment: .leading) {
-                                    Text(customer.name)
-                                        .bold()
-                                    Text("^[\(customer.orderHistory.count) Orders](inflect: true)")
-                                }
-                                .tag(customer as Customer?)
-                            }
+                            CustomersList(customer: $customer, searchTerm: searchTerm)
                         }
                         .pickerStyle(.inline)
                     }
                 }
             }
+            .searchable(text: $searchTerm, prompt: "Search for an existing customer...")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel", action: dismiss.callAsFunction)
                 }
             }
             .onChange(of: customer, dismiss.callAsFunction)
+        }
+    }
+}
+
+struct CustomersList: View {
+    @Binding var customer: Customer?
+    
+    @Query var customers: [Customer]
+    
+    init(customer: Binding<Customer?>, searchTerm: String) {
+        self._customer = customer
+        self._customers = Query(filter: #Predicate {
+                if searchTerm.isEmpty {
+                    return true
+                } else {
+                    return $0.name.localizedStandardContains(searchTerm) || $0.phoneNumber.localizedStandardContains(searchTerm) || $0.address.line1.localizedStandardContains(searchTerm) || $0.address.line2.localizedStandardContains(searchTerm) || $0.address.city.localizedStandardContains(searchTerm) || $0.address.pincode.localizedStandardContains(searchTerm)
+                }
+            }
+        )
+    }
+    
+    init(customer: Binding<Customer?>, filter: Predicate<Customer>) {
+        self._customer = customer
+        self._customers = Query(filter: filter)
+    }
+    
+    var body: some View {
+        ForEach(customers, id: \.self) { customer in
+            VStack(alignment: .leading) {
+                Text(customer.name)
+                    .bold()
+                
+                Text("^[\(customer.orderHistory.count) Orders](inflect: true)")
+            }
+            .tag(customer as Customer?)
         }
     }
 }
