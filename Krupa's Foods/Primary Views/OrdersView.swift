@@ -27,7 +27,7 @@ struct OrdersView: View {
     init(product: Product) {
         let id = product.id
         self._orders = Query(filter: #Predicate<Order> { order in
-            return order.product.id == id
+            return order.product?.id == id
         }, sort: \.date, order: .forward, animation: .default)
         
         self.product = product
@@ -69,20 +69,20 @@ struct OrdersView: View {
                         
                         ForEach(orders) { order in
                             HStack {
-                                Text(order.product.icon)
+                                Text(order.wrappedProduct.icon)
                                     .font(.largeTitle)
                                 
                                 VStack(alignment: .leading) {
-                                    Text(order.customer!.name)
+                                    Text(order.wrappedCustomer.name)
                                         .bold()
-                                    Text(order.customer!.address.line1)
+                                    Text(order.wrappedCustomer.address.line1)
                                         .foregroundStyle(.secondary)
                                 }
                                 
                                 Spacer()
                                 
                                 VStack(alignment: .leading) {
-                                    Text("^[\(order.quantity.formatted()) \(order.product.measurementUnit.rawValue.capitalized)](inflect: true)")
+                                    Text("^[\(order.quantity.formatted()) \(order.wrappedProduct.measurementUnit.rawValue.capitalized)](inflect: true)")
                                     Text(order.amountPaid, format: .currency(code: "INR"))
                                         .foregroundStyle(.secondary)
                                 }

@@ -10,16 +10,28 @@ import Foundation
 
 @Model
 class Order {
-    var id: UUID
-    var product: Product
-    @Relationship(inverse: \Customer.orderHistory) var customer: Customer?
-    var paymentMethod: PaymentMethod
-    var quantity: Double
-    var amountPaid: Double
-    var date: Date
-    var paymentStatus: Status
-    var deliveryStatus: Status
-    var stock: [Stock]
+    var id: UUID = UUID()
+    var product: Product?
+    var customer: Customer?
+    var paymentMethod: PaymentMethod = PaymentMethod.UPI
+    var quantity: Double = 0.0
+    var amountPaid: Double = 0.0
+    var date: Date = Date.now
+    var paymentStatus: Status = Status.pending
+    var deliveryStatus: Status = Status.pending
+    var stock: [Stock]? = []
+    
+    var wrappedStock: [Stock] {
+        stock ?? []
+    }
+    
+    var wrappedProduct: Product {
+        product ?? Product(name: "Unknown Product", icon: "❓", measurementUnit: .piece, isMadeToDelivery: false)
+    }
+    
+    var wrappedCustomer: Customer {
+        customer ?? Customer(name: "Unknown Customer", phoneNumber: "Unknown Phone Number", address: Address())
+    }
     
     /// A computed property that returns `true` if either the delivery or payment status is pending.
     var isPending: Bool {

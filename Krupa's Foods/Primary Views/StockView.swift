@@ -18,7 +18,7 @@ struct StockView: View {
     init(product: Product) {
         let id = product.id
         self._stock = Query(filter: #Predicate<Stock> { stock in
-            return stock.product.id == id
+            return stock.product?.id == id
         }, sort: \.date, order: .reverse, animation: .default)
         
         self.product = product

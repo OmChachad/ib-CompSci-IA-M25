@@ -80,7 +80,7 @@ struct CustomersList: View {
                 Text(customer.name)
                     .bold()
                 
-                Text("^[\(customer.orderHistory.count) Orders](inflect: true)")
+                Text("^[\(customer.wrappedOrderHistory.count) Orders](inflect: true)")
             }
             .tag(customer as Customer?)
         }

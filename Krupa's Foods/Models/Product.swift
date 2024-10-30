@@ -10,20 +10,25 @@ import SwiftData
 
 @Model
 class Product {
-    var id: UUID
-    var name: String
-    var icon: String
-    var measurementUnit: Unit
-    @Relationship(inverse: \Order.product) var orders: [Order]
-    @Relationship(inverse: \Stock.product) var stock: [Stock]
-    var isMadeToDelivery: Bool
+    var id: UUID = UUID()
+    var name: String = ""
+    var icon: String = ""
+    var measurementUnit: Unit = Unit.piece
+    @Relationship(inverse: \Order.product) var orders: [Order]? = []
+    @Relationship(inverse: \Stock.product) var stock: [Stock]? = []
+    var isMadeToDelivery: Bool = false
     var stepAmount: Double = 1.0
     
-   // var productionHours: Double
+    var wrappedOrders: [Order] {
+        orders ?? []
+    }
     
+    var wrappedStock: [Stock] {
+        stock ?? []
+    }
     /// A computed property that returns the total available stock by summing the quantity left in each stock entry.
     var availableStock: Double {
-        stock.reduce(0.0) { totalStock, item in
+        return wrappedStock.reduce(0.0) { totalStock, item in
             totalStock + item.quantityLeft
         }
     }
@@ -54,7 +59,9 @@ class Product {
     ///   - orders: The list of `Order` objects related to this product. Defaults to an empty array.
     ///   - stock: The list of `Stock` entries for this product. Defaults to an empty array.
     ///   - isMadeToDelivery: A Boolean flag indicating if the product is made specifically for delivery.
-    init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit, stepAmount: Double = 1.0, orders: [Order] = [], stock: [Stock] = [], isMadeToDelivery: Bool) {
+    init(id: UUID = UUID(), name: String, icon: String, measurementUnit: Unit,
+         stepAmount: Double = 1.0, orders: [Order] = [], stock: [Stock] = [],
+         isMadeToDelivery: Bool) {
         self.id = id
         self.name = name
         self.icon = icon

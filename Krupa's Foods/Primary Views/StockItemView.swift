@@ -21,7 +21,7 @@ struct StockItemView: View {
                 .font(.largeTitle)
             
             VStack(alignment: .leading) {
-                Text("^[\(stockOrder.quantityLeft.formatted())/\(stockOrder.quantityPurchased.formatted()) \(stockOrder.product.measurementUnit.title)](inflect: true) remaining")
+                Text("^[\(stockOrder.quantityLeft.formatted())/\(stockOrder.quantityPurchased.formatted()) \(stockOrder.wrappedProduct.measurementUnit.title)](inflect: true) remaining")
                     .bold()
                 Text(stockOrder.date.formatted(date: .abbreviated, time: .omitted))
                     .foregroundStyle(.secondary)

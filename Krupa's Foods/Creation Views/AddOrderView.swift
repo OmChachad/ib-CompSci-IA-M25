@@ -30,7 +30,7 @@ struct AddOrderView: View {
     init(product: Product) {
         let id = product.id
         self._stock = Query(filter: #Predicate<Stock> { stock in
-            return stock.product.id == id
+            return stock.product?.id == id
         }, sort: \.date, order: .forward, animation: .default)
         
         self.product = product
@@ -51,7 +51,7 @@ struct AddOrderView: View {
                             
                             Spacer()
                             
-                            Text("^[\(customer.orderHistory.count) Orders](inflect: true)")
+                            Text("^[\(customer.wrappedOrderHistory.count) Orders](inflect: true)")
                                 .foregroundStyle(.secondary)
                         }
                     }

@@ -9,12 +9,16 @@ import Foundation
 import SwiftData
 
 @Model
-class Customer: Hashable {
-    var id: UUID
-    var name: String
-    var phoneNumber: String
-    var address: Address
-    var orderHistory: [Order]
+class Customer {
+    var id: UUID = UUID()
+    var name: String = ""
+    var phoneNumber: String = ""
+    var address: Address = Address()
+    @Relationship(inverse: \Order.customer) var orderHistory: [Order]? = []
+    
+    var wrappedOrderHistory: [Order] {
+        orderHistory ?? []
+    }
     
     /// Initializes a new `Customer` instance.
     ///

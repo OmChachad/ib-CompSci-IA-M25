@@ -10,13 +10,17 @@ import SwiftData
 
 @Model
 class Stock {
-    var id: UUID
-    var amountPaid: Double
-    var quantityPurchased: Double
-    var quantityLeft: Double
-    var date: Date
-    var product: Product
-    var orders: [Order]
+    var id: UUID = UUID()
+    var amountPaid: Double = 0.0
+    var quantityPurchased: Double = 0.0
+    var quantityLeft: Double = 0.0
+    var date: Date = Date.now
+    var product: Product?
+    @Relationship(inverse: \Order.stock) var orders: [Order]? = []
+    
+    var wrappedProduct: Product {
+        product ?? Product(name: "Unknown Product", icon: "❓", measurementUnit: .piece, isMadeToDelivery: false)
+    }
     
     /// Initializes a new `Stock` instance with specified values for all properties.
     ///
