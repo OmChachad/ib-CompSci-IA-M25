@@ -35,6 +35,20 @@ struct AddCustomerView: View {
     
     var completion: (Customer?) -> Void
     
+    init(completion: @escaping (Customer?) -> Void) {
+        self.completion = completion
+    }
+    
+    init (name: String, phoneNumber: String, addressLine1: String, addressLine2: String, city: String, pincode: String, completion: @escaping (Customer?) -> Void) {
+        self._name = State(initialValue: name)
+        self._phoneNumber = State(initialValue: phoneNumber)
+        self._addressLine1 = State(initialValue: addressLine1)
+        self._addressLine2 = State(initialValue: addressLine2)
+        self._city = State(initialValue: city)
+        self._pincode = State(initialValue: pincode)
+        self.completion = completion
+    }
+    
     @State private var showingExistingCustomerPicker = false
     
     var body: some View {

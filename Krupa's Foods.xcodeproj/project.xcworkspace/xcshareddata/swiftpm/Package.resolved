@@ -1,5 +1,5 @@
 {
-  "originHash" : "e7e932c05e13fcaca5b7e76f997d6a472923a5a990b75b63b8c6c19387025619",
+  "originHash" : "50b492ea960de29232866c9ee066ce3553fec206f1143e432cdbfc4764e1dc89",
   "pins" : [
     {
       "identity" : "emojipicker",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "d787591e2121b617209172ad6a8ebf2975f605ae",
         "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "generative-ai-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/generative-ai-swift",
+      "state" : {
+        "revision" : "44b8ce120425f9cf53ca756f3434ca2c2696f8bd",
+        "version" : "0.5.6"
       }
     },
     {
@@ -26,6 +35,15 @@
       "state" : {
         "revision" : "40604722a7a56f735124e069fcbb58307637744b",
         "version" : "2.1.0"
+      }
+    },
+    {
+      "identity" : "swiftui-shimmer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/markiv/SwiftUI-Shimmer.git",
+      "state" : {
+        "revision" : "0226e21f9bf355d40e07e5f5e1c33679d50e167f",
+        "version" : "1.5.1"
       }
     }
   ],

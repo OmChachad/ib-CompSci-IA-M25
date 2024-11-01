@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,16 +21,20 @@
 		C24C31A92C3D038800C3187D /* Krupa_s_FoodsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */; };
 		C24C31AB2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */; };
 		C2771F952C86E0C200D3393F /* StockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2771F942C86E0C200D3393F /* StockItemView.swift */; };
+		C2771F982C87454700D3393F /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = C2771F972C87454700D3393F /* GoogleGenerativeAI */; };
+		C2771F9C2C87462D00D3393F /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2771F9B2C87462D00D3393F /* GenerativeAI-Info.plist */; };
 		C28C7F102C4682DB00B9DF32 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28C7F0F2C4682DB00B9DF32 /* Product.swift */; };
 		C2942FC42C4E0F5900E11C21 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC32C4E0F5900E11C21 /* Order.swift */; };
 		C2942FC62C4E0F7100E11C21 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC52C4E0F7100E11C21 /* Stock.swift */; };
 		C2942FC82C4E0F8500E11C21 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC72C4E0F8500E11C21 /* Customer.swift */; };
 		C2942FCA2C4E0F9B00E11C21 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC92C4E0F9B00E11C21 /* Address.swift */; };
+		C29C8BB02CABB27D00A4122E /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = C29C8BAF2CABB27D00A4122E /* Shimmer */; };
 		C2A240AB2C68F2C100EB38D6 /* ContactPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A240AA2C68F2C100EB38D6 /* ContactPickerButton.swift */; };
 		C2A240AD2C68FAF600EB38D6 /* ExistingCustomerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A240AC2C68FAF600EB38D6 /* ExistingCustomerPicker.swift */; };
 		C2CC3B482C4E180000E5DEF5 /* OrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC3B472C4E180000E5DEF5 /* OrdersView.swift */; };
 		C2CC3B4A2C4E182600E5DEF5 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC3B492C4E182600E5DEF5 /* StockView.swift */; };
 		C2CC3B4C2C4E183E00E5DEF5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CC3B4B2C4E183E00E5DEF5 /* SettingsView.swift */; };
+		C2DAD4B02CBE23B400305586 /* SmartCustomerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DAD4AF2CBE23B400305586 /* SmartCustomerPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,7 @@
 		C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITests.swift; sourceTree = "<group>"; };
 		C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C2771F942C86E0C200D3393F /* StockItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockItemView.swift; sourceTree = "<group>"; };
+		C2771F9B2C87462D00D3393F /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		C28C7F0F2C4682DB00B9DF32 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		C2942FC32C4E0F5900E11C21 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		C2942FC52C4E0F7100E11C21 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
@@ -74,16 +79,24 @@
 		C2942FC92C4E0F9B00E11C21 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		C2A240AA2C68F2C100EB38D6 /* ContactPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerButton.swift; sourceTree = "<group>"; };
 		C2A240AC2C68FAF600EB38D6 /* ExistingCustomerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingCustomerPicker.swift; sourceTree = "<group>"; };
+		C2B31D062CC16D8900211185 /* Krupa-s-Foods-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Krupa-s-Foods-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C2CC3B472C4E180000E5DEF5 /* OrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersView.swift; sourceTree = "<group>"; };
 		C2CC3B492C4E182600E5DEF5 /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
 		C2CC3B4B2C4E183E00E5DEF5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C2DAD4AF2CBE23B400305586 /* SmartCustomerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCustomerPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C2FA962E2CD5597400FAE437 /* Smart Inference */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Smart Inference"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C24C31862C3D038600C3187D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C29C8BB02CABB27D00A4122E /* Shimmer in Frameworks */,
+				C2771F982C87454700D3393F /* GoogleGenerativeAI in Frameworks */,
 				C210E3E72C572F6500D04227 /* EmojiPicker in Frameworks */,
 				C210E3EA2C57568F00D04227 /* MCEmojiPicker in Frameworks */,
 			);
@@ -109,6 +122,7 @@
 		C24C31802C3D038600C3187D = {
 			isa = PBXGroup;
 			children = (
+				C2771F9B2C87462D00D3393F /* GenerativeAI-Info.plist */,
 				C24C318B2C3D038600C3187D /* Krupa's Foods */,
 				C24C319D2C3D038800C3187D /* Krupa's FoodsTests */,
 				C24C31A72C3D038800C3187D /* Krupa's FoodsUITests */,
@@ -129,6 +143,7 @@
 		C24C318B2C3D038600C3187D /* Krupa's Foods */ = {
 			isa = PBXGroup;
 			children = (
+				C2B31D062CC16D8900211185 /* Krupa-s-Foods-Info.plist */,
 				C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */,
 				C24C318E2C3D038600C3187D /* ContentView.swift */,
 				C2A240B22C691CD200EB38D6 /* Primary Views */,
@@ -163,6 +178,8 @@
 			children = (
 				C210E3E32C56B31E00D04227 /* AddProductView.swift */,
 				C2363C212C58BA1900EE004A /* AddOrderView.swift */,
+				C2FA962E2CD5597400FAE437 /* Smart Inference */,
+				C2DAD4AF2CBE23B400305586 /* SmartCustomerPicker.swift */,
 				C244F8A82C6C69D800F2FF1A /* AddStockView.swift */,
 				C2A240AF2C691C9200EB38D6 /* Customer */,
 			);
@@ -225,10 +242,15 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				C2FA962E2CD5597400FAE437 /* Smart Inference */,
+			);
 			name = "Krupa's Foods";
 			packageProductDependencies = (
 				C210E3E62C572F6500D04227 /* EmojiPicker */,
 				C210E3E92C57568F00D04227 /* MCEmojiPicker */,
+				C2771F972C87454700D3393F /* GoogleGenerativeAI */,
+				C29C8BAF2CABB27D00A4122E /* Shimmer */,
 			);
 			productName = "Krupa's Foods";
 			productReference = C24C31892C3D038600C3187D /* Krupa's Foods.app */;
@@ -305,6 +327,8 @@
 			packageReferences = (
 				C210E3E52C572F6500D04227 /* XCRemoteSwiftPackageReference "EmojiPicker" */,
 				C210E3E82C57568F00D04227 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */,
+				C2771F962C87454700D3393F /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
+				C29C8BAE2CABB27D00A4122E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 			);
 			productRefGroup = C24C318A2C3D038600C3187D /* Products */;
 			projectDirPath = "";
@@ -322,6 +346,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2771F9C2C87462D00D3393F /* GenerativeAI-Info.plist in Resources */,
 				C24C31912C3D038800C3187D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +376,7 @@
 				C2CC3B4A2C4E182600E5DEF5 /* StockView.swift in Sources */,
 				C2A240AD2C68FAF600EB38D6 /* ExistingCustomerPicker.swift in Sources */,
 				C24C318F2C3D038600C3187D /* ContentView.swift in Sources */,
+				C2DAD4B02CBE23B400305586 /* SmartCustomerPicker.swift in Sources */,
 				C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */,
 				C244F8A92C6C69D800F2FF1A /* AddStockView.swift in Sources */,
 				C2942FC42C4E0F5900E11C21 /* Order.swift in Sources */,
@@ -743,6 +769,22 @@
 				minimumVersion = 1.2.3;
 			};
 		};
+		C2771F962C87454700D3393F /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
+		C29C8BAE2CABB27D00A4122E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -755,6 +797,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C210E3E82C57568F00D04227 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */;
 			productName = MCEmojiPicker;
+		};
+		C2771F972C87454700D3393F /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2771F962C87454700D3393F /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
+		C29C8BAF2CABB27D00A4122E /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C29C8BAE2CABB27D00A4122E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

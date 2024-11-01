@@ -24,6 +24,7 @@ struct AddOrderView: View {
     
     @State private var showCustomerPicker = false
     @State private var showAddCustomerView = false
+    @State private var showingSmartOrderInference = false
     
     var product: Product
     
@@ -103,34 +104,40 @@ struct AddOrderView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add") {
-                        let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
-                        modelContext.insert(order)
-                        
-                        var usedStock: [Stock] = []
-                        var quantity = order.quantity
-                        while quantity != 0 {
-                            if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
-                                usedStock.append(stockToUse)
-                                
-                                if stockToUse.quantityLeft >= quantity {
-                                    stockToUse.quantityLeft -= quantity
-                                    break
-                                } else {
-                                    stockToUse.quantityLeft = 0
-                                    quantity -= stockToUse.quantityLeft
-                                }
-                            } else {
-                                break
-                            }
+                    HStack {
+                        Button("Smart Add", systemImage: "sparkles") {
+                            showingSmartOrderInference = true
                         }
                         
-                        order.stock = usedStock
-                        
-                        dismiss()
+                        Button("Add") {
+                            let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
+                            modelContext.insert(order)
+                            
+                            var usedStock: [Stock] = []
+                            var quantity = order.quantity
+                            while quantity != 0 {
+                                if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
+                                    usedStock.append(stockToUse)
+                                    
+                                    if stockToUse.quantityLeft >= quantity {
+                                        stockToUse.quantityLeft -= quantity
+                                        break
+                                    } else {
+                                        stockToUse.quantityLeft = 0
+                                        quantity -= stockToUse.quantityLeft
+                                    }
+                                } else {
+                                    break
+                                }
+                            }
+                            
+                            order.stock = usedStock
+                            
+                            dismiss()
+                        }
+                        .bold()
+                        .disabled(customer == nil || quantity == 0.0)
                     }
-                    .bold()
-                    .disabled(customer == nil || quantity == 0.0)
                 }
             }
             .customerPicker(isPresented: $showCustomerPicker, selection: $customer)
@@ -139,6 +146,17 @@ struct AddOrderView: View {
                     self.customer = $0
                 }
             }
+            .sheet(isPresented: $showingSmartOrderInference) {
+                SmartOrderInfererenceView(product: product) { response, customer in
+                    self.customer = customer
+                    self.quantity = response.wrappedQuantity
+                    self.amountPaid = response.wrappedPriceToBePaid
+                    self.paymentMethod = response.wrappedPaymentMethod
+                }
+            }
+        }
+    }
+    
     func menuOptions() -> some View {
         Group {
             Button("Choose from existing", systemImage: "person.fill.badge.plus") {
