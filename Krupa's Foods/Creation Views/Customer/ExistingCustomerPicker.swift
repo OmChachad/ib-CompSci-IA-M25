@@ -49,6 +49,8 @@ struct ExistingCustomerPicker: View {
                 }
             }
             .searchable(text: $searchTerm, prompt: "Search for an existing customer...")
+            .navigationTitle("Choose Customer")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if style == .sheet {
                     ToolbarItem(placement: .topBarLeading) {
