@@ -47,24 +47,26 @@ struct AddOrderView: View {
                                     .bold()
                                 Text(customer.phoneNumber)
                                     .foregroundStyle(.secondary)
+                                Text("^[\(customer.wrappedOrderHistory.count) Orders](inflect: true)")
+                                    .foregroundStyle(.secondary)
                             }
                             
                             Spacer()
                             
-                            Text("^[\(customer.wrappedOrderHistory.count) Orders](inflect: true)")
-                                .foregroundStyle(.secondary)
-                        }
-                    }
-                    
-                    Menu("\(customer == nil ? "Choose" : "Change") Customer") {
-                        if !customers.isEmpty {
-                            Button("Choose from existing", systemImage: "person.fill.badge.plus") {
-                                showCustomerPicker = true
+                            Menu {
+                                menuOptions()
+                            } label: {
+                                Label("Change Customer", systemImage: "arrow.2.circlepath")
+                                    .bold()
+                                    .labelStyle(.iconOnly)
+                                    .imageScale(.large)
+                                    .padding(5)
+                                    .background(.ultraThinMaterial, in: .circle)
                             }
                         }
-                        
-                        Button("Add new", systemImage: "plus") {
-                            showAddCustomerView = true
+                    } else {
+                        Menu("Choose Customer") {
+                            menuOptions()
                         }
                     }
                     
@@ -136,6 +138,15 @@ struct AddOrderView: View {
                 AddCustomerView {
                     self.customer = $0
                 }
+            }
+    func menuOptions() -> some View {
+        Group {
+            Button("Choose from existing", systemImage: "person.fill.badge.plus") {
+                showCustomerPicker = true
+            }
+            
+            Button("Add new", systemImage: "plus") {
+                showAddCustomerView = true
             }
         }
     }
