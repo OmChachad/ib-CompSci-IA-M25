@@ -31,11 +31,6 @@ struct ContentView: View {
                                     Label("Stock", systemImage: "tray.2.fill")
                                 }
                         }
-                        
-                        SettingsView()
-                            .tabItem {
-                                Label("Settings", systemImage: "gear")
-                            }
                     }
                 } else {
                     VStack {
