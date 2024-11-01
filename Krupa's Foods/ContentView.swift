@@ -37,15 +37,6 @@ struct ContentView: View {
                                 Label("Settings", systemImage: "gear")
                             }
                     }
-                    .overlay(alignment: .bottom) {
-                        Rectangle()
-                            .fill(.clear)
-                            .frame(maxHeight: 125)
-                            .background(.bar)
-                            .blur(radius: 10)
-                            .padding([.horizontal, .bottom], -30)
-                    }
-                    .ignoresSafeArea(.all, edges: .bottom)
                 } else {
                     VStack {
                         ContentUnavailableView("No Product Available", systemImage: "tag.slash.fill", description: Text("You haven't set up any products yet.\nClick **Add Product** to get started."))
@@ -54,34 +45,35 @@ struct ContentView: View {
                         }
                         .buttonStyle(.borderedProminent)
                     }
+                    .padding(20)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.hidden, for: .tabBar)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    if !products.isEmpty {
-                        Picker("Product", selection: $product) {
-                            ForEach(products) { product in
-                                Group {
-                                    Text("\(product.icon) \(product.name)").foregroundStyle(.primary) + Text(Image(systemName: "chevron.up.chevron.down")).font(.caption)
-                                }
-                                .tag(product as Product?)
+            .safeAreaInset(edge: .top, content: {
+                if !products.isEmpty {
+                    Picker("Product", selection: $product) {
+                        ForEach(products) { product in
+                            Group {
+                                Text("\(product.icon) \(product.name)").foregroundStyle(.primary) + Text(Image(systemName: "chevron.up.chevron.down")).font(.caption)
                             }
-                            
-                            Divider()
-                            
-                            Label("Add New Product", systemImage: "plus")
-                                .tag(nil as Product?)
+                            .tag(product as Product?)
                         }
-                        .labelsHidden()
-                        //.padding(5)
-                        .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .clipShape(.capsule)
+                        
+                        Divider()
+                        
+                        Label("Add New Product", systemImage: "plus")
+                            .tag(nil as Product?)
                     }
+                    .labelsHidden()
+                    .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .clipShape(.capsule)
+#if targetEnvironment(macCatalyst)
+                    .padding(.top)
+#endif
                 }
-            }
+            })
             .onAppear {
                 if let data = UserDefaults.standard.data(forKey: "currentProduct"), let decodedID  = try? JSONDecoder().decode(UUID.self, from: data)  {
                     product = products.first { $0.id == decodedID }

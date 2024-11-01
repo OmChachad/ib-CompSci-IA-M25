@@ -38,10 +38,12 @@ struct StockView: View {
                                 .padding(.vertical, 2.5)
                         }
                     }
+#if targetEnvironment(macCatalyst)
+                    .padding(.top)
+#endif
                 }
             }
         }
-        .padding(.bottom, 125)
         .safeAreaInset(edge: .top, content: {
             HStack {
                 Text("Stock")
@@ -55,14 +57,9 @@ struct StockView: View {
                 .labelStyle(.iconOnly)
                 .imageScale(.large)
             }
-            .padding(.horizontal)
-            .background {
-                Rectangle()
-                    .fill(.clear)
-                    .background(.bar)
-                    .blur(radius: 10)
-                    .padding([.top, .horizontal], -100)
-            }
+            .padding([.horizontal, .bottom])
+            .padding(.top, 30)
+            .background(.bar)
         })
         .sheet(isPresented: $showingAddStockView) {
             AddStockView(product: product)
