@@ -35,12 +35,38 @@ struct AddCustomerView: View {
     
     var completion: (Customer?) -> Void
     
+    @State private var showingExistingCustomerPicker = false
+    
     var body: some View {
         NavigationStack {
             Form {
-                ContactPickerButton(contact: $contact) {
-                    Label("Import Details from Contacts", systemImage: "book.closed.fill")
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                Section {
+                    ContactPickerButton(contact: $contact) {
+                        Label("Import Details from Contacts", systemImage: "book.closed.fill")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    
+                    Button {
+                        showingExistingCustomerPicker = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "person.2.fill")
+                            Text("Choose from Existing Customers")
+                        }
+                    }
+                    .navigationDestination(isPresented: $showingExistingCustomerPicker) {
+                        ExistingCustomerPicker(
+                            customer: Binding(
+                                get: { nil },
+                                set: {
+                                    showingExistingCustomerPicker = false
+                                    completion($0)
+                                    dismiss()
+                                }
+                            ),
+                            style: .navigation
+                        )
+                    }
                 }
                 
                 Section(header: Text("Customer Details")) {

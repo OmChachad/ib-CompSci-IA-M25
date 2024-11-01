@@ -17,6 +17,13 @@ struct ExistingCustomerPicker: View {
     
     @State private var searchTerm: String = ""
     
+    enum Style {
+        case navigation
+        case sheet
+    }
+    
+    var style: Style = .sheet
+    
     var body: some View {
         
         NavigationStack {
@@ -43,8 +50,10 @@ struct ExistingCustomerPicker: View {
             }
             .searchable(text: $searchTerm, prompt: "Search for an existing customer...")
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Cancel", action: dismiss.callAsFunction)
+                if style == .sheet {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button("Cancel", action: dismiss.callAsFunction)
+                    }
                 }
             }
             .onChange(of: customer, dismiss.callAsFunction)
