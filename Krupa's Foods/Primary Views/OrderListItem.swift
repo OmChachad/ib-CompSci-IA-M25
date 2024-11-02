@@ -55,7 +55,7 @@ struct OrderListItem: View {
             }
             .allowSwipeToTrigger()
             .foregroundStyle(.white)
-            .confirmationDialog("Are you sure you want to delete this order?", isPresented: $showDeleteConfirmation) {
+            .confirmationDialog("Confirm Deletion", isPresented: $showDeleteConfirmation) {
                 Button("Delete", role: .destructive) {
                     modelContext.delete(order)
                 }
@@ -63,6 +63,8 @@ struct OrderListItem: View {
                 Button("Cancel", role: .cancel) {
                     context.state.wrappedValue = .closed
                 }
+            } message: {
+                Text("Are you sure you want to delete this order?")
             }
         }
         .swipeActionCornerRadius(20)
