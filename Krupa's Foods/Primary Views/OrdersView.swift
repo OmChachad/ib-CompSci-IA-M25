@@ -68,29 +68,7 @@ struct OrdersView: View {
                         
                         
                         ForEach(orders) { order in
-                            HStack {
-                                Text(order.wrappedProduct.icon)
-                                    .font(.largeTitle)
-                                
-                                VStack(alignment: .leading) {
-                                    Text(order.wrappedCustomer.name)
-                                        .bold()
-                                    Text(order.wrappedCustomer.address.line1)
-                                        .foregroundStyle(.secondary)
-                                }
-                                
-                                Spacer()
-                                
-                                VStack(alignment: .leading) {
-                                    Text("^[\(order.quantity.formatted()) \(order.wrappedProduct.measurementUnit.rawValue.capitalized)](inflect: true)")
-                                    Text(order.amountPaid, format: .currency(code: "INR"))
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                            .padding(10)
-                            .background(.ultraThickMaterial, in: .rect(cornerRadius: 20, style: .continuous))
-                            .padding(.horizontal)
-                            .padding(.vertical, 2.5)
+                            OrderListItem(order)
                         }
                     }
 #if targetEnvironment(macCatalyst)
@@ -119,5 +97,6 @@ struct OrdersView: View {
         .sheet(isPresented: $showingNewOrderView) {
             AddOrderView(product: product)
         }
+        .animation(.easeInOut.speed(1.75), value: orders.count)
     }
 }
