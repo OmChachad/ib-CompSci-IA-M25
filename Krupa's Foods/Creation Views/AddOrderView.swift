@@ -110,7 +110,7 @@ struct AddOrderView: View {
                     EnumPicker(title: "Delivery Status", selection: $deliveryStatus)
                 }
             }
-            .navigationTitle("New Order")
+            .navigationTitle("\(toBeEditedOrder == nil ? "New" : "Edit") Order")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel", action: dismiss.callAsFunction)
