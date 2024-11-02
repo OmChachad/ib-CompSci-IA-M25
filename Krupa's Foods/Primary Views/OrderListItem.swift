@@ -19,6 +19,7 @@ struct OrderListItem: View {
     }
     
     @State private var showDeleteConfirmation = false
+    @State private var showOrderEditView = false
     
     var body: some View {
         SwipeView {
@@ -44,6 +45,11 @@ struct OrderListItem: View {
             .padding(10)
             .background(.ultraThickMaterial, in: .rect(cornerRadius: 20, style: .continuous))
         } trailingActions: { context in
+            SwipeAction("Edit", systemImage: "pencil") {
+                context.state.wrappedValue = .closed
+                showOrderEditView = true
+            }
+            
             SwipeAction("Delete", systemImage: "trash", backgroundColor: .red) {
                 showDeleteConfirmation = true
             }
@@ -63,5 +69,8 @@ struct OrderListItem: View {
         .padding(.horizontal)
         .padding(.vertical, 2.5)
         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading).combined(with: .swipeDelete)))
+        .sheet(isPresented: $showOrderEditView) {
+            AddOrderView(order: order)
+        }
     }
 }

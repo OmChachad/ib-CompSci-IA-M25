@@ -26,6 +26,8 @@ struct AddOrderView: View {
     @State private var showAddCustomerView = false
     @State private var showingSmartOrderInference = false
     
+    var toBeEditedOrder: Order? = nil
+    
     var product: Product
     
     init(product: Product) {
@@ -35,6 +37,17 @@ struct AddOrderView: View {
         }, sort: \.date, order: .forward, animation: .default)
         
         self.product = product
+    }
+    
+    init(order: Order) {
+        self.product = order.wrappedProduct
+        self.toBeEditedOrder = order
+        self._customer = State(initialValue: order.wrappedCustomer)
+        self._paymentMethod = State(initialValue: order.paymentMethod)
+        self._quantity = State(initialValue: order.quantity)
+        self._amountPaid = State(initialValue: order.amountPaid)
+        self._paymentStatus = State(initialValue: order.paymentStatus)
+        self._deliveryStatus = State(initialValue: order.deliveryStatus)
     }
     
     var body: some View {
@@ -105,35 +118,52 @@ struct AddOrderView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
-                        Button("Smart Add", systemImage: "sparkles") {
-                            showingSmartOrderInference = true
+                        if toBeEditedOrder == nil {
+                            Button("Smart Add", systemImage: "sparkles") {
+                                showingSmartOrderInference = true
+                            }
                         }
                         
-                        Button("Add") {
-                            let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
-                            modelContext.insert(order)
-                            
-                            var usedStock: [Stock] = []
-                            var quantity = order.quantity
-                            while quantity != 0 {
-                                if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
-                                    usedStock.append(stockToUse)
+                        Group {
+                            if let toBeEditedOrder {
+                                Button("Save") {
+                                    toBeEditedOrder.customer = customer
+                                    toBeEditedOrder.paymentMethod = paymentMethod
+                                    toBeEditedOrder.quantity = quantity
+                                    toBeEditedOrder.amountPaid = amountPaid
+                                    toBeEditedOrder.paymentStatus = paymentStatus
+                                    toBeEditedOrder.deliveryStatus = deliveryStatus
                                     
-                                    if stockToUse.quantityLeft >= quantity {
-                                        stockToUse.quantityLeft -= quantity
-                                        break
-                                    } else {
-                                        stockToUse.quantityLeft = 0
-                                        quantity -= stockToUse.quantityLeft
+                                    dismiss()
+                                }
+                            } else {
+                                Button("Add") {
+                                    let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
+                                    modelContext.insert(order)
+                                    
+                                    var usedStock: [Stock] = []
+                                    var quantity = order.quantity
+                                    while quantity != 0 {
+                                        if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
+                                            usedStock.append(stockToUse)
+                                            
+                                            if stockToUse.quantityLeft >= quantity {
+                                                stockToUse.quantityLeft -= quantity
+                                                break
+                                            } else {
+                                                stockToUse.quantityLeft = 0
+                                                quantity -= stockToUse.quantityLeft
+                                            }
+                                        } else {
+                                            break
+                                        }
                                     }
-                                } else {
-                                    break
+                                    
+                                    order.stock = usedStock
+                                    
+                                    dismiss()
                                 }
                             }
-                            
-                            order.stock = usedStock
-                            
-                            dismiss()
                         }
                         .bold()
                         .disabled(customer == nil || quantity == 0.0)
