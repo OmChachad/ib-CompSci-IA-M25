@@ -19,6 +19,22 @@ struct AddProductView: View {
     
     @State private var showEmojiPicker = false
     
+    var product: Product?
+    
+    
+    init() {}
+    
+    init(product: Product? = nil) {
+        self.product = product
+        
+        if let product {
+            self._icon = State(initialValue: product.icon)
+            self._name = State(initialValue: product.name)
+            self._measurementUnit = State(initialValue: product.measurementUnit)
+            self._isMadeToDelivery = State(initialValue: product.isMadeToDelivery)
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -68,10 +84,22 @@ struct AddProductView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Add") {
-                        let product = Product(name: name, icon: icon, measurementUnit: measurementUnit, isMadeToDelivery: isMadeToDelivery)
-                        modelContext.insert(product)
-                        dismiss()
+                    Group {
+                        if let product {
+                            Button("Save") {
+                                product.name = name
+                                product.icon = icon
+                                product.measurementUnit = measurementUnit
+                                product.isMadeToDelivery = isMadeToDelivery
+                                dismiss()
+                            }
+                        } else {
+                            Button("Add") {
+                                let product = Product(name: name, icon: icon, measurementUnit: measurementUnit, isMadeToDelivery: isMadeToDelivery)
+                                modelContext.insert(product)
+                                dismiss()
+                            }
+                        }
                     }
                     .bold()
                     .disabled(name.isEmpty || icon.isEmpty)

@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var product: Product?
     
     @State private var addingNewProduct = false
+    @State private var managingProduct = false
     
     var body: some View {
         NavigationStack {
@@ -47,26 +48,39 @@ struct ContentView: View {
             .toolbarBackground(.hidden, for: .tabBar)
             .safeAreaInset(edge: .top, content: {
                 if !products.isEmpty {
-                    Picker("Product", selection: $product) {
-                        ForEach(products) { product in
-                            Group {
-                                Text("\(product.icon) \(product.name)").foregroundStyle(.primary) + Text(Image(systemName: "chevron.up.chevron.down")).font(.caption)
+                    HStack {
+                        Picker("Product", selection: $product) {
+                            ForEach(products) { product in
+                                Group {
+                                    Text("\(product.icon) \(product.name)").foregroundStyle(.primary) + Text(Image(systemName: "chevron.up.chevron.down")).font(.caption)
+                                }
+                                .tag(product as Product?)
                             }
-                            .tag(product as Product?)
+                            
+                            Divider()
+                            
+                            Label("Add New Product", systemImage: "plus")
+                                .tag(nil as Product?)
                         }
+                        .labelsHidden()
+                        .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .clipShape(.capsule)
                         
-                        Divider()
-                        
-                        Label("Add New Product", systemImage: "plus")
-                            .tag(nil as Product?)
+                        Button("Edit", systemImage: "slider.horizontal.3") {
+                            managingProduct = true
+                        }
+                        .labelStyle(.iconOnly)
+                        .padding(9)
+                        .background(.primary.opacity(0.1), in: .circle)
+                        .background(.ultraThickMaterial, in: .circle)
+                        .sheet(isPresented: $managingProduct) {
+                            ManageProductsView()
+                        }
                     }
-                    .labelsHidden()
-                    .background(.primary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    .clipShape(.capsule)
-#if targetEnvironment(macCatalyst)
+                    #if targetEnvironment(macCatalyst)
                     .padding(.top)
-#endif
+                    #endif
                 }
             })
             .onAppear {

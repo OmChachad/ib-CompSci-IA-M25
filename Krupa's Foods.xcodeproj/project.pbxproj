@@ -37,6 +37,8 @@
 		C2DAD4B02CBE23B400305586 /* SmartCustomerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DAD4AF2CBE23B400305586 /* SmartCustomerPicker.swift */; };
 		C2FA96312CD5E10C00FAE437 /* OrderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA96302CD5E10C00FAE437 /* OrderListItem.swift */; };
 		C2FA96342CD5E18000FAE437 /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = C2FA96332CD5E18000FAE437 /* SwipeActions */; };
+		C2FA96362CD6AD9F00FAE437 /* ManageProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA96352CD6AD9F00FAE437 /* ManageProductsView.swift */; };
+		C2FA96382CD7145600FAE437 /* ProductItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA96372CD7145600FAE437 /* ProductItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		C2CC3B4B2C4E183E00E5DEF5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C2DAD4AF2CBE23B400305586 /* SmartCustomerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCustomerPicker.swift; sourceTree = "<group>"; };
 		C2FA96302CD5E10C00FAE437 /* OrderListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListItem.swift; sourceTree = "<group>"; };
+		C2FA96352CD6AD9F00FAE437 /* ManageProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageProductsView.swift; sourceTree = "<group>"; };
+		C2FA96372CD7145600FAE437 /* ProductItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -151,6 +155,8 @@
 				C2B31D062CC16D8900211185 /* Krupa-s-Foods-Info.plist */,
 				C24C318C2C3D038600C3187D /* Krupas_FoodsApp.swift */,
 				C24C318E2C3D038600C3187D /* ContentView.swift */,
+				C2FA96352CD6AD9F00FAE437 /* ManageProductsView.swift */,
+				C2FA96372CD7145600FAE437 /* ProductItemView.swift */,
 				C2A240B22C691CD200EB38D6 /* Primary Views */,
 				C2A240AE2C691C7A00EB38D6 /* Creation Views */,
 				C2A240B02C691CA900EB38D6 /* Models */,
@@ -392,12 +398,14 @@
 				C2A240AD2C68FAF600EB38D6 /* ExistingCustomerPicker.swift in Sources */,
 				C24C318F2C3D038600C3187D /* ContentView.swift in Sources */,
 				C2DAD4B02CBE23B400305586 /* SmartCustomerPicker.swift in Sources */,
+				C2FA96382CD7145600FAE437 /* ProductItemView.swift in Sources */,
 				C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */,
 				C2FA96312CD5E10C00FAE437 /* OrderListItem.swift in Sources */,
 				C244F8A92C6C69D800F2FF1A /* AddStockView.swift in Sources */,
 				C2942FC42C4E0F5900E11C21 /* Order.swift in Sources */,
 				C2942FC82C4E0F8500E11C21 /* Customer.swift in Sources */,
 				C210E3E42C56B31E00D04227 /* AddProductView.swift in Sources */,
+				C2FA96362CD6AD9F00FAE437 /* ManageProductsView.swift in Sources */,
 				C2CC3B4C2C4E183E00E5DEF5 /* SettingsView.swift in Sources */,
 				C2771F952C86E0C200D3393F /* StockItemView.swift in Sources */,
 				C2A240AB2C68F2C100EB38D6 /* ContactPickerButton.swift in Sources */,
