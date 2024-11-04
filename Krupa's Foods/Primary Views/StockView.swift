@@ -38,8 +38,14 @@ struct StockView: View {
     var body: some View {
         Group {
             if stock.isEmpty {
-                ContentUnavailableView("No Available Stock", systemImage: "tray.2.fill", description: Text("Click \(Image(systemName: "plus.circle.fill")) to add update your inventory"))
-                    .frame(maxHeight: .infinity, alignment: .center)
+                VStack {
+                    if !pendingStock.isEmpty {
+                        pendingStockAlert()
+                    }
+                    
+                    ContentUnavailableView("No Available Stock", systemImage: "tray.2.fill", description: Text("Click \(Image(systemName: "plus.circle.fill")) to add update your inventory"))
+                        .frame(maxHeight: .infinity, alignment: .center)
+                }
             } else {
                 ScrollView {
                     if !pendingStock.isEmpty {
