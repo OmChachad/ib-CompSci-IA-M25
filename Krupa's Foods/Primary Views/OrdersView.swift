@@ -12,7 +12,7 @@ struct OrdersView: View {
     @Environment(\.modelContext) var modelContext
     @State private var showingNewOrderView: Bool = false
     
-    @Query var orders: [Order]
+    @Query(sort: \Order.date, order: .reverse) var orders: [Order]
     
     var pendingOrdersCount: Int {
         orders.filter{ $0.isPending }.count
