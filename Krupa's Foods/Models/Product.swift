@@ -16,6 +16,7 @@ class Product {
     var measurementUnit: Unit = Unit.piece
     @Relationship(inverse: \Order.product) var orders: [Order]? = []
     @Relationship(inverse: \Stock.product) var stock: [Stock]? = []
+    @Relationship(inverse: \PendingStock.product) var pendingStock: [PendingStock]? = []
     var isMadeToDelivery: Bool = false
     var stepAmount: Double = 1.0
     

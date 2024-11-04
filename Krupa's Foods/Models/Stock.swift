@@ -17,6 +17,7 @@ class Stock {
     var date: Date = Date.now
     var product: Product?
     @Relationship(inverse: \Order.stock) var orders: [Order]? = []
+    @Relationship(deleteRule: .nullify,inverse: \PendingStock.fulfilledBy) var fulfillingStock: [PendingStock]? = []
     
     var wrappedProduct: Product {
         product ?? Product(name: "Unknown Product", icon: "❓", measurementUnit: .piece, isMadeToDelivery: false)

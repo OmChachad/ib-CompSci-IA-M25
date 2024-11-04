@@ -11,6 +11,7 @@ import SwiftData
 struct AddStockView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
+    @Query(sort: \PendingStock.date, order: .forward) var pendingStocks: [PendingStock]
     
     @State private var amountPaid: Double = 0.0
     @State private var quantityPurchased: Double = 0.0
@@ -22,6 +23,19 @@ struct AddStockView: View {
     var product: Product
     
     @State private var detent: PresentationDetent = .medium
+    
+    init(product: Product) {
+        self.product = product
+        self._pendingStocks = Query(filter: #Predicate<PendingStock> { pendingStock in
+            if pendingStock.fulfilledBy != nil {
+                return false
+            } else if let product = pendingStock.product {
+                return product.persistentModelID == product.persistentModelID
+            } else {
+                return false
+            }
+        }, sort: \.date, order: .forward)
+    }
     
     var body: some View {
         NavigationStack {
@@ -75,6 +89,23 @@ struct AddStockView: View {
                     Button("Add") {
                         let stock = Stock(amountPaid: amountPaid, quantityPurchased: quantityPurchased, quantityLeft: (hasConsumed  ? quantityLeft : quantityPurchased), for: product)
                         modelContext.insert(stock)
+                        
+                        if !pendingStocks.isEmpty {
+                            var quantityRemaining = self.quantityLeft
+                            for pendingStock in pendingStocks {
+                                if quantityRemaining > 0 && (pendingStocks.reduce(0.0) { $0 + $1.quantityToBePurchased } > 0) {
+                                    if pendingStock.quantityToBePurchased > quantityRemaining {
+                                        pendingStock.quantityToBePurchased -= quantityRemaining
+                                        quantityRemaining = 0
+                                    } else {
+                                        quantityRemaining -= pendingStock.quantityToBePurchased
+                                        pendingStock.fulfilledBy = stock
+                                    }
+                                }
+                            }
+                            
+                            stock.quantityLeft = quantityRemaining
+                        }
                         
                         dismiss()
                     }

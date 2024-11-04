@@ -90,13 +90,16 @@ struct AddOrderView: View {
                     TextField("Amount to be paid", value: $amountPaid, formatter: INRFormatter)
                         .keyboardType(.numberPad)
                     
-                    Stepper(value: $quantity, in: 0.0...product.availableStock, step: product.stepAmount, format: .number) {
+                    Stepper(value: $quantity, in: 0.0...(.infinity), step: product.stepAmount, format: .number) {
                         Text("\(quantity.formatted()) \(product.measurementUnit.title)")
                     }
                 } footer: {
                     if product.availableStock == 0.0 {
-                        Text("\(Image(systemName: "exclamationmark.triangle")) You do not have any stock left.")
-                            .foregroundStyle(.red)
+                        Text("\(Image(systemName: "exclamationmark.triangle")) You do not have any stock left. You will be prompted to add stock.")
+                            .foregroundStyle(.yellow)
+                    } else if quantity > product.availableStock {
+                        Text("\(Image(systemName: "exclamationmark.triangle")) You do not have enough stock left. You will be prompted to add stock.")
+                            .foregroundStyle(.yellow)
                     }
                 }
                 
@@ -140,6 +143,12 @@ struct AddOrderView: View {
                                 Button("Add") {
                                     let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
                                     modelContext.insert(order)
+                                    
+                                    if quantity > product.availableStock {
+                                        print(product.availableStock)
+                                        let pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product, order: order)
+                                        modelContext.insert(pendingStock)
+                                    }
                                     
                                     var usedStock: [Stock] = []
                                     var quantity = order.quantity

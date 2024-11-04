@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct StockView: View {
+    @Query var pendingStock: [PendingStock]
     @Query var stock: [Stock]
     
     @State private var showingAddStockView = false
@@ -21,6 +22,16 @@ struct StockView: View {
             return stock.product?.id == id
         }, sort: \.date, order: .reverse, animation: .default)
         
+        self._pendingStock = Query(filter: #Predicate<PendingStock> { pendingStock in
+            if pendingStock.fulfilledBy != nil {
+                return false
+            } else if let product = pendingStock.product {
+                return product.persistentModelID == product.persistentModelID
+            } else {
+                return false
+            }
+        }, sort: \.date, order: .forward)
+        
         self.product = product
     }
     
@@ -31,6 +42,10 @@ struct StockView: View {
                     .frame(maxHeight: .infinity, alignment: .center)
             } else {
                 ScrollView {
+                    if !pendingStock.isEmpty {
+                        pendingStockAlert()
+                    }
+                    
                     LazyVStack {
                         ForEach(stock) { stockOrder in
                             StockItemView(stockOrder)
@@ -64,5 +79,30 @@ struct StockView: View {
         .sheet(isPresented: $showingAddStockView) {
             AddStockView(product: product)
         }
+        .badge(Int(pendingStock.reduce(0) { $0 + $1.quantityToBePurchased}))
+    }
+    
+    func pendingStockAlert() -> some View {
+        
+            VStack(alignment: .leading) {
+                Text("Out of stock!")
+                    .bold()
+                    .padding(10)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.red.opacity(0.2), in: Rectangle())
+                
+                VStack(alignment: .leading) {
+                    Text("You have ^[\(pendingStock.reduce(0) { $0 + $1.quantityToBePurchased }.formatted()) \(product.measurementUnit.title)](inflect: true) pending restocking for recent orders to be fulfilled.")
+                        .foregroundStyle(.secondary)
+                    Divider()
+                    Button("Add Stock") {
+                        showingAddStockView = true
+                    }
+                }
+                    .padding([.bottom, .horizontal], 10)
+            }
+            .background(Color.red.opacity(0.2), in: RoundedRectangle(cornerRadius: 20))
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .padding()
     }
 }

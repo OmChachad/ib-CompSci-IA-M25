@@ -20,6 +20,7 @@ class Order {
     var paymentStatus: Status = Status.pending
     var deliveryStatus: Status = Status.pending
     var stock: [Stock]? = []
+    @Relationship(deleteRule: .cascade, inverse: \PendingStock.order) var pendingStock: PendingStock?
     
     var wrappedStock: [Stock] {
         stock ?? []
