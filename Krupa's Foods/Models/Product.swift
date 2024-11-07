@@ -14,9 +14,9 @@ class Product {
     var name: String = ""
     var icon: String = ""
     var measurementUnit: Unit = Unit.piece
-    @Relationship(inverse: \Order.product) var orders: [Order]? = []
-    @Relationship(inverse: \Stock.product) var stock: [Stock]? = []
-    @Relationship(inverse: \PendingStock.product) var pendingStock: [PendingStock]? = []
+    @Relationship(deleteRule: .cascade, inverse: \Order.product) var orders: [Order]? = []
+    @Relationship(deleteRule: .cascade, inverse: \Stock.product) var stock: [Stock]? = []
+    @Relationship(deleteRule: .cascade, inverse: \PendingStock.product) var pendingStock: [PendingStock]? = []
     var isMadeToDelivery: Bool = false
     var stepAmount: Double = 1.0
     
