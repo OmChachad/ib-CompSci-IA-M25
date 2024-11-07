@@ -141,14 +141,15 @@ struct AddOrderView: View {
                                 }
                             } else {
                                 Button("Add") {
+                                    var pendingStock: PendingStock? = nil
+                                    if quantity > product.availableStock {
+                                        pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product)
+                                        modelContext.insert(pendingStock!)
+                                    }
+                                    
                                     let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
                                     modelContext.insert(order)
-                                    
-                                    if quantity > product.availableStock {
-                                        print(product.availableStock)
-                                        let pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product, order: order)
-                                        modelContext.insert(pendingStock)
-                                    }
+                                    pendingStock?.order = order
                                     
                                     var usedStock: [Stock] = []
                                     var quantity = order.quantity
@@ -156,11 +157,11 @@ struct AddOrderView: View {
                                         if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
                                             usedStock.append(stockToUse)
                                             
+                                                stockToUse.usedBy?.append(order)
                                             if stockToUse.quantityLeft >= quantity {
-                                                stockToUse.quantityLeft -= quantity
                                                 break
                                             } else {
-                                                stockToUse.quantityLeft = 0
+//                                                stockToUse.quantityLeft = 0
                                                 quantity -= stockToUse.quantityLeft
                                             }
                                         } else {

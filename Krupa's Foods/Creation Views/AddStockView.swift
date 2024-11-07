@@ -103,8 +103,6 @@ struct AddStockView: View {
                                     }
                                 }
                             }
-                            
-                            stock.quantityLeft = quantityRemaining
                         }
                         
                         dismiss()

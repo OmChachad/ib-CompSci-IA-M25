@@ -13,14 +13,38 @@ class Stock {
     var id: UUID = UUID()
     var amountPaid: Double = 0.0
     var quantityPurchased: Double = 0.0
-    var quantityLeft: Double = 0.0
+    var manuallyConsumedQuantity: Double = 0.0
     var date: Date = Date.now
     var product: Product?
-    @Relationship(inverse: \Order.stock) var orders: [Order]? = []
+    @Relationship(inverse: \Order.stock) var usedBy: [Order]? = []
     @Relationship(deleteRule: .nullify,inverse: \PendingStock.fulfilledBy) var fulfillingStock: [PendingStock]? = []
     
     var wrappedProduct: Product {
         product ?? Product(name: "Unknown Product", icon: "❓", measurementUnit: .piece, isMadeToDelivery: false)
+    }
+    
+    var wrappedUsedBy: [Order] {
+        usedBy ?? []
+    }
+    
+    var quantityLeft: Double {
+        let subtractedQuantity = quantityPurchased
+            - self.manuallyConsumedQuantity
+            - self.wrappedUsedBy.reduce(0.0) { total, order in
+                total + order.quantity
+            }
+            - (self.fulfillingStock?.filter { pendingStock in
+                !self.wrappedUsedBy.contains { $0.persistentModelID == pendingStock.order?.persistentModelID }
+            } ?? []).reduce(0.0) { total, pendingStock in
+                total + pendingStock.quantityToBePurchased
+            }
+
+        
+        if subtractedQuantity < 0 {
+            return 0
+        } else {
+            return subtractedQuantity
+        }
     }
     
     /// Initializes a new `Stock` instance with specified values for all properties.
@@ -38,10 +62,10 @@ class Stock {
         self.id = id
         self.amountPaid = amountPaid
         self.quantityPurchased = quantityPurchased
-        self.quantityLeft = quantityLeft
+        self.manuallyConsumedQuantity = quantityPurchased - quantityLeft
         self.date = date
         self.product = product
-        self.orders = []
+        self.usedBy = []
     }
     
     /// Initializes a new `Stock` instance with `quantityLeft` automatically set to the value of `quantityPurchased`.
@@ -58,10 +82,10 @@ class Stock {
         self.id = id
         self.amountPaid = amountPaid
         self.quantityPurchased = quantityPurchased
-        self.quantityLeft = quantityPurchased
+        self.manuallyConsumedQuantity = 0
         self.date = date
         self.product = product
-        self.orders = []
+        self.usedBy = []
     }
 }
 
