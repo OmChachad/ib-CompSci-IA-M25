@@ -91,7 +91,7 @@ struct OrdersView: View {
                 .imageScale(.large)
             }
             .padding([.horizontal, .bottom])
-            .padding(.top, 30)
+            .padding(.top, 40)
             .background(.bar)
         })
         .sheet(isPresented: $showingNewOrderView) {
