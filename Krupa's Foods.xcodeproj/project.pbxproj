@@ -28,6 +28,7 @@
 		C2942FC62C4E0F7100E11C21 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC52C4E0F7100E11C21 /* Stock.swift */; };
 		C2942FC82C4E0F8500E11C21 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC72C4E0F8500E11C21 /* Customer.swift */; };
 		C2942FCA2C4E0F9B00E11C21 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC92C4E0F9B00E11C21 /* Address.swift */; };
+		C29594A72CECC13C008232AB /* EnumPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29594A62CECC13C008232AB /* EnumPicker.swift */; };
 		C29C8BB02CABB27D00A4122E /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = C29C8BAF2CABB27D00A4122E /* Shimmer */; };
 		C2A240AB2C68F2C100EB38D6 /* ContactPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A240AA2C68F2C100EB38D6 /* ContactPickerButton.swift */; };
 		C2A240AD2C68FAF600EB38D6 /* ExistingCustomerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A240AC2C68FAF600EB38D6 /* ExistingCustomerPicker.swift */; };
@@ -81,6 +82,7 @@
 		C2942FC52C4E0F7100E11C21 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		C2942FC72C4E0F8500E11C21 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		C2942FC92C4E0F9B00E11C21 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		C29594A62CECC13C008232AB /* EnumPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumPicker.swift; sourceTree = "<group>"; };
 		C2A240AA2C68F2C100EB38D6 /* ContactPickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPickerButton.swift; sourceTree = "<group>"; };
 		C2A240AC2C68FAF600EB38D6 /* ExistingCustomerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExistingCustomerPicker.swift; sourceTree = "<group>"; };
 		C2B31D062CC16D8900211185 /* Krupa-s-Foods-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Krupa-s-Foods-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				C2A240AA2C68F2C100EB38D6 /* ContactPickerButton.swift */,
+				C29594A62CECC13C008232AB /* EnumPicker.swift */,
 				C244F8AA2C6C6BF700F2FF1A /* INRFormatter.swift */,
 			);
 			path = Utilities;
@@ -414,6 +417,7 @@
 				C2363C222C58BA1900EE004A /* AddOrderView.swift in Sources */,
 				C244F8AB2C6C6BF700F2FF1A /* INRFormatter.swift in Sources */,
 				C28C7F102C4682DB00B9DF32 /* Product.swift in Sources */,
+				C29594A72CECC13C008232AB /* EnumPicker.swift in Sources */,
 				C2942FCA2C4E0F9B00E11C21 /* Address.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

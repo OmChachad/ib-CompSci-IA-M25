@@ -33,6 +33,16 @@ struct OrdersView: View {
         self.product = product
     }
     
+    var pendingOrders: [Order] {
+        orders.filter { $0.isPending }
+    }
+    
+    var completedOrders: [Order] {
+        orders.filter { $0.isCompleted }
+    }
+    
+    @Namespace var ordersSpace
+    
     var body: some View {
         VStack {
             if orders.isEmpty {
@@ -66,9 +76,30 @@ struct OrdersView: View {
                         }
                         .padding(.horizontal, 12.5)
                         
-                        
-                        ForEach(orders) { order in
-                            OrderListItem(order)
+                        LazyVStack(pinnedViews: [.sectionHeaders]) {
+                            Section {
+                                ForEach(pendingOrders) { order in
+                                    OrderListItem(order, namespace: ordersSpace)
+                                }
+                            } header: {
+                                Text("Pending")
+                                    .font(.title3.bold())
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal, 12.5)
+                            }
+                            .opacity(pendingOrders.isEmpty ? 0 : 1)
+                            
+                            Section {
+                                ForEach(completedOrders) { order in
+                                    OrderListItem(order, namespace: ordersSpace)
+                                }
+                            } header: {
+                                Text("Completed")
+                                    .font(.title3.bold())
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal, 12.5)
+                            }
+                            .opacity(completedOrders.isEmpty ? 0 : 1)
                         }
                     }
 #if targetEnvironment(macCatalyst)
