@@ -127,53 +127,8 @@ struct AddOrderView: View {
                             }
                         }
                         
-                        Group {
-                            if let toBeEditedOrder {
-                                Button("Save") {
-                                    toBeEditedOrder.customer = customer
-                                    toBeEditedOrder.paymentMethod = paymentMethod
-                                    toBeEditedOrder.quantity = quantity
-                                    toBeEditedOrder.amountPaid = amountPaid
-                                    toBeEditedOrder.paymentStatus = paymentStatus
-                                    toBeEditedOrder.deliveryStatus = deliveryStatus
-                                    
-                                    dismiss()
-                                }
-                            } else {
-                                Button("Add") {
-                                    var pendingStock: PendingStock? = nil
-                                    if quantity > product.availableStock {
-                                        pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product)
-                                        modelContext.insert(pendingStock!)
-                                    }
-                                    
-                                    let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
-                                    modelContext.insert(order)
-                                    pendingStock?.order = order
-                                    
-                                    var usedStock: [Stock] = []
-                                    var quantity = order.quantity
-                                    while quantity != 0 {
-                                        if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
-                                            usedStock.append(stockToUse)
-                                            
-                                                stockToUse.usedBy?.append(order)
-                                            if stockToUse.quantityLeft >= quantity {
-                                                break
-                                            } else {
-//                                                stockToUse.quantityLeft = 0
-                                                quantity -= stockToUse.quantityLeft
-                                            }
-                                        } else {
-                                            break
-                                        }
-                                    }
-                                    
-                                    order.stock = usedStock
-                                    
-                                    dismiss()
-                                }
-                            }
+                        Button(toBeEditedOrder == nil ? "Add" : "Save") {
+                            completionAction()
                         }
                         .bold()
                         .disabled(customer == nil || quantity == 0.0)
@@ -195,6 +150,51 @@ struct AddOrderView: View {
                 }
             }
         }
+    }
+    
+    func completionAction() {
+        if let toBeEditedOrder {
+                toBeEditedOrder.customer = customer
+                toBeEditedOrder.paymentMethod = paymentMethod
+                toBeEditedOrder.quantity = quantity
+                toBeEditedOrder.amountPaid = amountPaid
+                toBeEditedOrder.paymentStatus = paymentStatus
+                toBeEditedOrder.deliveryStatus = deliveryStatus
+                #warning("Stock must be updated")
+        } else {
+                var pendingStock: PendingStock? = nil
+                if quantity > product.availableStock {
+                    pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product)
+                    modelContext.insert(pendingStock!)
+                }
+                
+                let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
+                modelContext.insert(order)
+                pendingStock?.order = order
+                
+                var usedStock: [Stock] = []
+                var quantity = order.quantity
+                while quantity != 0 {
+                    if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
+                        usedStock.append(stockToUse)
+                        
+                            stockToUse.usedBy?.append(order)
+                        if stockToUse.quantityLeft >= quantity {
+                            break
+                        } else {
+//                          stockToUse.quantityLeft = 0
+                            quantity -= stockToUse.quantityLeft
+                        }
+                    } else {
+                        break
+                    }
+                }
+                
+                order.stock = usedStock
+        }
+        
+        
+        dismiss()
     }
     
     func menuOptions() -> some View {
