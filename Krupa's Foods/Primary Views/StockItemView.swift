@@ -84,12 +84,12 @@ struct StockItemView: View {
                             .padding(5)
                         }
                     }
-                    .opacity(showingDetails ? 1 : 0)
-                    .transition(.blurReplace)
+                    .transition(.move(edge: .top).combined(with: .blurReplace))
                 }
             }
             .padding(10)
             .background(.ultraThickMaterial, in: .rect(cornerRadius: 20, style: .continuous))
+            .clipped()
             .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading).combined(with: .swipeDelete)))
             .onTapGesture {
                 showingDetails.toggle()
