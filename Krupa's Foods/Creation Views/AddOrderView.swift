@@ -26,6 +26,8 @@ struct AddOrderView: View {
     @State private var showAddCustomerView = false
     @State private var showingSmartOrderInference = false
     
+    @State private var showingLossAlert = false
+    
     var toBeEditedOrder: Order? = nil
     
     var product: Product
@@ -48,6 +50,25 @@ struct AddOrderView: View {
         self._amountPaid = State(initialValue: order.amountPaid)
         self._paymentStatus = State(initialValue: order.paymentStatus)
         self._deliveryStatus = State(initialValue: order.deliveryStatus)
+    }
+    
+    var usedStock: [Stock] {
+        var usedStock: [Stock] = []
+        var quantity = quantity
+        while quantity != 0 {
+            if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
+                usedStock.append(stockToUse)
+                if stockToUse.quantityLeft >= quantity {
+                    break
+                } else {
+                    quantity -= stockToUse.quantityLeft
+                }
+            } else {
+                break
+            }
+        }
+        
+        return usedStock
     }
     
     var body: some View {
@@ -127,11 +148,32 @@ struct AddOrderView: View {
                             }
                         }
                         
+                        
+                        let unitCostPrice = (usedStock.map(\.averageCost).max() ?? 0)
+                        
                         Button(toBeEditedOrder == nil ? "Add" : "Save") {
-                            completionAction()
+                            if amountPaid/quantity < unitCostPrice {
+                                showingLossAlert = true
+                            } else {
+                                completionAction()
+                            }
                         }
                         .bold()
                         .disabled(customer == nil || quantity == 0.0)
+                        .alert(isPresented: $showingLossAlert) {
+                            Alert(
+                                title: Text("Are you sure you want to sell at a loss?"),
+                                message: Text("""
+                                Your cost price is ₹\(unitCostPrice.formatted())/\(product.measurementUnit.title)
+                                
+                                You are incurring a loss of ₹\(((unitCostPrice - amountPaid/quantity)*quantity).formatted()) on this order.
+                                
+                                You must sell at least ₹\((unitCostPrice*quantity).formatted()) to break even.
+                                """),
+                                primaryButton: .cancel(),
+                                secondaryButton: .destructive(Text("Yes, Continue"), action: completionAction)
+                            )
+                        }
                     }
                 }
             }
