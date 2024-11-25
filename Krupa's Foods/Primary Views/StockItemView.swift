@@ -30,7 +30,7 @@ struct StockItemView: View {
     
     var body: some View {
         SwipeView {
-            VStack {
+            VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: "shippingbox.fill")
                         .foregroundStyle(.yellow.gradient)
@@ -55,7 +55,7 @@ struct StockItemView: View {
                 .opacity((stockOrder.quantityLeft == 0 && showingDetails) ? 0.6 : 1)
                 
                 if showingDetails {
-                    VStack(alignment: .leading) {
+                    Group {
                         Divider()
                         
                         LabeledContent("Amount Paid", value: "\(INRFormatter.string(from: NSNumber(value: stockOrder.amountPaid)) ?? "")")
