@@ -86,15 +86,23 @@ struct CustomersList: View {
     }
     
     var body: some View {
-        ForEach(customers, id: \.self) { customer in
-            VStack(alignment: .leading) {
-                Text(customer.name)
-                    .bold()
-                
-                Text("^[\(customer.wrappedOrderHistory.count) Orders](inflect: true)")
-            }
-            .tag(customer as Customer?)
+        ForEach(customers, id: \.self) {
+            CustomerItem(customer: $0)
         }
+    }
+}
+
+struct CustomerItem: View {
+    var customer: Customer
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(customer.name)
+                .bold()
+            
+            Text("^[\(customer.wrappedOrderHistory.count) Orders](inflect: true)")
+        }
+        .tag(customer as Customer?)
     }
 }
 
