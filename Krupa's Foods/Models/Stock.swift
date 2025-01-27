@@ -27,6 +27,14 @@ class Stock {
         usedBy ?? []
     }
     
+    var averageCost: Double {
+        if quantityPurchased == 0 {
+            return 0
+        } else {
+            return amountPaid / quantityPurchased
+        }
+    }
+    
     var quantityLeft: Double {
         let subtractedQuantity = quantityPurchased
             - self.manuallyConsumedQuantity

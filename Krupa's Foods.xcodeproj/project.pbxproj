@@ -24,6 +24,7 @@
 		C2771F982C87454700D3393F /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = C2771F972C87454700D3393F /* GoogleGenerativeAI */; };
 		C2771F9C2C87462D00D3393F /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2771F9B2C87462D00D3393F /* GenerativeAI-Info.plist */; };
 		C28C7F102C4682DB00B9DF32 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28C7F0F2C4682DB00B9DF32 /* Product.swift */; };
+		C29136CA2CF4E6720029980C /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29136C92CF4E6720029980C /* AnalyticsView.swift */; };
 		C2942FC42C4E0F5900E11C21 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC32C4E0F5900E11C21 /* Order.swift */; };
 		C2942FC62C4E0F7100E11C21 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC52C4E0F7100E11C21 /* Stock.swift */; };
 		C2942FC82C4E0F8500E11C21 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2942FC72C4E0F8500E11C21 /* Customer.swift */; };
@@ -78,6 +79,7 @@
 		C2771F942C86E0C200D3393F /* StockItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockItemView.swift; sourceTree = "<group>"; };
 		C2771F9B2C87462D00D3393F /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		C28C7F0F2C4682DB00B9DF32 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		C29136C92CF4E6720029980C /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		C2942FC32C4E0F5900E11C21 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		C2942FC52C4E0F7100E11C21 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		C2942FC72C4E0F8500E11C21 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				C2FA96302CD5E10C00FAE437 /* OrderListItem.swift */,
 				C2CC3B492C4E182600E5DEF5 /* StockView.swift */,
 				C2771F942C86E0C200D3393F /* StockItemView.swift */,
+				C29136C92CF4E6720029980C /* AnalyticsView.swift */,
 			);
 			path = "Primary Views";
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				C24C318F2C3D038600C3187D /* ContentView.swift in Sources */,
 				C2DAD4B02CBE23B400305586 /* SmartCustomerPicker.swift in Sources */,
 				C2FA96382CD7145600FAE437 /* ProductItemView.swift in Sources */,
+				C29136CA2CF4E6720029980C /* AnalyticsView.swift in Sources */,
 				C24C318D2C3D038600C3187D /* Krupas_FoodsApp.swift in Sources */,
 				C2FA96312CD5E10C00FAE437 /* OrderListItem.swift in Sources */,
 				C244F8A92C6C69D800F2FF1A /* AddStockView.swift in Sources */,

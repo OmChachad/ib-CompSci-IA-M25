@@ -32,6 +32,11 @@ struct ContentView: View {
                                     Label("Stock", systemImage: "tray.2.fill")
                                 }
                         }
+                        
+                        AnalyticsView(product: product)
+                            .tabItem {
+                                Label("Analytics", systemImage: "chart.bar.xaxis")
+                            }
                     }
                 } else {
                     VStack {
