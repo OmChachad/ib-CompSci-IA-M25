@@ -21,6 +21,7 @@ struct AddCustomerView: View {
     @State private var city = ""
     
     @State var contact: CNContact?
+    @State private var existingCustomer: Customer? = nil
     
     @FocusState private var focusedField: Field?
     
@@ -49,37 +50,49 @@ struct AddCustomerView: View {
         self.completion = completion
     }
     
+    init(existingCustomer: Customer, completion: @escaping (Customer?) -> Void = { _ in }) {
+        self._name = State(initialValue: existingCustomer.name)
+        self._phoneNumber = State(initialValue: existingCustomer.phoneNumber)
+        self._addressLine1 = State(initialValue: existingCustomer.address.line1)
+        self._addressLine2 = State(initialValue: existingCustomer.address.line2)
+        self._city = State(initialValue: existingCustomer.address.city)
+        self._pincode = State(initialValue: existingCustomer.address.pincode)
+        self.existingCustomer = existingCustomer
+        self.completion = completion
+    }
+    
     @State private var showingExistingCustomerPicker = false
     
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    ContactPickerButton(contact: $contact) {
-                        Label("Import Details from Contacts", systemImage: "book.closed.fill")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    
-                    Button {
-                        showingExistingCustomerPicker = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "person.2.fill")
-                            Text("Choose from Existing Customers")
+                if existingCustomer == nil {
+                    Section {
+                        ContactPickerButton(contact: $contact) {
+                            Label("Import Details from Contacts", systemImage: "book.closed.fill")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                    }
-                    .navigationDestination(isPresented: $showingExistingCustomerPicker) {
-                        ExistingCustomerPicker(
-                            customer: Binding(
-                                get: { nil },
-                                set: {
-                                    showingExistingCustomerPicker = false
-                                    completion($0)
-                                    dismiss()
-                                }
-                            ),
-                            style: .navigation
-                        )
+                        Button {
+                            showingExistingCustomerPicker = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "person.2.fill")
+                                Text("Choose from Existing Customers")
+                            }
+                        }
+                        .navigationDestination(isPresented: $showingExistingCustomerPicker) {
+                            ExistingCustomerPicker(
+                                customer: Binding(
+                                    get: { nil },
+                                    set: {
+                                        showingExistingCustomerPicker = false
+                                        completion($0)
+                                        dismiss()
+                                    }
+                                ),
+                                style: .navigation
+                            )
+                        }
                     }
                 }
                 
@@ -119,20 +132,36 @@ struct AddCustomerView: View {
                         .onSubmit(submitAction)
                 }
             }
-            .navigationTitle("New Customer")
+            .navigationTitle("\(existingCustomer == nil ? "New" : "Edit") Customer")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
                     Button("Cancel", action: dismiss.callAsFunction)
                 }
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Add") {
-                        let address = Address(line1: addressLine1, line2: addressLine2, city: city, pincode: pincode)
-                        let customer = Customer(name: name, phoneNumber: phoneNumber, address: address)
-                        
-                        modelContext.insert(customer)
-                        completion(customer)
-                        dismiss()
+                    Group {
+                        if let existingCustomer {
+                            Button("Save") {
+                                existingCustomer.name = name
+                                existingCustomer.phoneNumber = phoneNumber
+                                existingCustomer.address.line1 = addressLine1
+                                existingCustomer.address.line2 = addressLine2
+                                existingCustomer.address.city = city
+                                existingCustomer.address.pincode = pincode
+                                
+                                completion(existingCustomer)
+                                dismiss()
+                            }
+                        } else {
+                            Button("Add") {
+                                let address = Address(line1: addressLine1, line2: addressLine2, city: city, pincode: pincode)
+                                let customer = Customer(name: name, phoneNumber: phoneNumber, address: address)
+                                
+                                modelContext.insert(customer)
+                                completion(customer)
+                                dismiss()
+                            }
+                        }
                     }
                     .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || phoneNumber.trimmingCharacters(in: .whitespacesAndNewlines).count < 9 || addressLine1.isEmpty || city.isEmpty)
                     .bold()
