@@ -96,11 +96,36 @@ struct CustomerItem: View {
     var customer: Customer
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(customer.name)
-                .bold()
+        HStack {
+            VStack(alignment: .leading) {
+                Text(customer.name)
+                    .bold()
+                
+                ViewThatFits {
+                    Text([customer.address.line1, customer.address.line2, customer.address.city, customer.address.pincode]
+                        .compactMap { $0 }
+                        .joined(separator: ", "))
+                        .lineLimit(1)
+                    
+                    Text([customer.address.line1, customer.address.line2, customer.address.city]
+                        .compactMap { $0 }
+                        .joined(separator: ", "))
+                        .lineLimit(1)
+                    
+                    Text([customer.address.line1, customer.address.line2]
+                        .compactMap { $0 }
+                        .joined(separator: ", "))
+                        .lineLimit(1)
+                    
+                    Text(customer.address.line1)
+                        .lineLimit(1)
+                }
+            }
+            
+            Spacer()
             
             Text("^[\(customer.wrappedOrderHistory.count) Orders](inflect: true)")
+                .foregroundStyle(.secondary)
         }
         .tag(customer as Customer?)
     }
