@@ -124,12 +124,9 @@ class GeminiHandler: ObservableObject {
         Your output should strictly adhere to the provided JSON schema, and nothing else should be included in your reply.
         """
         
-        #warning("These errors should be more specific")
         guard let jsonResponse = try await generativeModel.generateContent(prompt, image).text else {
             throw CancellationError()
         }
-        
-        print(jsonResponse)
         
         let pattern = "\\{(?:[^{}]|\\{[^{}]*\\})*\\}"
 
@@ -142,17 +139,13 @@ class GeminiHandler: ObservableObject {
                     guard let data = jsonString.data(using: .utf8) else {
                         throw CancellationError()
                     }
-                    print("Hiiii")
                     
                     do {
                         let geminiResponse = try JSONDecoder().decode(Response.self, from: data)
                         
-                        
-                        
                         return geminiResponse
                     } catch {
-                        print(error)
-                        throw CancellationError()
+                        throw error
                     }
                 }
             }
