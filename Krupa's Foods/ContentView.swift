@@ -33,6 +33,11 @@ struct ContentView: View {
                                 }
                         }
                         
+                        CustomersView()
+                            .tabItem {
+                                Label("Customers", systemImage: "person.3.fill")
+                            }
+                        
                         AnalyticsView(product: product)
                             .tabItem {
                                 Label("Analytics", systemImage: "chart.bar.xaxis")
