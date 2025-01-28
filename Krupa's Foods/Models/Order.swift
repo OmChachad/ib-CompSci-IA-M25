@@ -43,6 +43,14 @@ class Order {
     var isCompleted: Bool {
         self.deliveryStatus == .completed && self.paymentStatus == .completed
     }
+
+    var totalCost: Double {
+        if let stock {
+            return stock.reduce(0.0) { $0 + ($1.averageCost*($1.wrappedUsedBy.first{ $0 == self }?.quantity ?? 0))}
+        } else {
+            return 0
+        }
+    }
     
     /// Represents the status of an order or payment, either pending or completed.
     enum Status: String, CaseIterable, Codable {
