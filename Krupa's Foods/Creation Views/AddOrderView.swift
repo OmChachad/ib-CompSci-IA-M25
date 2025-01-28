@@ -124,10 +124,13 @@ struct AddOrderView: View {
                     }
                 }
                 
-                Section("Payment Details") {
-                    EnumPicker(title: "Payment Method", selection: $paymentMethod)
-                    
-                    EnumPicker(title: "Payment Status", selection: $paymentStatus)
+                if amountPaid != 0 {
+                    Section("Payment Details") {
+                        EnumPicker(title: "Payment Method", selection: $paymentMethod)
+                            .transition(.opacity)
+                        EnumPicker(title: "Payment Status", selection: $paymentStatus)
+                            .transition(.opacity)
+                    }
                 }
                 
                 Section("Status") {
@@ -191,6 +194,7 @@ struct AddOrderView: View {
                     self.paymentMethod = response.wrappedPaymentMethod
                 }
             }
+            .animation(.default, value: amountPaid == 0)
         }
     }
     
@@ -202,6 +206,10 @@ struct AddOrderView: View {
                 toBeEditedOrder.amountPaid = amountPaid
                 toBeEditedOrder.paymentStatus = paymentStatus
                 toBeEditedOrder.deliveryStatus = deliveryStatus
+            
+                if toBeEditedOrder.amountPaid == 0 {
+                    toBeEditedOrder.paymentStatus = .completed
+                }
                 #warning("Stock must be updated")
         } else {
                 var pendingStock: PendingStock? = nil
@@ -233,6 +241,10 @@ struct AddOrderView: View {
                 }
                 
                 order.stock = usedStock
+            
+                if order.amountPaid == 0 {
+                    order.paymentStatus = .completed
+                }
         }
         
         
