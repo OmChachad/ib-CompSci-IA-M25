@@ -28,6 +28,8 @@ struct OrderListItem: View {
     @State private var deliveryStatus = Order.Status.pending
     @State private var showStatusChanger = false
     
+    @State private var showBillView = false
+    
     var namespace: Namespace.ID
     
     var body: some View {
@@ -84,6 +86,12 @@ struct OrderListItem: View {
             .buttonStyle(.plain)
             .padding(10)
             .background(.ultraThickMaterial, in: .rect(cornerRadius: 20, style: .continuous))
+        } leadingActions: { context in
+            if order.paymentStatus == .completed {
+                SwipeAction("Bill", systemImage: "doc.text") {
+                    showBillView = true
+                }
+            }
         } trailingActions: { context in
             SwipeAction("Edit", systemImage: "pencil") {
                 context.state.wrappedValue = .closed
@@ -115,6 +123,9 @@ struct OrderListItem: View {
         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading).combined(with: .swipeDelete)))
         .sheet(isPresented: $showOrderEditView) {
             AddOrderView(order: order)
+        }
+        .sheet(isPresented: $showBillView) {
+            BillView(order: order)
         }
         .onChange(of: paymentStatus) {
             withAnimation {
