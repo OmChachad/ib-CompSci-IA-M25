@@ -8,7 +8,7 @@ struct BillView: View {
     var body: some View {
         NavigationStack {
             bill
-                .frame(maxHeight: .infinity)
+                .frame(maxHeight: .infinity, alignment: .center)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button {
@@ -37,6 +37,11 @@ struct BillView: View {
     var bill: some View {
         VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .center, spacing: 2) {
+                Image("BrandIcon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 55)
+                
                 Text("Krupa's Foods")
                     .font(.title)
                     .bold()
@@ -130,7 +135,6 @@ struct BillView: View {
                 }
             }
             
-            Spacer()
         }
         .padding()
     }
