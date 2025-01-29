@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct AddOrderView: View {
+    @Query var orders: [Order]
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     
@@ -217,8 +218,10 @@ struct AddOrderView: View {
                     pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product)
                     modelContext.insert(pendingStock!)
                 }
+            
+            let orderNumber = orders.reduce(0) { max($0, $1.orderNumber ?? 0) } + 1
                 
-                let order = Order(for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
+            let order = Order(orderNumber: orderNumber, for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
                 modelContext.insert(order)
                 pendingStock?.order = order
                 

@@ -11,6 +11,7 @@ import Foundation
 @Model
 class Order {
     var id: UUID = UUID()
+    var orderNumber: Int?
     var product: Product?
     var customer: Customer?
     var paymentMethod: PaymentMethod = PaymentMethod.UPI
@@ -78,10 +79,11 @@ class Order {
     ///   - date: The date the order was placed. Defaults to the current date if not provided.
     ///   - paymentStatus: The current status of the payment (either pending or completed).
     ///   - deliveryStatus: The current status of the delivery (either pending or completed).
-    init(id: UUID = UUID(), for product: Product, customer: Customer,
+    init(id: UUID = UUID(), orderNumber: Int, for product: Product, customer: Customer,
         paymentMethod: PaymentMethod, quantity: Double, stock: [Stock],
         amountPaid: Double, date: Date = .now,
         paymentStatus: Status, deliveryStatus: Status) {
+        self.orderNumber = orderNumber
         self.id = id
         self.product = product
         self.customer = customer

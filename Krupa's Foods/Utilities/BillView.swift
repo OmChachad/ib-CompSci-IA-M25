@@ -61,9 +61,15 @@ struct BillView: View {
                     Text("INVOICE")
                         .font(.headline)
                     
+                    if let orderNumber = order.orderNumber {
+                        Text("Invoice No.: \(String(format: "%03d", orderNumber))")
+                            .font(.subheadline)
+                    }
+                    
                     Text("Date: \(order.date.formatted(date: .abbreviated, time: .omitted))")
                         .font(.subheadline)
                 }
+                
                 Spacer()
             }
             
