@@ -13,6 +13,8 @@ struct AddOrderView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     
+    @State private var notes: String = ""
+    
     @Query var customers: [Customer]
     @Query var stock: [Stock]
     
@@ -51,6 +53,7 @@ struct AddOrderView: View {
         self._amountPaid = State(initialValue: order.amountPaid)
         self._paymentStatus = State(initialValue: order.paymentStatus)
         self._deliveryStatus = State(initialValue: order.deliveryStatus)
+        self._notes = State(initialValue: order.notes ?? "")
     }
     
     var usedStock: [Stock] {
@@ -123,6 +126,11 @@ struct AddOrderView: View {
                         Text("\(Image(systemName: "exclamationmark.triangle")) You do not have enough stock left. You will be prompted to add stock.")
                             .foregroundStyle(.yellow)
                     }
+                }
+                
+                Section("Order Notes") {
+                    TextField("Notes", text: $notes, axis: .vertical)
+                        .lineLimit(5, reservesSpace: true)
                 }
                 
                 if amountPaid != 0 {
@@ -207,6 +215,7 @@ struct AddOrderView: View {
                 toBeEditedOrder.amountPaid = amountPaid
                 toBeEditedOrder.paymentStatus = paymentStatus
                 toBeEditedOrder.deliveryStatus = deliveryStatus
+                toBeEditedOrder.notes = notes
             
                 if toBeEditedOrder.amountPaid == 0 {
                     toBeEditedOrder.paymentStatus = .completed
@@ -221,7 +230,7 @@ struct AddOrderView: View {
             
             let orderNumber = orders.reduce(0) { max($0, $1.orderNumber ?? 0) } + 1
                 
-            let order = Order(orderNumber: orderNumber, for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus)
+            let order = Order(orderNumber: orderNumber, for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus, notes: notes)
                 modelContext.insert(order)
                 pendingStock?.order = order
                 

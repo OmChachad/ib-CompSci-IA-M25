@@ -53,11 +53,18 @@ struct OrderListItem: View {
                         
                         Spacer()
                         
+                        if !(order.notes ?? "").isEmpty {
+                            Image(systemName: "text.alignright")
+                                .foregroundStyle(.secondary)
+                                .padding(.trailing, 5)
+                        }
+                        
                         VStack(alignment: .leading) {
                             Text("^[\(order.quantity.formatted()) \(order.wrappedProduct.measurementUnit.rawValue.capitalized)](inflect: true)")
                             Text(order.amountPaid, format: .currency(code: "INR"))
                                 .foregroundStyle(.secondary)
                         }
+                        .frame(width: 85, alignment: .leading)
                     }
                     .contentShape(Rectangle())
                     
@@ -65,16 +72,27 @@ struct OrderListItem: View {
                         Group {
                             Divider()
                             
+                            if let notes = order.notes, !notes.isEmpty {
+                                Text("Notes:")
+                                    .bold()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.top, 5)
+                                
+                                Text(notes)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Divider()
+                            }
+                            
                             LabeledContent("Payment Status") {
                                 EnumPicker(title: "Payment Status", selection: $paymentStatus)
                             }
-                            .padding(.leading, 10)
                             
                             LabeledContent("Delivery Status") {
                                 EnumPicker(title: "Delivery Status", selection: $deliveryStatus)
                             }
-                            .padding(.leading, 10)
                         }
+                        .padding(.leading, 10)
                         .transition(.move(edge: .top).combined(with: .blurReplace))
                         .onAppear {
                             paymentStatus = order.paymentStatus

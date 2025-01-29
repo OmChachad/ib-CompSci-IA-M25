@@ -20,6 +20,7 @@ class Order {
     var date: Date = Date.now
     var paymentStatus: Status = Status.pending
     var deliveryStatus: Status = Status.pending
+    var notes: String?
     var stock: [Stock]? = []
     @Relationship(deleteRule: .cascade, inverse: \PendingStock.order) var pendingStock: PendingStock?
     
@@ -82,7 +83,7 @@ class Order {
     init(id: UUID = UUID(), orderNumber: Int, for product: Product, customer: Customer,
         paymentMethod: PaymentMethod, quantity: Double, stock: [Stock],
         amountPaid: Double, date: Date = .now,
-        paymentStatus: Status, deliveryStatus: Status) {
+         paymentStatus: Status, deliveryStatus: Status, notes: String?) {
         self.orderNumber = orderNumber
         self.id = id
         self.product = product
@@ -94,6 +95,7 @@ class Order {
         self.paymentStatus = paymentStatus
         self.deliveryStatus = deliveryStatus
         self.stock = stock
+        self.notes = notes
     }
 }
 
