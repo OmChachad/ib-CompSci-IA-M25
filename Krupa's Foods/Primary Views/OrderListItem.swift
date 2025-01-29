@@ -103,7 +103,12 @@ struct OrderListItem: View {
             }
             .buttonStyle(.plain)
             .padding(10)
-            .background(.ultraThickMaterial, in: .rect(cornerRadius: 20, style: .continuous))
+            .background {
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(.ultraThickMaterial)
+                    .shadow(color: .black.opacity(showStatusChanger ? 0.15 : 0), radius: 5, x: 0, y: 0)
+                    
+            }
         } leadingActions: { context in
             if order.paymentStatus == .completed {
                 SwipeAction("Bill", systemImage: "doc.text") {
@@ -135,7 +140,6 @@ struct OrderListItem: View {
         }
         .swipeActionCornerRadius(20)
         .matchedGeometryEffect(id: order.id, in: namespace)
-        .shadow(color: .black.opacity(showStatusChanger ? 0.15 : 0), radius: 5, x: 0, y: 0)
         .padding(.horizontal)
         .padding(.vertical, showStatusChanger ? 7.5 : 2.5)
         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading).combined(with: .swipeDelete)))
