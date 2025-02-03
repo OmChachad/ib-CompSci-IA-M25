@@ -92,8 +92,6 @@ class GeminiHandler: ObservableObject {
             phoneNumber ?? ""
         }
     }
-
-
     
     func inferOrderDetails(for product: Product, from image: UIImage) async throws -> Response {
         let generativeModel = GenerativeModel(
@@ -104,7 +102,7 @@ class GeminiHandler: ObservableObject {
         let prompt = """
         This is a screenshot of a chat. Contextually figure out the following details about the chat.
         If a particular detail is not present in the chat, you can leave it empty.
-        - Quantity being ordered
+        - Quantity being ordered (the number should be in \(product.measurementUnit.title))
         - Address of the Customer
         - Price to be paid by the customer
         - The Full Name and Phone Number of the Customer
