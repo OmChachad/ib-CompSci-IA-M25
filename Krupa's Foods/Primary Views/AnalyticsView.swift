@@ -240,6 +240,7 @@ struct RevenueChartView: View {
                                             Text("₹\(unconfirmedRevenue.formatted()) Pending")
                                                 .bold()
                                         }
+                                        .minimumScaleFactor(0.5)
                                     } else {
                                         Text(confirmedRevenue, format: .currency(code: "INR"))
                                             .bold()
@@ -502,6 +503,7 @@ struct ProfitChartView: View {
                                             Text("₹\(unconfirmedProfits.formatted()) Pending")
                                                 .bold()
                                         }
+                                        .minimumScaleFactor(0.5)
                                     } else {
                                         Text(confirmedProfits, format: .currency(code: "INR"))
                                             .bold()
