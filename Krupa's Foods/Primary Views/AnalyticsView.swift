@@ -160,7 +160,7 @@ struct RevenueChartView: View {
             // Top-row: total revenue label + timeframe picker
             HStack {
                 Text(totalRevenueForTimePeriod, format: .currency(code: "INR"))
-                    .font(.system(.largeTitle, design: .rounded))
+                    .font(.system(.title, design: .rounded))
                     .bold()
                 
                 Spacer()
@@ -419,7 +419,7 @@ struct ProfitChartView: View {
             // Top-row: total profit label + timeframe picker
             HStack {
                 Text(totalProfitForTimePeriod, format: .currency(code: "INR"))
-                    .font(.system(.largeTitle, design: .rounded))
+                    .font(.system(.title, design: .rounded))
                     .bold()
                 
                 Spacer()
