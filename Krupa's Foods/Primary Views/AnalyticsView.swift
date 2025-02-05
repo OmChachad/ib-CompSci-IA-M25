@@ -209,7 +209,7 @@ struct RevenueChartView: View {
                         x: .value("Day", date, unit: .day),
                         y: .value("Revenue", confirmedRevenue)
                     )
-                    .foregroundStyle(.orange.gradient)
+                    .foregroundStyle(.yellow.gradient)
                     
                     BarMark(
                         x: .value("Day", date, unit: .day),
@@ -230,7 +230,7 @@ struct RevenueChartView: View {
                                     if !pendingOrders.isEmpty {
                                         HStack {
                                             Image(systemName: "circle.fill")
-                                                .foregroundStyle(.orange.gradient)
+                                                .foregroundStyle(.yellow.gradient)
                                             Text("₹\(confirmedRevenue.formatted()) Paid")
                                                 .bold()
                                         }
@@ -471,7 +471,7 @@ struct ProfitChartView: View {
                         x: .value("Day", date, unit: .day),
                         y: .value("Profits", confirmedProfits)
                     )
-                    .foregroundStyle(.orange.gradient)
+                    .foregroundStyle(confirmedProfits >= 0 ? Color.green.gradient : Color.red.gradient)
                     
                     BarMark(
                         x: .value("Day", date, unit: .day),
@@ -492,7 +492,7 @@ struct ProfitChartView: View {
                                     if !pendingOrders.isEmpty {
                                         HStack {
                                             Image(systemName: "circle.fill")
-                                                .foregroundStyle(.orange.gradient)
+                                                .foregroundStyle(confirmedProfits > 0 ? Color.green.gradient : Color.red.gradient)
                                             Text("₹\(confirmedProfits.formatted()) Paid")
                                                 .bold()
                                         }
