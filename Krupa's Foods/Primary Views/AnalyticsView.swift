@@ -255,7 +255,7 @@ struct ChartView: View {
                                                 .foregroundStyle(chartType == .revenue
                                                                     ? Color.yellow.gradient
                                                                     : (confirmedTotal >= 0 ? Color.green.gradient : Color.red.gradient))
-                                            Text("₹\(confirmedTotal.formatted()) Paid")
+                                            Text("₹\(confirmedTotal.formatted()) \(chartType == .revenue ? "Paid" : "Proceeds")")
                                                 .bold()
                                         }
                                         HStack {
