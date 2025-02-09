@@ -5,35 +5,6 @@ struct BillView: View {
     
     var order: Order
     
-    var body: some View {
-        NavigationStack {
-            bill
-                .frame(maxHeight: .infinity, alignment: .center)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Label("Return", systemImage: "chevron.left")
-                        }
-                    }
-                    
-                    ToolbarItemGroup(placement: .bottomBar) {
-                        let renderer = ImageRenderer(content: bill
-                            .background(.white)
-                            .environment(\.colorScheme, .light))
-                        if let image = renderer.uiImage {
-                            let swiftUIImage = Image(uiImage: image)
-                            
-                            ShareLink(item: swiftUIImage, preview: SharePreview("Bill", image: swiftUIImage))
-                        }
-                    }
-                }
-                .navigationTitle("Generated Invoice")
-                .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-    
     var bill: some View {
         VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .center, spacing: 2) {
@@ -143,5 +114,34 @@ struct BillView: View {
             
         }
         .padding()
+    }
+    
+    var body: some View {
+        NavigationStack {
+            bill
+                .frame(maxHeight: .infinity, alignment: .center)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Label("Return", systemImage: "chevron.left")
+                        }
+                    }
+                    
+                    ToolbarItemGroup(placement: .bottomBar) {
+                        let renderer = ImageRenderer(content: bill
+                            .background(.white)
+                            .environment(\.colorScheme, .light))
+                        if let image = renderer.uiImage {
+                            let swiftUIImage = Image(uiImage: image)
+                            
+                            ShareLink(item: swiftUIImage, preview: SharePreview("Bill", image: swiftUIImage))
+                        }
+                    }
+                }
+                .navigationTitle("Generated Invoice")
+                .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
