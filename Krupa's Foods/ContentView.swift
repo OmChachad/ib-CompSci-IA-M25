@@ -55,6 +55,7 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
+            .environment(\.horizontalSizeClass, .compact)
             .toolbarBackground(.hidden, for: .tabBar)
             .safeAreaInset(edge: .top, content: {
                 if !products.isEmpty {
