@@ -209,54 +209,53 @@ struct AddOrderView: View {
     
     func completionAction() {
         if let toBeEditedOrder {
-                toBeEditedOrder.customer = customer
-                toBeEditedOrder.paymentMethod = paymentMethod
-                toBeEditedOrder.quantity = quantity
-                toBeEditedOrder.amountPaid = amountPaid
-                toBeEditedOrder.paymentStatus = paymentStatus
-                toBeEditedOrder.deliveryStatus = deliveryStatus
-                toBeEditedOrder.notes = notes
+            toBeEditedOrder.customer = customer
+            toBeEditedOrder.paymentMethod = paymentMethod
+            toBeEditedOrder.quantity = quantity
+            toBeEditedOrder.amountPaid = amountPaid
+            toBeEditedOrder.paymentStatus = paymentStatus
+            toBeEditedOrder.deliveryStatus = deliveryStatus
+            toBeEditedOrder.notes = notes
             
-                if toBeEditedOrder.amountPaid == 0 {
-                    toBeEditedOrder.paymentStatus = .completed
-                }
-                #warning("Stock must be updated")
+            if toBeEditedOrder.amountPaid == 0 {
+                toBeEditedOrder.paymentStatus = .completed
+            }
+            #warning("Stock must be updated")
         } else {
-                var pendingStock: PendingStock? = nil
-                if quantity > product.availableStock {
-                    pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product)
-                    modelContext.insert(pendingStock!)
-                }
+            var pendingStock: PendingStock? = nil
+            if quantity > product.availableStock {
+                pendingStock = PendingStock(quantityToBePurchased: quantity - product.availableStock, product: product)
+                modelContext.insert(pendingStock!)
+            }
             
             let orderNumber = orders.reduce(0) { max($0, $1.orderNumber ?? 0) } + 1
-                
-            let order = Order(orderNumber: orderNumber, for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus, notes: notes)
-                modelContext.insert(order)
-                pendingStock?.order = order
-                
-                var usedStock: [Stock] = []
-                var quantity = order.quantity
-                while quantity != 0 {
-                    if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
-                        usedStock.append(stockToUse)
-                        
-                            stockToUse.usedBy?.append(order)
-                        if stockToUse.quantityLeft >= quantity {
-                            break
-                        } else {
-//                          stockToUse.quantityLeft = 0
-                            quantity -= stockToUse.quantityLeft
-                        }
-                    } else {
-                        break
-                    }
-                }
-                
-                order.stock = usedStock
             
-                if order.amountPaid == 0 {
-                    order.paymentStatus = .completed
+            let order = Order(orderNumber: orderNumber, for: product, customer: customer!, paymentMethod: paymentMethod, quantity: quantity, stock: [], amountPaid: amountPaid, date: Date.now, paymentStatus: paymentStatus, deliveryStatus: deliveryStatus, notes: notes)
+            modelContext.insert(order)
+            pendingStock?.order = order
+            
+            var usedStock: [Stock] = []
+            var quantity = order.quantity
+            while quantity != 0 {
+                if let stockToUse = stock.first(where: { $0.quantityLeft > 0 }) {
+                    usedStock.append(stockToUse)
+                    
+                    stockToUse.usedBy?.append(order)
+                    if stockToUse.quantityLeft >= quantity {
+                        break
+                    } else {
+                        quantity -= stockToUse.quantityLeft
+                    }
+                } else {
+                    break
                 }
+            }
+            
+            order.stock = usedStock
+            
+            if order.amountPaid == 0 {
+                order.paymentStatus = .completed
+            }
         }
         
         
