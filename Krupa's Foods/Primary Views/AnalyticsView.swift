@@ -172,38 +172,7 @@ struct ChartView: View {
     // MARK: - Body
     var body: some View {
         VStack {
-            // Top row: total label and time frame picker.
-            HStack {
-                Text(totalForTimePeriod, format: .currency(code: "INR"))
-                    .font(.system(.title, design: .rounded))
-                    .bold()
-                
-                Spacer()
-                
-                Picker("Time Frame", selection: $selectedTimeFrame) {
-                    Text("Last 7 Days").tag(TimeFrame.lastWeek)
-                    Text("Last 30 Days").tag(TimeFrame.lastMonth)
-                    Text("Custom").tag(TimeFrame.custom)
-                }
-                .labelsHidden()
-            }
-            
-            // Custom date pickers appear only if “Custom” is selected.
-            if selectedTimeFrame == .custom {
-                HStack {
-                    DatePicker("Start Date", selection: $startDate,
-                               in: (orders.first?.date ?? Date.distantPast)...endDate,
-                               displayedComponents: [.date])
-                        .labelsHidden()
-                    
-                    Spacer()
-                    
-                    DatePicker("End Date", selection: $endDate,
-                               in: startDate...(orders.last?.date ?? Date()),
-                               displayedComponents: [.date])
-                        .labelsHidden()
-                }
-            }
+            header
             
             // MARK: - Chart
             GeometryReader { geo in
@@ -321,6 +290,43 @@ struct ChartView: View {
                 }
             }
             .frame(height: 200)
+        }
+    }
+    
+    var header: some View {
+        VStack {
+            // Top row: total label and time frame picker.
+            HStack {
+                Text(totalForTimePeriod, format: .currency(code: "INR"))
+                    .font(.system(.title, design: .rounded))
+                    .bold()
+                
+                Spacer()
+                
+                Picker("Time Frame", selection: $selectedTimeFrame) {
+                    Text("Last 7 Days").tag(TimeFrame.lastWeek)
+                    Text("Last 30 Days").tag(TimeFrame.lastMonth)
+                    Text("Custom").tag(TimeFrame.custom)
+                }
+                .labelsHidden()
+            }
+            
+            // Custom date pickers appear only if “Custom” is selected.
+            if selectedTimeFrame == .custom {
+                HStack {
+                    DatePicker("Start Date", selection: $startDate,
+                               in: (orders.first?.date ?? Date.distantPast)...endDate,
+                               displayedComponents: [.date])
+                        .labelsHidden()
+                    
+                    Spacer()
+                    
+                    DatePicker("End Date", selection: $endDate,
+                               in: startDate...(orders.last?.date ?? Date()),
+                               displayedComponents: [.date])
+                        .labelsHidden()
+                }
+            }
         }
     }
     
