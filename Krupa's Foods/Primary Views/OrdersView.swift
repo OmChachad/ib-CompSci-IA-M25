@@ -106,6 +106,7 @@ struct OrdersView: View {
                     .padding(.top)
 #endif
                 }
+                .scrollIndicators(.visible)
             }
         }
         .safeAreaInset(edge: .top, content: {
