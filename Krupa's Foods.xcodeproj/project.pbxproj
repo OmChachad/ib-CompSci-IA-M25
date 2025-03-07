@@ -827,7 +827,7 @@
 		};
 		C2FA962F2CD5E0D600FAE437 /* XCRemoteSwiftPackageReference "SwipeActions" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/aheze/SwipeActions";
+			repositoryURL = "https://github.com/OmChachad/SwipeActions";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.0;
