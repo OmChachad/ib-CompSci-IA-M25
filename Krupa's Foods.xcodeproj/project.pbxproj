@@ -20,6 +20,7 @@
 		C24C319F2C3D038800C3187D /* Krupa_s_FoodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */; };
 		C24C31A92C3D038800C3187D /* Krupa_s_FoodsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */; };
 		C24C31AB2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */; };
+		C26023F82D7D942300E17150 /* VariableBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26023F72D7D942300E17150 /* VariableBlur.swift */; };
 		C2771F952C86E0C200D3393F /* StockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2771F942C86E0C200D3393F /* StockItemView.swift */; };
 		C2771F982C87454700D3393F /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = C2771F972C87454700D3393F /* GoogleGenerativeAI */; };
 		C2771F9C2C87462D00D3393F /* GenerativeAI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2771F9B2C87462D00D3393F /* GenerativeAI-Info.plist */; };
@@ -78,6 +79,7 @@
 		C24C31A42C3D038800C3187D /* Krupa's FoodsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Krupa's FoodsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITests.swift; sourceTree = "<group>"; };
 		C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Krupa_s_FoodsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C26023F72D7D942300E17150 /* VariableBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableBlur.swift; sourceTree = "<group>"; };
 		C2771F942C86E0C200D3393F /* StockItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockItemView.swift; sourceTree = "<group>"; };
 		C2771F9B2C87462D00D3393F /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		C28C7F0F2C4682DB00B9DF32 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				C29594A62CECC13C008232AB /* EnumPicker.swift */,
 				C244F8AA2C6C6BF700F2FF1A /* INRFormatter.swift */,
 				C2EFBE0D2D48800400D36986 /* BillView.swift */,
+				C26023F72D7D942300E17150 /* VariableBlur.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				C2363C222C58BA1900EE004A /* AddOrderView.swift in Sources */,
 				C244F8AB2C6C6BF700F2FF1A /* INRFormatter.swift in Sources */,
 				C28C7F102C4682DB00B9DF32 /* Product.swift in Sources */,
+				C26023F82D7D942300E17150 /* VariableBlur.swift in Sources */,
 				C29594A72CECC13C008232AB /* EnumPicker.swift in Sources */,
 				C2CDA83D2D47C10200CE5911 /* CustomersView.swift in Sources */,
 				C2942FCA2C4E0F9B00E11C21 /* Address.swift in Sources */,

@@ -75,6 +75,7 @@ struct OrdersView: View {
                             .padding(2.5)
                         }
                         .padding(.horizontal, 12.5)
+                        .padding(.bottom, 2.5)
                         
                         LazyVStack(pinnedViews: [.sectionHeaders]) {
                             Section {
@@ -86,8 +87,15 @@ struct OrdersView: View {
                                     .font(.title3.bold())
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.horizontal, 12.5)
+                                    .background {
+                                        // VariableBlur backgrounds prevent the title from interfering with the orders content.
+                                        VariableBlurView(maxBlurRadius: 20, direction: .blurredTopClearBottom)
+                                            .padding(.top, -10)
+                                            .frame(height: 30)
+                                    }
                             }
                             .opacity(pendingOrders.isEmpty ? 0 : 1)
+                            .padding(.bottom, 2.5)
                             
                             Section {
                                 ForEach(completedOrders) { order in
@@ -98,6 +106,12 @@ struct OrdersView: View {
                                     .font(.title3.bold())
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.horizontal, 12.5)
+                                    .background {
+                                        // VariableBlur backgrounds prevent the title from interfering with the orders content.
+                                        VariableBlurView(maxBlurRadius: 20, direction: .blurredTopClearBottom)
+                                            .padding(.top, -10)
+                                            .frame(height: 30)
+                                    }
                             }
                             .opacity(completedOrders.isEmpty ? 0 : 1)
                         }
