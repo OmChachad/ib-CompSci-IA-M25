@@ -26,6 +26,8 @@ struct CustomersView: View {
             }
             #if targetEnvironment(macCatalyst)
             .padding(.top, 65)
+            #else
+            .padding(.top, 50)
             #endif
             .navigationTitle("Customers")
             .alert("This customer cannot be deleted.", isPresented: $presentCannotDeleteAlert) {

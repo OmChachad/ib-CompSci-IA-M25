@@ -28,12 +28,6 @@ struct AnalyticsView: View {
     
     var body: some View {
         Form {
-            VStack { }
-                .frame(height: 0)
-                .listRowInsets(.none)
-                .listRowBackground(Color(uiColor: .systemGroupedBackground))
-            
-            
             Section("Revenue") {
                 ChartView(orders: orders, chartType: .revenue)
             }
@@ -44,6 +38,11 @@ struct AnalyticsView: View {
                 }
             }
         }
+        #if targetEnvironment(macCatalyst)
+        .padding(.top, 65)
+        #else
+        .padding(.top, 50)
+        #endif
     }
 }
 
