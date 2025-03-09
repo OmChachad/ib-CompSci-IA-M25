@@ -72,11 +72,24 @@ struct OrderListItem: View {
                         Group {
                             Divider()
                             
+                            HStack {
+                                Text("Payment Method:")
+                                    .bold()
+                                
+                                Spacer()
+                                
+                                Text(order.paymentMethod.rawValue)
+                            }
+                            .padding([.top, .trailing], 5)
+                            
+                            Divider()
+                            
                             if let notes = order.notes, !notes.isEmpty {
                                 Text("Notes:")
                                     .bold()
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.top, 5)
+                                
                                 
                                 Text(notes)
                                     .frame(maxWidth: .infinity, alignment: .leading)
