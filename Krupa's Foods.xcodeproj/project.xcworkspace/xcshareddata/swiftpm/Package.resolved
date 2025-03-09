@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/OmChachad/SwipeActions",
       "state" : {
-        "revision" : "87bee1a0d299db69d061ecf59a4fd0aa5a65575d",
-        "version" : "1.2.0"
+        "revision" : "10ee7660d6d14753ece4dc62e85871bff3a5e166",
+        "version" : "1.2.1"
       }
     }
   ],

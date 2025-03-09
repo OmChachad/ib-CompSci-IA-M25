@@ -20,6 +20,7 @@
 		C24C319F2C3D038800C3187D /* Krupa_s_FoodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C319E2C3D038800C3187D /* Krupa_s_FoodsTests.swift */; };
 		C24C31A92C3D038800C3187D /* Krupa_s_FoodsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31A82C3D038800C3187D /* Krupa_s_FoodsUITests.swift */; };
 		C24C31AB2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C31AA2C3D038800C3187D /* Krupa_s_FoodsUITestsLaunchTests.swift */; };
+		C26023F62D7D907000E17150 /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = C26023F52D7D907000E17150 /* SwipeActions */; };
 		C26023F82D7D942300E17150 /* VariableBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26023F72D7D942300E17150 /* VariableBlur.swift */; };
 		C2771F952C86E0C200D3393F /* StockItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2771F942C86E0C200D3393F /* StockItemView.swift */; };
 		C2771F982C87454700D3393F /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = C2771F972C87454700D3393F /* GoogleGenerativeAI */; };
@@ -41,7 +42,6 @@
 		C2DAD4B02CBE23B400305586 /* SmartCustomerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DAD4AF2CBE23B400305586 /* SmartCustomerPicker.swift */; };
 		C2EFBE0E2D48800400D36986 /* BillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EFBE0D2D48800400D36986 /* BillView.swift */; };
 		C2FA96312CD5E10C00FAE437 /* OrderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA96302CD5E10C00FAE437 /* OrderListItem.swift */; };
-		C2FA96342CD5E18000FAE437 /* SwipeActions in Frameworks */ = {isa = PBXBuildFile; productRef = C2FA96332CD5E18000FAE437 /* SwipeActions */; };
 		C2FA96362CD6AD9F00FAE437 /* ManageProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA96352CD6AD9F00FAE437 /* ManageProductsView.swift */; };
 		C2FA96382CD7145600FAE437 /* ProductItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA96372CD7145600FAE437 /* ProductItemView.swift */; };
 /* End PBXBuildFile section */
@@ -113,7 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C29C8BB02CABB27D00A4122E /* Shimmer in Frameworks */,
-				C2FA96342CD5E18000FAE437 /* SwipeActions in Frameworks */,
+				C26023F62D7D907000E17150 /* SwipeActions in Frameworks */,
 				C2771F982C87454700D3393F /* GoogleGenerativeAI in Frameworks */,
 				C210E3E72C572F6500D04227 /* EmojiPicker in Frameworks */,
 				C210E3EA2C57568F00D04227 /* MCEmojiPicker in Frameworks */,
@@ -285,7 +285,7 @@
 				C210E3E92C57568F00D04227 /* MCEmojiPicker */,
 				C2771F972C87454700D3393F /* GoogleGenerativeAI */,
 				C29C8BAF2CABB27D00A4122E /* Shimmer */,
-				C2FA96332CD5E18000FAE437 /* SwipeActions */,
+				C26023F52D7D907000E17150 /* SwipeActions */,
 			);
 			productName = "Krupa's Foods";
 			productReference = C24C31892C3D038600C3187D /* Krupa's Foods.app */;
@@ -834,7 +834,7 @@
 			repositoryURL = "https://github.com/OmChachad/SwipeActions";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				minimumVersion = 1.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -850,6 +850,11 @@
 			package = C210E3E82C57568F00D04227 /* XCRemoteSwiftPackageReference "MCEmojiPicker" */;
 			productName = MCEmojiPicker;
 		};
+		C26023F52D7D907000E17150 /* SwipeActions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2FA962F2CD5E0D600FAE437 /* XCRemoteSwiftPackageReference "SwipeActions" */;
+			productName = SwipeActions;
+		};
 		C2771F972C87454700D3393F /* GoogleGenerativeAI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C2771F962C87454700D3393F /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
@@ -859,11 +864,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C29C8BAE2CABB27D00A4122E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
-		};
-		C2FA96332CD5E18000FAE437 /* SwipeActions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C2FA962F2CD5E0D600FAE437 /* XCRemoteSwiftPackageReference "SwipeActions" */;
-			productName = SwipeActions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
