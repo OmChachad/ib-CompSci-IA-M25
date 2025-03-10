@@ -9,11 +9,16 @@ import SwiftUI
 import SwiftData
 import SwipeActions
 
+/// A view that represents a single order in OrdersView
 struct OrderListItem: View {
     @Environment(\.modelContext) var modelContext
     
     var order: Order
     
+    /// A view that represents a single order in OrdersView
+    /// - Parameters:
+    ///   - order: Pass in a order to display its details
+    ///   - namespace: Pass in the namespace of the parent view to enable a matched geometry effect animation.
     init(_ order: Order, namespace: Namespace.ID) {
         self.order = order
         self.namespace = namespace
@@ -35,15 +40,18 @@ struct OrderListItem: View {
     var body: some View {
         SwipeView {
             Button {
+                // Tapping this view expands it to show more order details than visible at the surface.
                 withAnimation(.bouncy) {
                     showStatusChanger.toggle()
                 }
             } label: {
                 VStack {
                     HStack {
+                        // Shows the emoji icon associated with the product for which the order has been placed.
                         Text(order.wrappedProduct.icon)
                             .font(.largeTitle)
                         
+                        // Basic customer details are shown on the left.
                         VStack(alignment: .leading) {
                             Text(order.wrappedCustomer.name)
                                 .bold()
@@ -53,13 +61,16 @@ struct OrderListItem: View {
                         
                         Spacer()
                         
+                        // If the order has any notes, a small icon is displayed to indicate that.
                         if !(order.notes ?? "").isEmpty {
                             Image(systemName: "text.alignright")
                                 .foregroundStyle(.secondary)
                                 .padding(.trailing, 5)
                         }
                         
+                        // The order count and amount paid is shown on the right.
                         VStack(alignment: .leading) {
+                            // Automatic Grammar inflection is used to pluralize the measurement unit.
                             Text("^[\(order.quantity.formatted()) \(order.wrappedProduct.measurementUnit.rawValue.capitalized)](inflect: true)")
                             Text(order.amountPaid, format: .currency(code: "INR"))
                                 .foregroundStyle(.secondary)
@@ -68,10 +79,12 @@ struct OrderListItem: View {
                     }
                     .contentShape(Rectangle())
                     
+                    // If the user has expanded the view, more details about the order are shown.
                     if showStatusChanger {
                         Group {
                             Divider()
                             
+                            // Shows the payment method that the customer has chosen.
                             HStack {
                                 Text("Payment Method:")
                                     .bold()
@@ -84,6 +97,7 @@ struct OrderListItem: View {
                             
                             Divider()
                             
+                            // If order notes are not empty, they are displayed.
                             if let notes = order.notes, !notes.isEmpty {
                                 Text("Notes:")
                                     .bold()
@@ -97,6 +111,7 @@ struct OrderListItem: View {
                                 Divider()
                             }
                             
+                            // The payment and delivery statuses can be changed by the user.
                             LabeledContent("Payment Status") {
                                 EnumPicker(title: "Payment Status", selection: $paymentStatus)
                             }
@@ -123,17 +138,22 @@ struct OrderListItem: View {
                     
             }
         } leadingActions: { context in
+            // Leading Swipe action to generate an invoice/bill. Only available if the order has been paid for.
             if order.paymentStatus == .completed {
                 SwipeAction("Bill", systemImage: "doc.text") {
                     showBillView = true
                 }
             }
         } trailingActions: { context in
+            // Trailing Swipe actions to edit or delete the order.
+            
+            // Edit Button
             SwipeAction("Edit", systemImage: "pencil") {
                 context.state.wrappedValue = .closed
                 showOrderEditView = true
             }
             
+            // Delete Button
             SwipeAction("Delete", systemImage: "trash", backgroundColor: .red) {
                 showDeleteConfirmation = true
             }
@@ -157,6 +177,7 @@ struct OrderListItem: View {
         .padding(.vertical, showStatusChanger ? 7.5 : 2.5)
         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading).combined(with: .swipeDelete)))
         .sheet(isPresented: $showOrderEditView) {
+            // Passing an existing order to the AddOrderView allows for it to be edited.
             AddOrderView(order: order)
         }
         .sheet(isPresented: $showBillView) {
@@ -168,7 +189,6 @@ struct OrderListItem: View {
             }
         }
         .onChange(of: deliveryStatus) {
-            
             withAnimation {
                 self.order.deliveryStatus = deliveryStatus
             }

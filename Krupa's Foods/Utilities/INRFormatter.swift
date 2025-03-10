@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+/// A number formatter that formats numbers as Indian Rupees.
 var INRFormatter: NumberFormatter {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency

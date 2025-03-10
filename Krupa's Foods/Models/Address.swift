@@ -27,12 +27,4 @@ struct Address: Codable {
         self.city = city
         self.pincode = pincode
     }
-    
-//    /// Checks if the address contains the specified string in any of its fields.
-//    ///
-//    /// - Parameter string: The string to search for.
-//    /// - Returns: A Boolean value indicating whether the address contains the given string in `line1`, `line2`, `city`, or `pincode`.
-//    func contains(_ string: String) -> Bool {
-//        return self.line1.localizedStandardContains(string) || self.line2.localizedStandardContains(string) || self.city.localizedStandardContains(string) || self.pincode.localizedStandardContains(string)
-//    }
 }

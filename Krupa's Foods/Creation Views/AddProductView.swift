@@ -8,6 +8,7 @@
 import SwiftUI
 import MCEmojiPicker
 
+/// A view to create or edit a product entity.
 struct AddProductView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
@@ -22,8 +23,11 @@ struct AddProductView: View {
     var product: Product?
     
     
+    /// Standard initializer for using the AddProductView in Create Mode.
     init() {}
     
+    /// Overloaded initializer for using the AddProductView in Edit Mode.
+    /// - Parameter product: Pass in an existing product to edit its details.
     init(product: Product? = nil) {
         self.product = product
         
@@ -38,6 +42,7 @@ struct AddProductView: View {
     var body: some View {
         NavigationStack {
             Form {
+                // A section to add the product icon and name.
                 Section("Details") {
                     Group {
                         if !icon.isEmpty  {
@@ -53,17 +58,20 @@ struct AddProductView: View {
                     .onTapGesture {
                         showEmojiPicker = true
                     }
+                    // Use the MCEmojiPicker to select an emoji for the product.
                     .emojiPicker(isPresented: $showEmojiPicker, selectedEmoji: $icon)
                     
                     TextField("Title", text: $name)
                 }
                 
+                // A toggle to set if the product is made to delivery, to determine whether to manage inventory for the product.
                 Section {
                     Toggle("Made to delivery", isOn: $isMadeToDelivery)
                 } footer: {
                     Text("If a product is made to delivery, you will not be able to manage inventory.")
                 }
                 
+                // A picker to select the unit of measurement for the product.
                 Section {
                     Picker("Unit", selection: $measurementUnit) {
                         ForEach(Product.Unit.allCases, id: \.self) { unit in
@@ -79,12 +87,16 @@ struct AddProductView: View {
             }
             .navigationTitle(name.isEmpty ? "New Product" : name)
             .toolbar {
+                // Toolbar items for the top bar.
+                
+                // Cancel button to dismiss the view.
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel", action: dismiss.callAsFunction)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Group {
+                        // If the product is being edited, show the Save button, else show the Add button.
                         if let product {
                             Button("Save") {
                                 product.name = name

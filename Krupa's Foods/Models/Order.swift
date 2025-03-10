@@ -24,14 +24,17 @@ class Order {
     var stock: [Stock]? = []
     @Relationship(deleteRule: .cascade, inverse: \PendingStock.order) var pendingStock: PendingStock?
     
+    /// Computed property that returns the stock associated with the order, or an empty array if not found
     var wrappedStock: [Stock] {
         stock ?? []
     }
     
+    /// Computed property that returns the product associated with the order, or a default product if not
     var wrappedProduct: Product {
         product ?? Product(name: "Unknown Product", icon: "❓", measurementUnit: .piece, isMadeToDelivery: false)
     }
     
+    /// Computed property that returns the customer associated with the order, or a default customer if not found
     var wrappedCustomer: Customer {
         customer ?? Customer(name: "Unknown Customer", phoneNumber: "Unknown Phone Number", address: Address())
     }
@@ -45,7 +48,8 @@ class Order {
     var isCompleted: Bool {
         self.deliveryStatus == .completed && self.paymentStatus == .completed
     }
-
+    
+    /// A computed property that returns the total cost of the order based on the average cost of the stock and the quantity ordered.
     var totalCost: Double {
         if let stock {
             return stock.reduce(0.0) { $0 + ($1.averageCost*($1.wrappedUsedBy.first{ $0 == self }?.quantity ?? 0))}

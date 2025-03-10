@@ -13,6 +13,6 @@ struct Krupas_FoodsApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [Order.self, Product.self, Customer.self])
+        .modelContainer(for: [Order.self, Product.self, Customer.self]) // This line is used to initialize the SwiftData database with the required entities.
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+/// A view that allows the user to pick from existing customers.
 struct ExistingCustomerPicker: View {
     @Environment(\.dismiss) var dismiss
     
@@ -17,6 +18,7 @@ struct ExistingCustomerPicker: View {
     
     @State private var searchTerm: String = ""
     
+    /// The style of the picker. This adapts the UI to match the style of the parent view.
     enum Style {
         case navigation
         case sheet
@@ -25,10 +27,10 @@ struct ExistingCustomerPicker: View {
     var style: Style = .sheet
     
     var body: some View {
-        
         NavigationStack {
             Group {
                 if customers.isEmpty {
+                    // Content Unavailable View if no customers are available.
                     VStack {
                         Spacer()
                         
@@ -40,6 +42,7 @@ struct ExistingCustomerPicker: View {
                         Spacer()
                     }
                 } else {
+                    // Form with picker to choose from existing customers.
                     Form {
                         Picker("Choose Customer", selection: $customer) {
                             CustomersList(customer: $customer, searchTerm: searchTerm)
@@ -48,6 +51,7 @@ struct ExistingCustomerPicker: View {
                     }
                 }
             }
+            // Searchable to select for a partocular customer.
             .searchable(text: $searchTerm, prompt: "Search for an existing customer...")
             .navigationTitle("Choose Customer")
             .navigationBarTitleDisplayMode(.inline)
@@ -68,18 +72,27 @@ struct CustomersList: View {
     
     @Query var customers: [Customer]
     
+    /// List of customers that match the search term.
+    /// - Parameters:
+    ///   - customer: The customer that is to be selected.
+    ///   - searchTerm: The search term to filter the customers by.
     init(customer: Binding<Customer?>, searchTerm: String) {
         self._customer = customer
         self._customers = Query(filter: #Predicate {
                 if searchTerm.isEmpty {
                     return true
                 } else {
+                    // Finds any similarity between the search term and the customer's name, phone number, address line 1, address line 2, city, or pincode.
                     return $0.name.localizedStandardContains(searchTerm) || $0.phoneNumber.localizedStandardContains(searchTerm) || $0.address.line1.localizedStandardContains(searchTerm) || $0.address.line2.localizedStandardContains(searchTerm) || $0.address.city.localizedStandardContains(searchTerm) || $0.address.pincode.localizedStandardContains(searchTerm)
                 }
             }
         )
     }
     
+    /// List of customers with a predicate.
+    /// - Parameters:
+    ///   - customer: The customer that is to be selected.
+    ///   - filter: The predicate to filter the customers by.
     init(customer: Binding<Customer?>, filter: Predicate<Customer>) {
         self._customer = customer
         self._customers = Query(filter: filter)
@@ -92,6 +105,7 @@ struct CustomersList: View {
     }
 }
 
+/// A view that displays a an individual customers details in the CustomersList
 struct CustomerItem: View {
     var customer: Customer
     
@@ -136,6 +150,10 @@ struct CustomerItem: View {
 }
 
 extension View {
+    /// An extension to present the ExistingCustomerPicker as a sheet. This is a convenience method to present the picker as a sheet.
+    /// - Parameters:
+    ///   - isPresented: A binding to a Boolean value that determines whether to present the customer picker sheet.
+    ///   - selection: A binding to the selected customer.
     func customerPicker(isPresented: Binding<Bool>, selection: Binding<Customer?>) -> some View {
         self
             .sheet(isPresented: isPresented) {

@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+// A view for adding stock to a product.
 struct AddStockView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
@@ -24,6 +25,8 @@ struct AddStockView: View {
     
     @State private var detent: PresentationDetent = .medium
     
+    /// Initializes the stock creation view for a product.
+    /// - Parameter product: The product for which the stock is to be added.
     init(product: Product) {
         self.product = product
         self._pendingStocks = Query(filter: #Predicate<PendingStock> { pendingStock in
@@ -57,6 +60,7 @@ struct AddStockView: View {
                         Toggle("Set Remaining Quantity", isOn: $hasConsumed.animation())
                     }
                 }
+                // Adjust the quantity left linearly when the quantity purchased is changed.
                 .onChange(of: quantityPurchased) { oldValue, newValue in
                     if !hasConsumed || (quantityLeft > quantityPurchased) {
                         quantityLeft = quantityPurchased
@@ -67,6 +71,7 @@ struct AddStockView: View {
                     }
                 }
                 
+                // Allow the user to set the quantity left if the stock has been consumed.
                 if hasConsumed {
                     Section("Quantity Left") {
                         Stepper(value: $quantityLeft, in: 0.0...quantityPurchased, step: product.stepAmount, format: .number) {
@@ -81,15 +86,18 @@ struct AddStockView: View {
             }
             .navigationTitle("\(product.icon) Add Stock")
             .toolbar {
+                // Cancel button to dismiss the view
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel", action: dismiss.callAsFunction)
                 }
                 
+                // Add button to save the stock.
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Add") {
                         let stock = Stock(amountPaid: amountPaid, quantityPurchased: quantityPurchased, quantityLeft: (hasConsumed  ? quantityLeft : quantityPurchased), for: product)
                         modelContext.insert(stock)
                         
+                        // Fulfill pending stocks if any.
                         if !pendingStocks.isEmpty {
                             var quantityRemaining = self.quantityLeft
                             for pendingStock in pendingStocks {

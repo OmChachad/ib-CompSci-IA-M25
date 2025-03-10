@@ -42,6 +42,7 @@ class GeminiHandler: ObservableObject {
         var customerName: String?
         var phoneNumber: String?
         
+        /// Coding keys for decoding the JSON response.
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             quantity = try container.decodeIfPresent(Double.self, forKey: .quantity)
@@ -93,6 +94,11 @@ class GeminiHandler: ObservableObject {
         }
     }
     
+    /// Infers the order details from a screenshot of a chat.
+    /// - Parameters:
+    ///   - product: The product for which the order is being placed. The measurement unit of the product will be used to infer the quantity.
+    ///   - image: A screenshot of the chat containing the order details.
+    /// - Returns: A `Response` object containing the inferred order details from the image.
     func inferOrderDetails(for product: Product, from image: UIImage) async throws -> Response {
         let generativeModel = GenerativeModel(
                                 name: "gemini-1.5-flash",
@@ -128,6 +134,7 @@ class GeminiHandler: ObservableObject {
         
         let pattern = "\\{(?:[^{}]|\\{[^{}]*\\})*\\}"
 
+        // Extract the JSON response from the generated text using Regular Expressions.
         if let regex = try? NSRegularExpression(pattern: pattern, options: []) {
             let range = NSRange(jsonResponse.startIndex..<jsonResponse.endIndex, in: jsonResponse)
             if let match = regex.firstMatch(in: jsonResponse, options: [], range: range) {
@@ -139,6 +146,7 @@ class GeminiHandler: ObservableObject {
                     }
                     
                     do {
+                        /// Decode the JSON and turn it into a `Response` object.
                         let geminiResponse = try JSONDecoder().decode(Response.self, from: data)
                         
                         return geminiResponse

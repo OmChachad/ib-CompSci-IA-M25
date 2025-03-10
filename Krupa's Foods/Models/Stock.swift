@@ -19,14 +19,17 @@ class Stock {
     @Relationship(inverse: \Order.stock) var usedBy: [Order]? = []
     @Relationship(deleteRule: .nullify,inverse: \PendingStock.fulfilledBy) var fulfillingStock: [PendingStock]? = []
     
+    /// Computed property that returns the product associated with the stock, or a default product if not found
     var wrappedProduct: Product {
         product ?? Product(name: "Unknown Product", icon: "❓", measurementUnit: .piece, isMadeToDelivery: false)
     }
     
+    /// Computed property that returns the orders that have used this stock, or an empty array if not
     var wrappedUsedBy: [Order] {
         usedBy ?? []
     }
     
+    /// Computed property that returns the average cost of the stock based on the total amount paid and quantity purchased.
     var averageCost: Double {
         if quantityPurchased == 0 {
             return 0
@@ -35,6 +38,7 @@ class Stock {
         }
     }
     
+    /// Computed property that returns the remaining quantity of the stock after accounting for sales or usage.
     var quantityLeft: Double {
         let subtractedQuantity = quantityPurchased
             - self.manuallyConsumedQuantity

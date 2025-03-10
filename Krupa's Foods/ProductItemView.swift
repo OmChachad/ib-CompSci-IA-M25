@@ -8,6 +8,7 @@
 import SwiftUI
 import SwipeActions
 
+/// A view that represents a single product item in the ManageProductsView.
 struct ProductItemView: View {
     @Environment(\.modelContext) var modelContext
     var product : Product
@@ -36,19 +37,25 @@ struct ProductItemView: View {
             .padding(10)
             .background(.ultraThickMaterial, in: .rect(cornerRadius: 20, style: .continuous))
         } trailingActions: { context in
+            // Swipe actions for the product item.
+            
+            // Edit Button
             SwipeAction("Edit", systemImage: "pencil", backgroundColor: .blue) {
                 context.state.wrappedValue = .closed
                 isEditing = true
             }
             .sheet(isPresented: $isEditing) {
+                // Passing the existing product into AddProductView allows for edit functionality.
                 AddProductView(product: product)
             }
             
+            // Delete Button
             SwipeAction("Delete", systemImage: "trash", backgroundColor: .red) {
-                showDeleteConfirmation = true
+                showDeleteConfirmation = true // Show delete confirmation dialog first instead of directly deleting the product.
             }
             .allowSwipeToTrigger()
             .foregroundStyle(.white)
+            // Delete confirmation to prevent accidental deletions from swipes.
             .confirmationDialog("Confirm Deletion", isPresented: $showDeleteConfirmation) {
                 Button("Delete", role: .destructive) {
                     modelContext.delete(product)

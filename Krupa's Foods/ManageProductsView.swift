@@ -9,6 +9,8 @@ import SwiftUI
 import SwiftData
 import SwipeActions
 
+
+/// This view is used to manage the products, i.e., add, edit, and delete products.
 struct ManageProductsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
@@ -18,6 +20,7 @@ struct ManageProductsView: View {
     
     var body: some View {
         NavigationStack {
+            // Scrollable list with the products
             ScrollView {
                 LazyVStack {
                     ForEach(products, id: \.self) { product in
@@ -26,6 +29,7 @@ struct ManageProductsView: View {
                     }
                 }
             }
+            // Toolbar buttons to dismiss the view, or add a new product to the list.
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", action: dismiss.callAsFunction)

@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 import Shimmer
 
+// This is the view that facilitates the smart order inference process.
 struct SmartOrderInfererenceView: View {
     @Environment(\.dismiss) var dismiss
     var product: Product
@@ -41,9 +42,11 @@ struct SmartOrderInfererenceView: View {
         NavigationStack {
             Group {
                 if response == nil {
+                    // If a response is not available, show the screenshot picker.
                     ScreenshotInferenceView(product: product, response: $response)
                         .tag(0)
                 } else if let response {
+                    // Once a response is available, show the customer picker.
                     SmartCustomerPicker(product: product, response: response) { customer in
                         self.customer = customer
                         completion(response, customer)
@@ -59,6 +62,7 @@ struct SmartOrderInfererenceView: View {
             }
         }
         .onChange(of: response) {
+            // Once a response is available, navigate to the customer picker.
             if response != nil {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     selection += 1

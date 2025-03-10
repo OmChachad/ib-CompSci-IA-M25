@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+/// OrdersView is a view that displays all the orders placed for a specific product.
 struct OrdersView: View {
     @Environment(\.modelContext) var modelContext
     @State private var showingNewOrderView: Bool = false
@@ -16,7 +17,9 @@ struct OrdersView: View {
     
     var product: Product
     
-    init(product: Product) {
+    /// Initializes a new `OrdersView` with the specified product and fetches the orders that belong to the specified product.
+    /// - Parameter product: Pass the product for which the orders are to be displayed
+    init(product: Product) {	
         let id = product.id
         self._orders = Query(filter: #Predicate<Order> { order in
             return order.product?.id == id
@@ -25,24 +28,29 @@ struct OrdersView: View {
         self.product = product
     }
     
+    /// Orders that have .isPending as true.
     var pendingOrders: [Order] {
         orders.filter { $0.isPending }
     }
     
+    /// Orders that have .isCompleted as true.
     var completedOrders: [Order] {
         orders.filter { $0.isCompleted }
     }
     
+    /// A namespace facilitates animations and transitions in the OrdersView.
     @Namespace var ordersSpace
     
     var body: some View {
         VStack {
             if orders.isEmpty {
+                // Unavailability View in case no orders have been placed yet.
                 ContentUnavailableView("No Orders Placed", systemImage: "shippingbox.fill", description: Text("Click \(Image(systemName: "plus.circle.fill")) to add your first order"))
                     .frame(maxHeight: .infinity, alignment: .center)
             } else {
                 ScrollView {
                     LazyVStack {
+                        // Shows a header with the current status of the number of pending and completed orders.
                         HStack {
                             VStack(spacing: 0) {
                                 Text("\(pendingOrders.count)")
@@ -69,6 +77,7 @@ struct OrdersView: View {
                         .padding(.horizontal, 12.5)
                         .padding(.bottom, 2.5)
                         
+                        // Pending orders section
                         LazyVStack(pinnedViews: [.sectionHeaders]) {
                             Section {
                                 ForEach(pendingOrders) { order in
@@ -89,6 +98,7 @@ struct OrdersView: View {
                             .opacity(pendingOrders.isEmpty ? 0 : 1)
                             .padding(.bottom, 2.5)
                             
+                            // Completed orders section
                             Section {
                                 ForEach(completedOrders) { order in
                                     OrderListItem(order, namespace: ordersSpace)
@@ -116,6 +126,7 @@ struct OrdersView: View {
             }
         }
         .safeAreaInset(edge: .top, content: {
+            // Title and Toolbar at the top with the Tab Title and "Add Order" button.
             HStack {
                 Text("Orders")
                     .font(.largeTitle.bold())

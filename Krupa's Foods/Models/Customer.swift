@@ -16,6 +16,7 @@ class Customer {
     var address: Address = Address()
     @Relationship(inverse: \Order.customer) var orderHistory: [Order]? = []
     
+    /// Computed property that returns the customer's order history, or an empty array if not found
     var wrappedOrderHistory: [Order] {
         orderHistory ?? []
     }

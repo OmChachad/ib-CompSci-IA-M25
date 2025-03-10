@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 
+/// A view for inferring order details from a screenshot.
 struct ScreenshotInferenceView: View {
     @Environment(\.dismiss) var dismiss
     var product: Product
@@ -33,6 +34,7 @@ struct ScreenshotInferenceView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                // A large button that allows the user to select an image from the photo library, and previews a previously selected image.
                 Button {
                     isShowingPhotoPicker.toggle()
                 } label: {
@@ -75,6 +77,7 @@ struct ScreenshotInferenceView: View {
                 }
                 
                 if selectedImage != nil {
+                    // A button to start or stop processing the selected image. Shown only when an image is selected.
                     HStack(spacing: 20) {
                         Button("\(isProcessing ? "Stop" : "Start") Processing") {
                             if isProcessing {
@@ -100,7 +103,7 @@ struct ScreenshotInferenceView: View {
                     .padding(.bottom)
                 }
                 
-                
+                // A disclaimer about the processing of the image.
                 Text("\(Image(systemName: "sparkles")) Powered by Google Gemini")
                     .bold()
                 Text("Do not share any private or sensitive conversations. Screenshots will be sent to Google Servers for processing.")
@@ -109,6 +112,7 @@ struct ScreenshotInferenceView: View {
                     .multilineTextAlignment(.center)
                     .padding()
             }
+            // Error handling
             .alert("An Error Ocurred", isPresented: $showErrorAlert, actions: {
                 Button("Cancel") {
                     dismiss()
@@ -121,6 +125,7 @@ struct ScreenshotInferenceView: View {
         isProcessing = false
     }
     
+    /// Sending the selected image to the `GeminiHandler` for processing.
     func startProcessing() {
         isProcessing = true
         

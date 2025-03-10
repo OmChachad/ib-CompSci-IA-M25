@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+/// Primary ContentView of the app. This view facilitates the navigation functionality and provides a tabbed interface for the app.
 struct ContentView: View {
     @Query var products: [Product]
     
@@ -44,6 +45,7 @@ struct ContentView: View {
                             }
                     }
                 } else {
+                    // Content Unavailable view displayed when no product is available. This is the first screen the user sees.
                     VStack {
                         ContentUnavailableView("No Product Available", systemImage: "tag.slash.fill", description: Text("You haven't set up any products yet.\nClick **Add Product** to get started."))
                         Button("Add Product") {
@@ -58,6 +60,7 @@ struct ContentView: View {
             .environment(\.horizontalSizeClass, .compact)
             .toolbarBackground(.hidden, for: .tabBar)
             .safeAreaInset(edge: .top, content: {
+                // Product Switcher attached to the top. Visible only if products are available.
                 if !products.isEmpty {
                     HStack {
                         Picker("Product", selection: $product) {
@@ -95,6 +98,7 @@ struct ContentView: View {
                 }
             })
             .onAppear {
+                // Fetching the last selected product from UserDefaults. If not found, selecting the first product.
                 if let data = UserDefaults.standard.data(forKey: "currentProduct"), let decodedID  = try? JSONDecoder().decode(UUID.self, from: data)  {
                     product = products.first { $0.id == decodedID }
                 } else if let product = products.first {

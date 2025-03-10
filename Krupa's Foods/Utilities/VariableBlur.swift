@@ -1,3 +1,4 @@
+// Source: https://github.com/aheze/VariableBlurView Accessed 10/03/25
 
 import SwiftUI
 #if canImport(UIKit)

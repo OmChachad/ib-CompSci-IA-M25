@@ -8,6 +8,7 @@
 import SwiftUI
 import Contacts
 
+/// A view for adding or editing a new customer.
 struct AddCustomerView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
@@ -23,8 +24,8 @@ struct AddCustomerView: View {
     @State var contact: CNContact?
     @State private var existingCustomer: Customer? = nil
     
+    /// Code for controlling the currently focused field programmatically.
     @FocusState private var focusedField: Field?
-    
     enum Field: Int, Hashable {
         case name = 1
         case number = 2
@@ -34,12 +35,15 @@ struct AddCustomerView: View {
         case pincode = 6
     }
     
+    /// A completion handler that returns the newly created or edited customer.
     var completion: (Customer?) -> Void
     
+    /// Standard initializer for using the AddCustomerView in Create Mode.
     init(completion: @escaping (Customer?) -> Void) {
         self.completion = completion
     }
     
+    /// Overloaded initializer for using the AddCustomerView in Smart Inference Mode with Pre-filled Details.
     init (name: String, phoneNumber: String, addressLine1: String, addressLine2: String, city: String, pincode: String, completion: @escaping (Customer?) -> Void) {
         self._name = State(initialValue: name)
         self._phoneNumber = State(initialValue: phoneNumber)
@@ -50,6 +54,7 @@ struct AddCustomerView: View {
         self.completion = completion
     }
     
+    /// Overloaded initializer for using the AddCustomerView in Edit Mode.
     init(existingCustomer: Customer, completion: @escaping (Customer?) -> Void = { _ in }) {
         self._name = State(initialValue: existingCustomer.name)
         self._phoneNumber = State(initialValue: existingCustomer.phoneNumber)
@@ -68,10 +73,13 @@ struct AddCustomerView: View {
             Form {
                 if existingCustomer == nil {
                     Section {
+                        // A button to import details from the user's system contacts.
                         ContactPickerButton(contact: $contact) {
                             Label("Import Details from Contacts", systemImage: "book.closed.fill")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
+                        
+                        // A button to choose an existing customer stored in the app.
                         Button {
                             showingExistingCustomerPicker = true
                         } label: {
@@ -132,6 +140,7 @@ struct AddCustomerView: View {
                         .onSubmit(submitAction)
                 }
             }
+            // Determine the title of the navigation bar based on whether the customer is new or existing.
             .navigationTitle("\(existingCustomer == nil ? "New" : "Edit") Customer")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
@@ -140,6 +149,7 @@ struct AddCustomerView: View {
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Group {
+                        // If the customer is being edited, show the Save button, else show the Add button.
                         if let existingCustomer {
                             Button("Save") {
                                 existingCustomer.name = name
@@ -163,6 +173,7 @@ struct AddCustomerView: View {
                             }
                         }
                     }
+                    // Disable if any of the required fields are empty.
                     .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || phoneNumber.trimmingCharacters(in: .whitespacesAndNewlines).count < 9 || addressLine1.isEmpty || city.isEmpty)
                     .bold()
                 }
@@ -170,12 +181,14 @@ struct AddCustomerView: View {
             }
         }
         .onChange(of: contact) {
+            // If a system contact is selected, fill the details from the contact
             if let contact {
                 importDetails(from: contact)
             }
         }
     }
     
+    /// Function to handle the submission of the form fields and switching of focused fields.
     func submitAction() {
         if focusedField == .pincode {
             focusedField = nil
@@ -184,6 +197,8 @@ struct AddCustomerView: View {
         }
     }
     
+    /// Function to import details from a system `CNContact` object.
+    /// - Parameter contact: System `CNContact` object to import details
     func importDetails(from contact: CNContact) {
         self.name = (contact.givenName + " " + contact.familyName)
                     .trimmingCharacters(in: .whitespacesAndNewlines)

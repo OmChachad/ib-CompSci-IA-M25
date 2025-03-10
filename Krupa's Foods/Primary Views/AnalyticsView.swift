@@ -9,10 +9,13 @@ import SwiftUI
 import Charts
 import SwiftData
 
+/// This view displays the analytics for a specific product. It shows the revenue and profits over a period of time.
 struct AnalyticsView: View {
     var product: Product
     @Query var orders: [Order]
     
+    /// Initializes the analytics view with a specific product.
+    /// - Parameter product: The product for which analytics are to be displayed.
     init(product: Product) {
         self.product = product
         let id = product.id
@@ -28,10 +31,12 @@ struct AnalyticsView: View {
     
     var body: some View {
         Form {
+            // Revenue section.
             Section("Revenue") {
                 ChartView(orders: orders, chartType: .revenue)
             }
             
+            // Show Profits only if data about inventory is available.
             if !product.isMadeToDelivery {
                 Section("Profits") {
                     ChartView(orders: orders, chartType: .profit)
@@ -47,11 +52,13 @@ struct AnalyticsView: View {
 }
 
 extension Date {
+    // Function for checking if a specified date is the same as the another date.
     func isSameDay(as otherDate: Date) -> Bool {
         let calendar = Calendar.current
         return calendar.isDate(self, inSameDayAs: otherDate)
     }
     
+    // Function for formatting the day in the MMM d format.
     var formattedMonthDay: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d" // "Nov 24" format
@@ -60,23 +67,23 @@ extension Date {
 }
 
 struct ChartView: View {
-    /// Use this enum to choose between a revenue or profit chart.
+    /// Use this enum to choose between a revenue or profit chart for ChartView.
     enum ChartType {
         case revenue
         case profit
     }
     
-    // MARK: - Input
+    // Parameters to be passed to the ChartView from the parent view.
     let orders: [Order]
     let chartType: ChartType
     
-    // MARK: - Common State
+    // Date range parameters for analytics
     @State private var selectedTimeFrame: TimeFrame = .lastWeek
     @State private var startDate: Date = Date.now.addingTimeInterval(-86400 * 7)
     @State private var endDate: Date = Date.now
     @State private var currentHoverDate: Date? = nil
     
-    // MARK: - Time Frame Enum
+    /// TimeFrame enum for selecting the time frame for analytics
     enum TimeFrame: Hashable {
         case lastWeek, lastMonth, custom
         
@@ -89,7 +96,7 @@ struct ChartView: View {
         }
     }
     
-    // MARK: - Date Range Helpers
+    /// Computer property for date range based on "selectedTimeFrame"
     private var dateRange: (start: Date, end: Date) {
         switch selectedTimeFrame {
         case .lastWeek:
@@ -103,6 +110,7 @@ struct ChartView: View {
         }
     }
     
+    // Computer property for date range array based on "dateRange"
     private var dateRangeArray: [Date] {
         let (start, end) = dateRange
         guard start <= end else { return [] }
@@ -119,7 +127,6 @@ struct ChartView: View {
         return dates
     }
     
-    // MARK: - Computed Totals
     /// Computes the total (revenue or profit) over the selected time frame.
     private var totalForTimePeriod: Double {
         orders
@@ -155,25 +162,25 @@ struct ChartView: View {
         }
     }
     
-    // MARK: - X-Axis Domain Helpers
+    // The number of seconds remaining in the current day.
     private var secondsRemaining: Double {
         86400 - Date.now.timeIntervalSince(Calendar.current.startOfDay(for: Date.now))
     }
     
+    // The number of seconds that have passed in the current day.
     private var secondsPast: Double {
         Date.now.timeIntervalSince(Calendar.current.startOfDay(for: Date.now))
     }
     
+    /// Determines the X‑axis domain based on the date range.
     private var xDomain: ClosedRange<Date> {
         dateRange.start.advanced(by: -secondsPast)...dateRange.end.advanced(by: secondsRemaining)
     }
     
-    // MARK: - Body
     var body: some View {
         VStack {
             header
             
-            // MARK: - Chart
             GeometryReader { geo in
                 Chart(dateRangeArray, id: \.self) { date in
                     // Get orders for the day.
@@ -201,7 +208,7 @@ struct ChartView: View {
                                         ? Color.yellow.gradient
                                         : (confirmedTotal >= 0 ? Color.green.gradient : Color.red.gradient))
                     
-                    // Second bar: unconfirmed (pending) orders.
+                    // Second overlayed bar: unconfirmed (pending) orders.
                     BarMark(
                         x: .value("Day", date, unit: .day),
                         y: .value(chartType == .revenue ? "Revenue" : "Profits", unconfirmedTotal)
@@ -238,6 +245,8 @@ struct ChartView: View {
                                             .bold()
                                     }
                                     Divider()
+                                    
+                                    // Automatic grammar inflection is used to pluralize the word “Orders”.
                                     Text("^[\(dailyOrders.count) Orders](inflect: true)")
                                         .foregroundColor(.secondary)
                                     Text(date.formatted(date: .abbreviated, time: .omitted))
@@ -255,9 +264,12 @@ struct ChartView: View {
                     }
                 }
                 .chartXAxis {
+                    // Grid line marks for the Chart
                     AxisMarks(values: .stride(by: .day)) { _ in
                         AxisGridLine()
                     }
+                    
+                    // Stride by day for the X‑axis labels.
                     AxisMarks(
                         values: .stride(
                             by: .day,
@@ -275,6 +287,7 @@ struct ChartView: View {
                             .fill(.clear)
                             .contentShape(Rectangle())
                             .gesture(
+                                // Drag Gesture allows for hover annotation to display specific details for a selected day.
                                 DragGesture()
                                     .onChanged { value in
                                         if let day = proxy.value(atX: value.location.x, as: Date.self) {
@@ -329,7 +342,6 @@ struct ChartView: View {
         }
     }
     
-    // MARK: - Helpers
     /// Computes an x‑offset for the hover annotation if the date is near the edges.
     private func hoverOffset(for date: Date, in domain: ClosedRange<Date>, chartCount: Int) -> CGFloat {
         let totalDays = domain.upperBound.timeIntervalSince(domain.lowerBound) / 86400

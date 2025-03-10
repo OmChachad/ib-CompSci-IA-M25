@@ -1,12 +1,15 @@
 import SwiftUI
 
+/// A view that displays and generates the bill/invoice for a given order.
 struct BillView: View {
     @Environment(\.dismiss) var dismiss
     
+    /// The order for which the bill is to be generated.
     var order: Order
     
     var bill: some View {
         VStack(alignment: .leading, spacing: 16) {
+            // Header section with the brand icon and details.
             VStack(alignment: .center, spacing: 2) {
                 Image("BrandIcon")
                     .resizable()
@@ -27,6 +30,7 @@ struct BillView: View {
             
             Divider()
             
+            // Invoice details section.
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("INVOICE")
@@ -44,6 +48,7 @@ struct BillView: View {
                 Spacer()
             }
             
+            // Customer details
             VStack(alignment: .leading, spacing: 8) {
                 Text("Billed To:")
                     .font(.headline)
@@ -66,6 +71,7 @@ struct BillView: View {
             
             Divider()
             
+            // Purchase details
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text("Description")
@@ -100,6 +106,7 @@ struct BillView: View {
                 Divider()
             }
             
+            // Purchase Total
             HStack {
                 Spacer()
                 VStack(alignment: .trailing, spacing: 4) {
@@ -128,14 +135,16 @@ struct BillView: View {
                             Label("Return", systemImage: "chevron.left")
                         }
                     }
-                    
+                    // Bottom toolbar item to share the bill.
                     ToolbarItemGroup(placement: .bottomBar) {
+                        // Renders the Bill SwiftUI View as an image, with a forced light mode to ensure the invoice is printable.
                         let renderer = ImageRenderer(content: bill
                             .background(.white)
                             .environment(\.colorScheme, .light))
                         if let image = renderer.uiImage {
                             let swiftUIImage = Image(uiImage: image)
                             
+                            // ShareLink is used to share the generated invoice via the system share sheet.
                             ShareLink(item: swiftUIImage, preview: SharePreview("Bill", image: swiftUIImage))
                         }
                     }
