@@ -14,14 +14,6 @@ struct OrdersView: View {
     
     @Query(sort: \Order.date, order: .reverse) var orders: [Order]
     
-    var pendingOrdersCount: Int {
-        orders.filter{ $0.isPending }.count
-    }
-    
-    var completedOrdersCount: Int {
-        orders.filter { $0.isCompleted }.count
-    }
-    
     var product: Product
     
     init(product: Product) {
@@ -53,7 +45,7 @@ struct OrdersView: View {
                     LazyVStack {
                         HStack {
                             VStack(spacing: 0) {
-                                Text("\(pendingOrdersCount)")
+                                Text("\(pendingOrders.count)")
                                     .font(.title.bold())
                                 Text("Pending")
                             }
@@ -64,7 +56,7 @@ struct OrdersView: View {
                             .padding(2.5)
                             
                             VStack(spacing: 0) {
-                                Text("\(completedOrdersCount)")
+                                Text("\(completedOrders.count)")
                                     .font(.title.bold())
                                 Text("Completed")
                             }
