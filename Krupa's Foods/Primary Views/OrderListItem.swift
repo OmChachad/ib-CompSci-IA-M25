@@ -180,35 +180,3 @@ struct OrderListItem: View {
         }
     }
 }
-
-struct OrderStatusSheet: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var order: Order
-    @State private var paymentMethod: Order.PaymentMethod = .UPI
-    @State private var paymentStatus = Order.Status.pending
-    @State private var deliveryStatus = Order.Status.pending
-    
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section("Payment Method") {
-                    EnumPicker(title: "Payment Method", selection: $paymentMethod)
-                }
-                Section("Payment Status") {
-                    EnumPicker(title: "Payment Status", selection: $paymentStatus)
-                }
-                
-                Section("Delivery Status") {
-                    EnumPicker(title: "Delivery Status", selection: $deliveryStatus)
-                }
-            }
-            .pickerStyle(.segmented)
-            .navigationTitle("\(order.customer?.name ?? "Unknown")'s Order")
-            .toolbar {
-                Button("Done", action: dismiss.callAsFunction)
-            }
-            
-        }
-    }
-}
