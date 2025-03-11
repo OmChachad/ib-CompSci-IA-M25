@@ -334,7 +334,7 @@ struct ChartView: View {
                     Spacer()
                     
                     DatePicker("End Date", selection: $endDate,
-                               in: startDate...(orders.last?.date ?? Date()),
+                               in: startDate...(orders.last?.date ?? Date.now >= startDate ? orders.last?.date ?? Date() : Date.now),
                                displayedComponents: [.date])
                         .labelsHidden()
                 }
